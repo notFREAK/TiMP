@@ -1,4 +1,4 @@
-package source;
+package Application;
 
 import Objects.Drone;
 import Objects.Worker;
@@ -12,19 +12,17 @@ import Objects.Bee;
 
 public class Habitat {
 
-    // размер и картинка заднего фона
     private static final int SpaceWidth = 400;
     private static final int SpaceHeight = 400;
-    private static final Image imageBackground = new Image("Pic/Show.png");
+    private static final Image imageBackground = new Image();
 
-    // картинки для циркачей
-    private static final Image imageLion = new Image("Pic/Volk.png");
-    private static final Image imageWolf = new Image("Pic/Lev.png");
+    private static final Image imageLion = new Image();
+    private static final Image imageWolf = new Image();
 
-    private int N1; // Время рождения Льва(каждые N1 секунды)
-    private int P1; // Вероятность % рождения Льва
-    private int N2; // Время рождения Волка(каждые N2 секунды)
-    private int K2; // проценнт от общего числа кроликов
+    private int NumberOfSecondsFirst;
+    private int NumberOfCoefficientFirst;
+    private int NumberOfSecondsSeconds;
+    private int NumberOfProbabilitySeconds;
     private int timeLifeLion;
     private int timeLifeWolf;
 
@@ -34,16 +32,16 @@ public class Habitat {
     public Habitat(){}
 
     public void update(int time, Pane pane) {
-        if (this.canBornWolf(this.N1,this.P1,time))
+        if (this.canBornDrone(this.N1,this.P1,time))
         {
-            Drone wolf= makeWolf(time);
+            Drone wolf= makeDrone(time);
             this.collectionsAnimals.adds(wolf);
             pane.getChildren().addAll(new Node[]{wolf.getImageView()});
         }
 
-        if (this.canBornLions(this.N2,this.K2,time))
+        if (this.canBornWorker(this.N2,this.K2,time))
         {
-            Worker worker = makeLions(time);
+            Worker worker = makeWorker(time);
             this.collectionsAnimals.adds(worker);
             pane.getChildren().addAll(new Node[]{worker.getImageView()});
         }
@@ -52,39 +50,39 @@ public class Habitat {
     }
 
     //   Обыкновенные кролики рождаются каждые N1 секунд с вероятностью P1.
-    private boolean canBornWolf(int N1,int P1,int time){
+    private boolean canBornDrone(int N1, int P1, int time){
         int randomVariation = (int)Math.floor(Math.random()*100);
         if(time % N1 == 0 && randomVariation<=P1) return true;
         return false;
     }
 
-    private Drone makeWolf(int time){
+    private Drone makeDrone(int time){
         ImageView imageView = new ImageView(imageWolf);
-        int x = (int)Math.floor(Math.random()*(SpaceWidth - Drone.SpaceWidth));
-        int y = (int)Math.floor(Math.random()*(SpaceHeight - Drone.SpaceHeight));
+        int x = (int)Math.floor(Math.random()*(SpaceWidth - Drone.ImageWidth));
+        int y = (int)Math.floor(Math.random()*(SpaceHeight - Drone.ImageHeight));
         Drone drone = new Drone(imageView,x,y,time,timeLifeWolf);
         return drone;
     }
 
     //    Львы рождаются каждые N2 секунд
-    private boolean canBornLions(int N2,int P2,int time){
+    private boolean canBornWorker(int N2, int P2, int time){
         int randomVariation = (int)Math.floor(Math.random()*100);
         if(time % N2 == 0 && randomVariation<=P2) return true;
         return false;
     }
 
-    private Worker makeLions(int time){
+    private Worker makeWorker(int time){
         ImageView imageView = new ImageView(imageLion);
-        int x = (int)Math.floor(Math.random()*(SpaceWidth - Bee.SpaceWidth));
-        int y = (int)Math.floor(Math.random()*(SpaceHeight - Bee.SpaceHeight));
+        int x = (int)Math.floor(Math.random()*(SpaceWidth - Bee.ImageWidth));
+        int y = (int)Math.floor(Math.random()*(SpaceHeight - Bee.ImageHeight));
         Worker Lion = new Worker(imageView,x,y,time,timeLifeLion);
         return Lion;
     }
 
     public void clear(){
         Bee.countsAllBees = 0;
-        Worker.countLions = 0;
-        Drone.countWolves = 0;
+        Worker.countWorker = 0;
+        Drone.countDrone = 0;
         collectionsAnimals.clear();
     }
 

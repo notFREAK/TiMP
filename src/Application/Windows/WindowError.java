@@ -1,4 +1,4 @@
-package Objects.Windows;
+package Application.Windows;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

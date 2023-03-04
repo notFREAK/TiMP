@@ -1,5 +1,10 @@
-package source;
+package Application;
 
+import Application.Windows.WindowInformation;
+import Objects.Bee;
+import Objects.Drone;
+import Objects.Worker;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,15 +12,34 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import Objects.Bee;
-import Objects.Drone;
-import Objects.Worker;
-import Objects.Windows.WindowInformation;
 
 import java.io.File;
 import java.io.IOException;
 
-public class AppManager {
+public class Manager extends Application {
+
+    private int seconds = 0;
+    private int minutes = 0;
+    private int speedSimulation = 700;
+    private Thread thread;
+    public static final int  RUNNING = 1;
+    public static final int  PAUSE = 2;
+    public static final int  STOP = 3;
+
+    private int stateSimulation = -1;
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception{
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        thread = new Thread(runnable);
+        habitat = new Habitat();
+        initPrimaryStageAndController(stage,mainLoader);
+        disableButtons(stateSimulation);
+    }
+
     private Habitat habitat;
     private Controller controller;
 
@@ -51,30 +75,11 @@ public class AppManager {
         }
     };
 
-    private int seconds = 0;
-    private int minutes = 0;
-    private int speedSimulation = 700;
-    private Thread thread;
 
-    // Define state of the simulation
-    public static final int  RUNNING = 1;
-    public static final int  PAUSE = 2;
-    public static final int  STOP = 3;
-
-    // init state
-    private int stateSimulation = -1;
 
     private void updateAppPerSecond(){
         controller.getFieldTime().setText(minutes + ":" +seconds);
         habitat.update(seconds,controller.getMainPane());
-    }
-
-    public AppManager(Stage primaryStage) throws Exception {
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        thread = new Thread(runnable);
-        habitat = new Habitat();
-        initPrimaryStageAndController(primaryStage,mainLoader);
-        disableButtons(stateSimulation);
     }
 
     private void initPrimaryStageAndController(Stage stage,FXMLLoader mainLoader) throws IOException {
@@ -197,8 +202,8 @@ public class AppManager {
     private String makeResultLog(){
         return new String(
                 "Total Bee: " + Bee.countsAllBees +
-                        ";"+ '\n' +"Drone: " + Drone.countWolves +
-                        ";"+ '\n' +"Worker: " + Worker.countLions +
+                        ";"+ '\n' +"Drone: " + Drone.countDrone +
+                        ";"+ '\n' +"Worker: " + Worker.countWorker +
                         ";"+ '\n' +"Time of simulation Min:" + this.minutes + " Sec: " +this.seconds
         );
     }
@@ -206,11 +211,11 @@ public class AppManager {
     public void showWindowCollectionsInformatos(){
         String message = habitat.getInfoAliveAnimals();
         WindowInformation windows = new WindowInformation(
-                                                            "Information about collections",
-                                                            700,
-                                                            700,
-                                                            message,
-                                                            this);
+                "Information about collections",
+                700,
+                700,
+                message,
+                this);
         stateSimulation = PAUSE;
         thread.interrupt();
     }
@@ -221,6 +226,5 @@ public class AppManager {
     public void setStateOfTimer(int stateOfSimulation) {
         this.stateSimulation = stateOfSimulation;
     }
-
 }
 

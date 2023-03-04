@@ -1,4 +1,4 @@
-package Objects.Windows;
+package Application.Windows;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;

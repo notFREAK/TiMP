@@ -1,4 +1,4 @@
-package source;
+package Application;
 
 import java.net.URL;
 import java.util.*;
@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import Objects.Windows.WindowError;
+import Application.Windows.WindowError;
 
 public class Controller {
     @FXML
@@ -315,7 +315,7 @@ public class Controller {
             while (iteratorUpdate.hasNext())
             {
                 Bee rabbitUpdate = iteratorUpdate.next();
-                rabbitUpdate.updaTimeLiveAnimals();
+                rabbitUpdate.updateTimeLiveAnimals();
             }
 
 

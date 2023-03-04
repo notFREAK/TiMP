@@ -1,4 +1,4 @@
-package source;
+package Application;
 
 import Objects.Bee;
 import javafx.scene.layout.Pane;
@@ -8,25 +8,25 @@ import java.util.*;
 
 public class Collections {
     private ArrayList<Bee> arrayList;            //Коллекция для хранения объектов
-    private TreeSet<Integer> treeSet;               //Коллекция для хранения и поиска уникальных идентификаторов
-    private HashMap<Integer,Integer> hashMap;       //Коллекция для хранения времени рождения объектов
+    private HashSet<Integer> hashSet;               //Коллекция для хранения и поиска уникальных идентификаторов
+    private TreeMap<Integer,Integer> TreeMap;       //Коллекция для хранения времени рождения объектов
 
     public Collections(){
         this.arrayList = new ArrayList<Bee>();
-        this.treeSet = new TreeSet<Integer>();
-        this.hashMap = new HashMap<Integer,Integer>();
+        this.hashSet = new HashMap<Integer>();
+        this.TreeMap = new TreeSet<Integer,Integer>();
     }
 
     public void adds(Bee bee){
         this.arrayList.add(bee);
-        this.treeSet.add(bee.getIdentifier());
-        this.hashMap.put(bee.getIdentifier(), bee.getTimeBorn());
+        this.hashSet.add(bee.getIdentifier());
+        this.TreeMap.put(bee.getIdentifier(), bee.getTimeBorn());
     }
 
     public void delete(Bee bee){
         arrayList.remove(bee);
-        treeSet.remove(bee.getIdentifier());
-        hashMap.remove(bee.getIdentifier(), bee.getTimeBorn());
+        hashSet.remove(bee.getIdentifier());
+        TreeMap.remove(bee.getIdentifier(), bee.getTimeBorn());
     }
 
     public  void  updateCollectionsPerTime(Pane pane){
@@ -34,7 +34,7 @@ public class Collections {
         while (iteratorUpdate.hasNext())
         {
             Bee animalUpdate = iteratorUpdate.next();
-            animalUpdate.updaTimeLiveAnimals();
+            animalUpdate.updateTimeLiveAnimals();
         }
 
 
@@ -73,8 +73,8 @@ public class Collections {
 
     public void clear(){
         arrayList.clear();
-        treeSet.clear();
-        hashMap.clear();
+        hashSet.clear();
+        TreeMap.clear();
     }
 
     public  String getAliveAnimals(){

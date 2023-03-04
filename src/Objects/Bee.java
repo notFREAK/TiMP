@@ -12,10 +12,9 @@ import javafx.scene.layout.Pane;
 */
 public abstract class Bee extends Pane implements IBehaviour{
     protected String typeAnimals;
-
     private ImageView imageView;
-    public static final int SpaceWidth = 50;
-    public static final int SpaceHeight = 50;
+    public static final int ImageWidth = 50;
+    public static final int ImageHeight = 50;
     static public int countsAllBees = 0;
     protected int identifier = 0;
     protected int timeBorn = 0;
@@ -26,13 +25,13 @@ public abstract class Bee extends Pane implements IBehaviour{
         this.imageView = imageView;
         this.timeBorn = timeBorn;
         this.timeLife = timeLife;
-        imageView.setFitWidth(SpaceWidth);
-        imageView.setFitHeight(SpaceHeight);
-        generateIdentifer();
+        imageView.setFitWidth(ImageWidth);
+        imageView.setFitHeight(ImageHeight);
+        generateIdentifier();
         countsAllBees++;
     }
 
-    private void generateIdentifer(){
+    private void generateIdentifier(){
         int randomIdentifier = (int)Math.floor(Math.random()*10000);
         identifier = randomIdentifier;
     };
@@ -68,7 +67,7 @@ public abstract class Bee extends Pane implements IBehaviour{
     }
 
     @Override
-    public void updaTimeLiveAnimals(){
+    public void updateTimeLiveAnimals(){
     }
 
     public ImageView getImageView(){
@@ -90,6 +89,7 @@ public abstract class Bee extends Pane implements IBehaviour{
     public void setTImeLife(int timeLife){
         this.timeLife = timeLife;
     }
+
     public int getTimeLife() {
         return timeLife;
     }
@@ -98,6 +98,7 @@ public abstract class Bee extends Pane implements IBehaviour{
         return isDead;
     }
 
-    protected void dicreementcountsAllAnimals(){
-        countsAllBees--;}
+    protected void decrementCountsAllAnimals(){
+        countsAllBees--;
+    }
 }

@@ -1,4 +1,4 @@
-package Objects.Windows;
+package Application.Windows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import source.AppManager;
+import Application.AppManager;
 
 
 

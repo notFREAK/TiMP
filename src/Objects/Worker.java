@@ -1,25 +1,22 @@
 package Objects;
-//Кошки
 
 import javafx.scene.image.ImageView;
 
 public class Worker extends Bee {
-    public static int countLions = 0;
-
+    public static int countWorker = 0;
     public Worker(ImageView imageView, int x, int y, int timeBorn, int timeLife){
         super(imageView,timeBorn,timeLife);
         setPosition(x,y);
-        countLions++;
+        countWorker++;
         typeAnimals = "Лев";
     }
-
     @Override
-    public void updaTimeLiveAnimals(){
+    public void updateTimeLiveAnimals(){
         this.timeLife--;
         if (timeLife<0) {
             isDead = true;
-            countLions--;
-            super.dicreementcountsAllAnimals();
+            countWorker--;
+            super.decrementCountsAllAnimals();
         }
     }
 }
