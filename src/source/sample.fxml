@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="source.Controller">
+   <children>
+      <Label fx:id="labelTextTIMER" layoutX="331.0" layoutY="12.0" text="Timer:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fieldTime" editable="false" layoutX="400.0" layoutY="6.0" prefHeight="14.0" prefWidth="65.0" text="0:0">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </TextField>
+      <Pane fx:id="mainPane" layoutX="10.0" layoutY="290.0" prefHeight="400.0" prefWidth="468.0" />
+      <AnchorPane layoutX="244.0" layoutY="95.0" prefHeight="191.0" prefWidth="195.0">
+         <children>
+            <TextField fx:id="timeBornLion" layoutX="135.0" layoutY="19.0" prefHeight="11.0" prefWidth="65.0" text="5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="11.0" layoutY="17.0" text="Время рождения &#10;Льва" />
+            <Label layoutX="9.0" layoutY="114.0" text="Вероятность рождения &#10; Льва" />
+            <Slider fx:id="sliderVariationBornLion" layoutX="9.0" layoutY="177.0" prefHeight="14.0" prefWidth="201.0" />
+            <TextField fx:id="timeLifeLion" layoutX="135.0" layoutY="67.0" prefHeight="11.0" prefWidth="65.0" text="3">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="11.0" layoutY="65.0" text="Время жизни&#10;Льва" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="103.0" prefHeight="161.0" prefWidth="201.0">
+         <children>
+            <TextField fx:id="timeBornWolf" layoutX="155.0" layoutY="15.0" prefHeight="11.0" prefWidth="65.0" text="5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="13.0" layoutY="13.0" text="Время рождения &#10;Волка в цирке " />
+            <Label layoutX="16.0" layoutY="97.0" text="Вероятность рождения &#10;Волчары" />
+            <Slider fx:id="sliderVariationBornWolf" layoutX="14.0" layoutY="147.0" prefHeight="14.0" prefWidth="201.0" />
+            <TextField fx:id="timeLifeWolf" layoutX="155.0" layoutY="57.0" prefHeight="11.0" prefWidth="65.0" promptText="N1" text="3">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label layoutX="13.0" layoutY="55.0" text="Время жизни&#10;Волка циркового " />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="6.0" prefHeight="82.0" prefWidth="201.0">
+         <children>
+            <Button fx:id="startButton" layoutX="10.0" layoutY="2.0" mnemonicParsing="false" text="Start" />
+            <Button fx:id="stopButton" layoutX="123.0" layoutY="1.0" mnemonicParsing="false" text="Stop" />
+            <Button fx:id="pauseButton" layoutX="64.0" layoutY="1.0" mnemonicParsing="false" text="Pause" />
+            <CheckBox fx:id="checkBoxShowTime" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" text="Показать время симуляции" />
+            <CheckBox fx:id="checkBoxShowDialog" layoutX="9.0" layoutY="60.0" mnemonicParsing="false" text="Показывать диалогое окно" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="showInformationButton" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" text="Show full info" />
+   </children>
+</AnchorPane>
