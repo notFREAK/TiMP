@@ -3,7 +3,7 @@ package Application;
 import java.net.URL;
 import java.util.*;
 
-import Objects.Bee;
+import Objects.Bee.Bee;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -267,11 +267,11 @@ public class Controller {
         return Integer.parseInt(timeBornLion.getText());
     }
 
-    public int getValuetTimeLifeWolf() {
+    public int getValuetTimeLifeWorker() {
         return Integer.parseInt(timeLifeWolf.getText());
     }
 
-    public int getValuetTimeLifeLion() {
+    public int getValuetTimeLifeDrone() {
         return Integer.parseInt(timeLifeLion.getText());
     }
 

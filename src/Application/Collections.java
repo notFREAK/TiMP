@@ -1,6 +1,6 @@
 package Application;
 
-import Objects.Bee;
+import Objects.Bee.Bee;
 import javafx.scene.layout.Pane;
 
 
@@ -20,13 +20,13 @@ public class Collections {
     public void adds(Bee bee){
         this.arrayList.add(bee);
         this.hashSet.add(bee.getIdentifier());
-        this.TreeMap.put(bee.getIdentifier(), bee.getTimeBorn());
+        this.TreeMap.put(bee.getIdentifier(), bee.life.getTimeBorn());
     }
 
     public void delete(Bee bee){
         arrayList.remove(bee);
         hashSet.remove(bee.getIdentifier());
-        TreeMap.remove(bee.getIdentifier(), bee.getTimeBorn());
+        TreeMap.remove(bee.getIdentifier(), bee.life.getTimeBorn());
     }
 
     public  void  updateCollectionsPerTime(Pane pane){
@@ -34,7 +34,7 @@ public class Collections {
         while (iteratorUpdate.hasNext())
         {
             Bee animalUpdate = iteratorUpdate.next();
-            animalUpdate.updateTimeLiveAnimals();
+            animalUpdate.life.updateTimeLiveAnimals();
         }
 
 
@@ -42,7 +42,7 @@ public class Collections {
         while(checkIsAmyAnimalDead()){
             Bee deletAnimal = findDeadAnimal();
             delete(deletAnimal);
-            pane.getChildren().remove(deletAnimal.getImageView());
+            pane.getChildren().remove(deletAnimal.image.getImageView());
         }
 
     }
@@ -51,7 +51,7 @@ public class Collections {
         Iterator<Bee> iteratorDelete = arrayList.listIterator();
         while (iteratorDelete.hasNext()) {
             Bee element = iteratorDelete.next();
-            if (element.isDead())
+            if (element.life.isDead())
             {
                 return true;
             }
@@ -63,7 +63,7 @@ public class Collections {
         Iterator<Bee> iteratorDelete = arrayList.iterator();
         while (iteratorDelete.hasNext()) {
             Bee element = iteratorDelete.next();
-            if (element.isDead() == true)
+            if (element.life.isDead() == true)
             {
                 return element;
             }
@@ -84,15 +84,14 @@ public class Collections {
         while (iteratorDelete.hasNext()) {
             Bee element = iteratorDelete.next();
             count++;
-            if (element.isDead() == false)
+            if (element.life.isDead() == false)
             {
                 resultString += String.valueOf(count) + ". " +
                                 "Type: "+element.getTypeAnimals() +
-                                "; TimeBorn: "+ String.valueOf(element.getTimeBorn()) +
+                                "; TimeBorn: "+ String.valueOf(element.life.getTimeBorn()) +
                                 "; Id: "+ String.valueOf(element.getIdentifier()) + "\n" ;
             }
         }
-
         return resultString;
     }
 }
