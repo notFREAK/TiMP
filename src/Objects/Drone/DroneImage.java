@@ -1,10 +1,12 @@
 package Objects.Drone;
 
 import Objects.Bee.BeeImage;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class DroneImage extends BeeImage {
-    public DroneImage(ImageView imageView) {
-        super(imageView);
+    private static final Image image = new Image("C:\\MyProjects\\TiMP\\src\\Pic\\Drone.png");
+    public DroneImage() {
+        imageView = new ImageView(image);
     }
 }

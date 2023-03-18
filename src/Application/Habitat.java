@@ -14,7 +14,7 @@ public class Habitat {
 
     private static final int SpaceWidth = 400;
     private static final int SpaceHeight = 400;
-    private static final Image imageBackground = new Image();
+    private static final Image imageBackground = new Image("C:\\MyProjects\\TiMP\\src\\Pic\\Background.png");
     private int NumberOfSecondsDrone;
     private int NumberOfCoefficientDrone;
     private int NumberOfSecondsWorker;
@@ -65,8 +65,8 @@ public class Habitat {
     }
 
     private Worker makeWorker(int time){
-        int x = (int)Math.floor(Math.random()*(SpaceWidth - Bee.image.ImageWidth));
-        int y = (int)Math.floor(Math.random()*(SpaceHeight - Bee.image.ImageHeight));
+        int x = (int)Math.floor(Math.random()*(SpaceWidth - Worker.image.ImageWidth));
+        int y = (int)Math.floor(Math.random()*(SpaceHeight - Worker.image.ImageHeight));
         Worker worker = new Worker(x,y,time, timeLifeWorker);
         return worker;
     }

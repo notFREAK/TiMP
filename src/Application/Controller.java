@@ -301,13 +301,13 @@ public class Controller {
         public void add(Bee Animal){
             arrayList.add(Animal);
             treeSet.add(Animal.getIdentifier());
-            hashMap.put(Animal.getIdentifier(),Animal.getTimeBorn());
+            hashMap.put(Animal.getIdentifier(),Animal.life.getTimeBorn());
         }
 
         public void delete(Bee Animal){
             arrayList.remove(Animal);
             treeSet.remove(Animal.getIdentifier());
-            hashMap.remove(Animal.getIdentifier(),Animal.getTimeBorn());
+            hashMap.remove(Animal.getIdentifier(),Animal.life.getTimeBorn());
         }
 
         public  void  updateCollectionsPerTime(Pane pane){
@@ -315,7 +315,7 @@ public class Controller {
             while (iteratorUpdate.hasNext())
             {
                 Bee rabbitUpdate = iteratorUpdate.next();
-                rabbitUpdate.updateTimeLiveAnimals();
+                rabbitUpdate.life.updateTimeLiveAnimals();
             }
 
 
@@ -323,7 +323,7 @@ public class Controller {
             while(checkIsAmyAnimalDead()){
                 Bee deleBee = findDeadAnimal();
                 delete(deleBee);
-                pane.getChildren().remove(deleBee.getImageView());
+                pane.getChildren().remove(deleBee.image.getImageView());
             }
 
         }
@@ -332,7 +332,7 @@ public class Controller {
             Iterator<Bee> iteratorDelete = arrayList.listIterator();
             while (iteratorDelete.hasNext()) {
                 Bee element = iteratorDelete.next();
-                if (element.isDead())
+                if (element.life.isDead())
                 {
                     return true;
                 }
@@ -344,7 +344,7 @@ public class Controller {
             Iterator<Bee> iteratorDelete = arrayList.iterator();
             while (iteratorDelete.hasNext()) {
                 Bee element = iteratorDelete.next();
-                if (element.isDead() == true)
+                if (element.life.isDead() == true)
                 {
                     return element;
                 }
@@ -365,11 +365,11 @@ public class Controller {
             while (iteratorDelete.hasNext()) {
                 Bee element = iteratorDelete.next();
                 count++;
-                if (element.isDead() == false)
+                if (element.life.isDead() == false)
                 {
                     resultString += String.valueOf(count) + ". " +
                             "Type: "+element.getTypeAnimals() +
-                            "; TimeBorn: "+ String.valueOf(element.getTimeBorn()) +
+                            "; TimeBorn: "+ String.valueOf(element.life.getTimeBorn()) +
                             "; Id: "+ String.valueOf(element.getIdentifier()) + "\n" ;
                 }
             }

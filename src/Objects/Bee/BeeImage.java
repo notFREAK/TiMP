@@ -6,12 +6,11 @@ import javafx.scene.layout.Pane;
 
 abstract public class BeeImage extends Pane implements IBehaviour {
 
-    private ImageView imageView;
+    protected ImageView imageView;
     public static final int ImageWidth = 50;
     public static final int ImageHeight = 50;
 
-    public BeeImage(ImageView imageView) {
-        this.imageView = imageView;
+    public BeeImage() {
         imageView.setFitWidth(ImageWidth);
         imageView.setFitHeight(ImageHeight);
     }
