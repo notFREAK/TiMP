@@ -1,5 +1,6 @@
 package Application.Manager;
 
+import Application.Controller.ControllerManager;
 import Application.Habitat.Habitat;
 import Objects.Bee.Bee;
 import Objects.Drone.Drone;
@@ -38,10 +39,6 @@ public class AppManager extends Application {
         habitat = new Habitat();
         Parent root = mainLoader.load();
         Scene scene = new Scene(root);
-        String path = "C:\\MyProjects\\TiMP\\src\\Pic\\Theme_MED.mp3";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
         stage.setTitle("Playing Audio");
         stage.show();
         stage.setTitle("TiMP");
@@ -52,7 +49,7 @@ public class AppManager extends Application {
     }
 
     private Habitat habitat;
-    private Controller controller;
+    private ControllerManager controllerManager;
 
     private Runnable runnable = new Runnable()
     {

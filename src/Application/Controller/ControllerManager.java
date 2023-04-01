@@ -3,15 +3,30 @@ package Application.Controller;
 import Application.Manager.AppManager;
 import Application.Windows.WindowError;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 public class ControllerManager {
 
-    ControllerManager() {
+    private Controller controller;
+    ControllerManager(FXMLLoader mainLoader) {
+        this.controller = mainLoader.getController();
+        controller.initialize();
+        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
+    }
 
+    public void musicPlay() {
+        String path = "C:\\MyProjects\\TiMP\\src\\Pic\\Theme_MED.mp3";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
     }
     private void initListeners(AppManager appManager){
         buttonStart.setOnAction(event ->
