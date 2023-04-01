@@ -17,12 +17,12 @@
       <Pane id="painStage" layoutX="184.0" layoutY="4.0" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane id="paneMenu" layoutY="39.0" prefHeight="350.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="40.0">
          <children>
-            <Label id="textSecondsDrone" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="107.0" text="Интервал рождения &#10;трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
+            <Label id="textSecondsDrone" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="107.0" text="Интервал рож-&#10;дения трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
             <Label id="textLifeTimeDrone" layoutX="14.0" layoutY="125.0" prefHeight="40.0" prefWidth="107.0" text="Время жизни &#10;трутня" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="135.0" />
-            <Label id="textCoefficientDrone" layoutX="14.0" layoutY="49.0" prefHeight="40.0" prefWidth="107.0" text="Процент трутней &#10;от общего количества" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0" />
+            <Label id="textCoefficientDrone" layoutX="14.0" layoutY="49.0" prefHeight="40.0" prefWidth="107.0" text="Процент трутней &#10;от пчёл" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0" />
             <Label id="textSecondsWorker" layoutX="14.0" layoutY="86.0" prefHeight="40.0" prefWidth="107.0" text="Время жизни &#10;рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
-            <Label id="textLifeTimeWorker" layoutX="14.0" layoutY="167.0" prefHeight="40.0" prefWidth="107.0" text="Интервал рождения &#10;рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="180.0" />
-            <Label id="textProbabilityWorker" layoutX="14.0" layoutY="209.0" prefHeight="40.0" prefWidth="107.0" text="Вероятность рождения &#10;рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="225.0" />
+            <Label id="textLifeTimeWorker" layoutX="14.0" layoutY="167.0" prefHeight="40.0" prefWidth="107.0" text="Интервал рож-&#10;дения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="180.0" />
+            <Label id="textProbabilityWorker" layoutX="14.0" layoutY="209.0" prefHeight="40.0" prefWidth="107.0" text="Вероятность рож-&#10;дения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="225.0" />
             <Spinner id="spinnerSecondsDrone" layoutX="136.0" layoutY="14.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="15.0" />
             <Spinner id="spinnerLifeTimeDrone" layoutX="136.0" layoutY="49.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="55.0" />
             <Spinner id="spinnerCoefficientDrone" layoutX="136.0" layoutY="86.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="100.0" />
@@ -32,6 +32,13 @@
             <Label id="textTime" layoutX="54.0" layoutY="330.0" prefHeight="17.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
+               </font>
+            </Label>
+            <RadioButton id="radioButtonInformation" layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показывать информацию" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="280.0" />
+            <RadioButton id="radioButtonTimer" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="300.0" />
+            <Label id="labelTimer" layoutX="50.0" layoutY="323.0" prefHeight="36.0" prefWidth="100.0" text="00:00:00" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="323.0">
+               <font>
+                  <Font size="25.0" />
                </font>
             </Label>
          </children></AnchorPane>

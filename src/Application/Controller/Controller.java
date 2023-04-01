@@ -54,6 +54,8 @@ public class Controller {
     private Label textProbabilityWorker;
 
     @FXML
+    private Label labelTimer;
+    @FXML
     private Spinner<Integer>  spinnerSecondsDrone;
 
     @FXML
@@ -70,13 +72,15 @@ public class Controller {
 
     @FXML
     private Spinner<Integer>  spinnerProbabilityWorker;
-    @FXML
-    private Label textTimer;
 
+    @FXML
+    private RadioButton radioButtonInformation;
+    @FXML
+    private RadioButton radioButtonTimer;
     private Boolean showLog = true;
 
-    public Label getTextTimer() {
-        return textTimer;
+    public Label getLabelTimer() {
+        return labelTimer;
     }
 
     public AnchorPane getPaneMain() {
@@ -127,6 +131,154 @@ public class Controller {
         return spinnerProbabilityWorker.getValue();
     }
 
+    public Spinner<Integer> getSpinnerSecondsWorker() {
+        return spinnerSecondsWorker;
+    }
+
+    public Spinner<Integer> getSpinnerSecondsDrone() {
+        return spinnerSecondsDrone;
+    }
+
+    public Spinner<Integer> getSpinnerProbabilityWorker() {
+        return spinnerProbabilityWorker;
+    }
+
+    public Spinner<Integer> getSpinnerLifeTimeWorker() {
+        return spinnerLifeTimeWorker;
+    }
+
+    public Spinner<Integer> getSpinnerLifeTimeDrone() {
+        return spinnerLifeTimeDrone;
+    }
+
+    public Label getTextLifeTimeWorker() {
+        return textLifeTimeWorker;
+    }
+
+    public Label getTextLifeTimeDrone() {
+        return textLifeTimeDrone;
+    }
+
+    public Label getTextCoefficientDrone() {
+        return textCoefficientDrone;
+    }
+
+    public Boolean getShowLog() {
+        return showLog;
+    }
+
+    public Label getTextProbabilityWorker() {
+        return textProbabilityWorker;
+    }
+
+    public Label getTextSecondsDrone() {
+        return textSecondsDrone;
+    }
+
+    public Label getTextSecondsWorker() {
+        return textSecondsWorker;
+    }
+
+    public RadioButton getRadioButtonInformation() {
+        return radioButtonInformation;
+    }
+
+    public RadioButton getRadioButtonTimer() {
+        return radioButtonTimer;
+    }
+
+    public Spinner<Integer> getSpinnerCoefficientDrone() {
+        return spinnerCoefficientDrone;
+    }
+
+    public void setButtonPause(Button buttonPause) {
+        this.buttonPause = buttonPause;
+    }
+
+    public void setButtonStart(Button buttonStart) {
+        this.buttonStart = buttonStart;
+    }
+
+    public void setButtonStop(Button buttonStop) {
+        this.buttonStop = buttonStop;
+    }
+
+    public void setLabelTimer(Label labelTimer) {
+        this.labelTimer = labelTimer;
+    }
+
+    public void setPaneMain(AnchorPane paneMain) {
+        this.paneMain = paneMain;
+    }
+
+    public void setPaneMenu(AnchorPane paneMenu) {
+        this.paneMenu = paneMenu;
+    }
+
+    public void setPaneStage(Pane paneStage) {
+        this.paneStage = paneStage;
+    }
+
+    public void setRadioButtonInformation(RadioButton radioButtonInformation) {
+        this.radioButtonInformation = radioButtonInformation;
+    }
+
+    public void setRadioButtonTimer(RadioButton radioButtonTimer) {
+        this.radioButtonTimer = radioButtonTimer;
+    }
+
+    public void setShowLog(Boolean showLog) {
+        this.showLog = showLog;
+    }
+
+    public void setSpinnerCoefficientDrone(Spinner<Integer> spinnerCoefficientDrone) {
+        this.spinnerCoefficientDrone = spinnerCoefficientDrone;
+    }
+
+    public void setSpinnerLifeTimeDrone(Spinner<Integer> spinnerLifeTimeDrone) {
+        this.spinnerLifeTimeDrone = spinnerLifeTimeDrone;
+    }
+
+    public void setSpinnerLifeTimeWorker(Spinner<Integer> spinnerLifeTimeWorker) {
+        this.spinnerLifeTimeWorker = spinnerLifeTimeWorker;
+    }
+
+    public void setSpinnerProbabilityWorker(Spinner<Integer> spinnerProbabilityWorker) {
+        this.spinnerProbabilityWorker = spinnerProbabilityWorker;
+    }
+
+    public void setSpinnerSecondsDrone(Spinner<Integer> spinnerSecondsDrone) {
+        this.spinnerSecondsDrone = spinnerSecondsDrone;
+    }
+
+    public void setSpinnerSecondsWorker(Spinner<Integer> spinnerSecondsWorker) {
+        this.spinnerSecondsWorker = spinnerSecondsWorker;
+    }
+
+    public void setTextCoefficientDrone(Label textCoefficientDrone) {
+        this.textCoefficientDrone = textCoefficientDrone;
+    }
+
+    public void setTextLifeTimeDrone(Label textLifeTimeDrone) {
+        this.textLifeTimeDrone = textLifeTimeDrone;
+    }
+
+    public void setTextLifeTimeWorker(Label textLifeTimeWorker) {
+        this.textLifeTimeWorker = textLifeTimeWorker;
+    }
+
+    public void setTextProbabilityWorker(Label textProbabilityWorker) {
+        this.textProbabilityWorker = textProbabilityWorker;
+    }
+
+    public void setTextSecondsDrone(Label textSecondsDrone) {
+        this.textSecondsDrone = textSecondsDrone;
+    }
+
+    public void setTextSecondsWorker(Label textSecondsWorker) {
+        this.textSecondsWorker = textSecondsWorker;
+    }
+
     @FXML
     public void initialize(AppManager appManager) {
         try {
@@ -138,116 +290,5 @@ public class Controller {
         }
     }
 
-    private void initListeners(AppManager appManager){
-        buttonStart.setOnAction(event ->
-        {
-                try {
-                    appManager.appStart();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-        });
 
-        buttonStop.setOnAction(event ->
-        {
-            try {
-                appManager.appStop();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        buttonPause.setOnAction(event ->
-        {
-            try {
-                appManager.appPause();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        paneMain.setOnKeyPressed(new EventHandler<KeyEvent>(){
-            @Override
-            public void handle(KeyEvent event) {
-                try {
-                    writeKeyCode(event.getCode(),appManager);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    private boolean isIntegerTextField(TextField textField){
-        try{
-            Integer.parseInt(textField.getText());
-            return true;
-        }
-        catch (NumberFormatException e){
-            showDialogError(textField);
-            return false;
-        }
-    }
-
-    private void showDialogError(TextField textField) {
-        String erroeMessage;
-        if(textField.getId() == textLifeTimeDrone.getId()){
-            erroeMessage =
-                    "Значание в поле: \n"
-                            + "\"Время рождения Волка\" \n"
-                            + "должно быть не пустим и целочисленным";
-            WindowError windowError = new WindowError(erroeMessage);
-            textField.requestFocus();
-        }
-        if(textField.getId() == textLifeTimeWorker.getId()){
-            erroeMessage =
-                    "Значание в поле: \n"
-                            + "\"Время рождения Льва\" \n"
-                            + "должно быть не пустим и целочисленным";
-            textField.requestFocus();
-            WindowError windowError = new WindowError(erroeMessage);
-        }
-    }
-
-    private void writeKeyCode(KeyCode key, AppManager appManager) throws Exception {
-
-        if(key == KeyCode.T) {
-            showTimer();
-        }
-        if (key == KeyCode.B){
-                try {
-                    textTimer.setText("");
-                    appManager.appStart();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        if (key == KeyCode.B){
-            appManager.appStop();
-        }
-    }
-
-    private void showTimer(){
-        if(showLog == false)
-        {
-            showLog = true;
-            textTimer.setVisible(true);
-        }
-        else
-        {
-            showLog = false;
-            textTimer.setVisible(false);
-        }
-    }
-
-    private void initSpinners(){
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
-        spinnerLifeTimeDrone.setValueFactory(valueFactory);
-        spinnerSecondsDrone.setValueFactory(valueFactory);
-        spinnerLifeTimeDrone.setValueFactory(valueFactory);
-        spinnerCoefficientDrone.setValueFactory(valueFactory);
-        spinnerSecondsWorker.setValueFactory(valueFactory);
-        spinnerLifeTimeWorker.setValueFactory(valueFactory);
-        spinnerProbabilityWorker.setValueFactory(valueFactory);
-    }
 }
