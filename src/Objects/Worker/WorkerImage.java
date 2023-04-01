@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 
 public class WorkerImage extends BeeImage {
 
-    private static final Image image = new Image("C:\\MyProjects\\TiMP\\src\\Pic\\Worker.png");
+    private static final Image image = new Image("C:\\MyProjects\\TiMP\\src\\Pic\\sprite_Worker.png");
 
     public WorkerImage() {
         imageView = new ImageView(image);
