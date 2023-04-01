@@ -1,8 +1,9 @@
 package Objects.Bee;
 
 import Objects.IBehaviour;
+import Objects.ILife;
 
-public abstract class BeeLife {
+public abstract class BeeLife implements ILife {
 
     protected int timeBorn = 0;
     protected int timeLife = 0;

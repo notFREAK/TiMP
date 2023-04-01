@@ -1,4 +1,4 @@
-package Application;
+package Application.Collections;
 
 import Objects.Bee.Bee;
 import javafx.scene.layout.Pane;
@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import java.util.*;
 
 public class Collections {
-    private ArrayList<Bee> arrayList;            //Коллекция для хранения объектов
+    /*private ArrayList<Bee> arrayList;            //Коллекция для хранения объектов
     private HashSet<Integer> hashSet;               //Коллекция для хранения и поиска уникальных идентификаторов
     private TreeMap<Integer,Integer> TreeMap;       //Коллекция для хранения времени рождения объектов
 
@@ -41,7 +41,7 @@ public class Collections {
 
         while(checkIsAmyAnimalDead()){
             Bee deletAnimal = findDeadAnimal();
-            delete(deletAnimal);
+            //delete(deletAnimal);
             pane.getChildren().remove(deletAnimal.image.getImageView());
         }
 
@@ -93,5 +93,5 @@ public class Collections {
             }
         }
         return resultString;
-    }
+    }*/
 }

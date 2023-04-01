@@ -1,6 +1,6 @@
-package Application;
+package Application.Manager;
 
-import Application.Windows.WindowInformation;
+import Application.Habitat.Habitat;
 import Objects.Bee.Bee;
 import Objects.Drone.Drone;
 import Objects.Worker.Worker;
@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import Application.Controller.Controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,12 +32,23 @@ public class AppManager extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception{
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+    public void start(Stage stage) throws IOException{
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("Application.fxml"));
         thread = new Thread(runnable);
         habitat = new Habitat();
-        initPrimaryStageAndController(stage,mainLoader);
-        disableButtons(stateSimulation);
+        Parent root = mainLoader.load();
+        Scene scene = new Scene(root);
+        String path = "C:\\MyProjects\\TiMP\\src\\Pic\\Theme_MED.mp3";
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setAutoPlay(true);
+        stage.setTitle("Playing Audio");
+        stage.show();
+        stage.setTitle("TiMP");
+        stage.centerOnScreen();
+        stage.setScene(scene);
+        stage.show();
+       // disableButtons(stateSimulation);
     }
 
     private Habitat habitat;
@@ -77,30 +89,8 @@ public class AppManager extends Application {
 
 
     private void updateAppPerSecond(){
-        controller.getFieldTime().setText(minutes + ":" +seconds);
-        habitat.update(seconds,controller.getMainPane());
-    }
-
-    private void initPrimaryStageAndController(Stage stage,FXMLLoader mainLoader) throws IOException {
-        Parent root = mainLoader.load();
-        this.controller = (Controller)mainLoader.getController();
-        controller.initialize(this);
-        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-
-        double width = controller.getMainStage().getPrefWidth();
-        double height = controller.getMainStage().getPrefHeight();
-
-        Scene scene = new Scene(root,width,height);
-        String path = "test.mp3";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        stage.setTitle("Playing Audio");
-        stage.show();
-        stage.setTitle("Lab 3");
-        stage.centerOnScreen();
-        stage.setScene(scene);
-        stage.show();
+        controller.getTextTimer().setText(minutes + ":" +seconds);
+        habitat.update(seconds,controller.getPaneStage());
     }
 
     public void appStart() {
@@ -114,7 +104,7 @@ public class AppManager extends Application {
                 this.seconds = 0;
                 this.minutes = 0;
                 stateSimulation = RUNNING;
-                controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
+                controller.getPaneStage().getChildren().addAll(habitat.SpaceSize.getImageViewBackground());
                 this.thread.start();
             } break;
             default: {
@@ -128,17 +118,17 @@ public class AppManager extends Application {
     }
 
     private void setConditionsBornAndDeadRabbit(){
-        int N1 = controller.getValueTimeBornWolf();
-        int P1 = controller.getValueSliderVariationBornWolf();
+        int N1 = controller.getValueSpinnerSecondsWorker();
+        int P1 = controller.getValueSpinnerProbabilityWorker();
 
-        int N2 = controller.getValueTimeBornLion();
-        int K2 = controller.getValueSliderVariationBornLion();
+        int N2 = controller.getValueSpinnerSecondsDrone();
+        int K2 = controller.getValueSpinnerCoefficientDrone();
 
-        int timeLifeDrone = controller.getValuetTimeLifeDrone();
-        int timeLifeWorker = controller.getValuetTimeLifeWorker();
+        int timeLifeDrone = controller.getValueSpinnerLifeTimeDrone();
+        int timeLifeWorker = controller.getValueSpinnerLifeTimeWorker();
 
-        habitat.setConditionsBornAnimals(N1,P1,N2,K2);
-        habitat.setConditionsTimeLifeAnimals(timeLifeDrone,timeLifeWorker);
+        habitat.setConditionsBornBees(N1,P1,N2,K2);
+        habitat.setConditionsTimeLifeBees(timeLifeDrone,timeLifeWorker);
     }
 
     public void appPause(){
@@ -151,12 +141,6 @@ public class AppManager extends Application {
     }
 
     public void appStop() {
-        if(controller.getValueCheckBoxShowDialog() == true) {
-            WindowInformation windows = new WindowInformation("Modal Window", makeResultLog(), this);
-            stateSimulation = PAUSE;
-            thread.interrupt();
-        }
-        else
         if (stateSimulation == RUNNING || stateSimulation == PAUSE )
         {
             stateSimulation = STOP;
@@ -169,33 +153,33 @@ public class AppManager extends Application {
     public void disableButtons(int stateTimer){
         switch (stateTimer) {
             case RUNNING: {
-                controller.getStartButton().setDisable(true);
-                controller.getPauseButton().setDisable(false);
-                controller.getStopButton().setDisable(false);
+                controller.getButtonStop().setDisable(true);
+                controller.getButtonPause().setDisable(false);
+                controller.getButtonStart().setDisable(false);
             }
             break;
             case PAUSE: {
-                controller.getStartButton().setDisable(false);
-                controller.getPauseButton().setDisable(true);
-                controller.getStopButton().setDisable(false);
+                controller.getButtonStop().setDisable(false);
+                controller.getButtonPause().setDisable(true);
+                controller.getButtonStart().setDisable(false);
             }
             break;
             case STOP: {
-                controller.getStartButton().setDisable(false);
-                controller.getPauseButton().setDisable(true);
-                controller.getStopButton().setDisable(true);
+                controller.getButtonStop().setDisable(false);
+                controller.getButtonPause().setDisable(true);
+                controller.getButtonStart().setDisable(true);
             }
             break;
             default:
-                controller.getStartButton().setDisable(false);
-                controller.getPauseButton().setDisable(true);
-                controller.getStopButton().setDisable(true);
+                controller.getButtonStop().setDisable(false);
+                controller.getButtonPause().setDisable(true);
+                controller.getButtonStart().setDisable(true);
         }
     }
 
     public void removeAllHabitat(){
         habitat.clear();
-        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
+        controller.getPaneStage().getChildren().addAll(habitat.SpaceSize.getImageViewBackground());
     }
 
     private String makeResultLog(){
@@ -207,7 +191,7 @@ public class AppManager extends Application {
         );
     }
 
-    public void showWindowCollectionsInformatos(){
+   /* public void showWindowCollectionsInformation(){
         String message = habitat.getInfoAliveAnimals();
         WindowInformation windows = new WindowInformation(
                 "Information about collections",
@@ -218,13 +202,12 @@ public class AppManager extends Application {
         stateSimulation = PAUSE;
         thread.interrupt();
     }
-
+*/
     public int getStateOfTimer() {
         return stateSimulation;
     }
     public void setStateOfTimer(int stateOfSimulation) {
         this.stateSimulation = stateOfSimulation;
     }
-
 }
 

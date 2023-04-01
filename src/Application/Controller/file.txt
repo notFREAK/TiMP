@@ -1,79 +1,5 @@
-package Application;
-
-import java.net.URL;
-import java.util.*;
-
-import Objects.Bee.Bee;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import Application.Windows.WindowError;
-
-public class Controller {
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private AnchorPane mainStage;
-
-    @FXML
-    private Button startButton;
-
-    @FXML
-    private Button stopButton;
-
-    @FXML
-    private TextField fieldTime;
-
-    @FXML
-    private TextField timeBornWolf;
-
-    @FXML
-    private TextField timeBornLion;
-
-    @FXML
-    private Pane mainPane;
-
-    @FXML
-    private Button pauseButton;
-
-    @FXML
-    private Slider sliderVariationBornLion;
-
-    @FXML
-    private Slider sliderVariationBornWolf;
-
-    @FXML
-    private CheckBox checkBoxShowDialog;
-
-    @FXML
-    private CheckBox checkBoxShowTime;
-
-    @FXML
-    private Label labelTextTIMER;
-
-    @FXML
-    private TextField timeLifeWolf;
-
-    @FXML
-    private TextField timeLifeLion;
-
-    @FXML
-    private Button showInformationButton;
-
-    private Boolean showLog = true;
-
-    @FXML
-    void initialize(AppManager appManager) {
+ @FXML
+    public void initialize(AppManager appManager) {
         try {
             initSliders();
             initCheckBoxes();
@@ -86,7 +12,7 @@ public class Controller {
     }
 
     private void initListeners(AppManager appManager){
-        startButton.setOnAction(event ->
+        buttonStart.setOnAction(event ->
         {
             if (checkTextBooxsInputValue())
             {
@@ -99,7 +25,7 @@ public class Controller {
             }
         });
 
-        stopButton.setOnAction(event ->
+        buttonStop.setOnAction(event ->
         {
             try {
                 appManager.appStop();
@@ -108,7 +34,7 @@ public class Controller {
             }
         });
 
-        pauseButton.setOnAction(event ->
+        buttonPause.setOnAction(event ->
         {
             try {
                 appManager.appPause();
@@ -377,4 +303,3 @@ public class Controller {
             return resultString;
         }
     }
-}

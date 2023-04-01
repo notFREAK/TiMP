@@ -6,11 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import Application.AppManager;
+import Application.Manager.AppManager;
 
 
 
-
+/*
 public class WindowInformation extends Window {
     private Button okButton = new Button("Ок");
     private Button cancelButton = new Button("Отмена");
@@ -77,3 +77,4 @@ public class WindowInformation extends Window {
         return vBox;
     }
 }
+*/
