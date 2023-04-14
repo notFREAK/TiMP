@@ -1,17 +1,14 @@
-package Application.Manager;
+package Application.Manager.Main;
 
 import Application.Controller.ControllerManager;
-import Application.Controller.FXML.FXMLObjectsGets;
 import Application.Habitat.Habitat;
 import Application.Simulation.Simulation;
-import Application.Simulation.Value;
 import Application.TImer.Time;
 import Application.TImer.Timer;
 import Objects.Bee.Bee;
 import Objects.Drone.Drone;
 import Objects.Worker.Worker;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -93,12 +90,14 @@ public class AppManager extends Application {
 
     private void setSimulationValue()
     {
-        simulation.getSimulationValue().setValueSecondsDrone(controllerManager.getController().getValueSpinnerSecondsDrone());
-        simulation.getSimulationValue().setValueCoefficientDrone(controllerManager.getController().getValueSpinnerCoefficientDrone());
-        simulation.getSimulationValue().setValueLifeTimeDrone(controllerManager.getController().getValueSpinnerLifeTimeDrone());
-        simulation.getSimulationValue().setValueSecondsWorker(controllerManager.getController().getValueSpinnerSecondsWorker());
-        simulation.getSimulationValue().setValueProbabilityWorker(controllerManager.getController().getValueSpinnerProbabilityWorker());
-        simulation.getSimulationValue().setValueLifeTimeWorker(controllerManager.getController().getValueSpinnerLifeTimeWorker());
+        simulation.getSimulationValue().setValue(
+                controllerManager.getController().getValueSpinnerSecondsDrone(),
+                controllerManager.getController().getValueSpinnerCoefficientDrone(),
+                controllerManager.getController().getValueSpinnerLifeTimeDrone(),
+                controllerManager.getController().getValueSpinnerSecondsWorker(),
+                controllerManager.getController().getValueSpinnerProbabilityWorker(),
+                controllerManager.getController().getValueSpinnerLifeTimeWorker()
+        );
         habitat.setSimulationValue(simulation.getSimulationValue());
     }
     public void removeAllHabitat(){

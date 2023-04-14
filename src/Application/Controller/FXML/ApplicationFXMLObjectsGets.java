@@ -8,7 +8,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-public class FXMLObjectsGets extends FXMLObjects {
+public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
     public Label getLabelTimer() {
         return labelTimer;
     }

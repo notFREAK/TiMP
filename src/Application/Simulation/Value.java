@@ -57,4 +57,18 @@ public class Value {
     public void setValueSecondsWorker(int valueSecondsWorker) {
         ValueSecondsWorker = valueSecondsWorker;
     }
+
+    public void setValue(int SecondsDrone,
+                         int CoefficientDrone,
+                         int LifeTimeDrone,
+                         int SecondsWorker,
+                         int ProbabilityWorker,
+                         int LifeTimeWorker) {
+        setValueSecondsDrone(SecondsDrone);
+        setValueCoefficientDrone(CoefficientDrone);
+        setValueLifeTimeDrone(LifeTimeDrone);
+        setValueSecondsWorker(SecondsWorker);
+        setValueProbabilityWorker(ProbabilityWorker);
+        setValueLifeTimeWorker(LifeTimeWorker);
+    }
 }

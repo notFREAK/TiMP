@@ -1,19 +1,16 @@
 package Application.Controller;
 
 import Application.Controller.Music.Music;
-import Application.Manager.AppManager;
+import Application.Manager.Main.AppManager;
 import Application.TImer.Time;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.io.File;
 
 public class ControllerManager{
 
@@ -124,5 +121,10 @@ public class ControllerManager{
         controller.getSpinnerProbabilityWorker().setDisable(SpinnersState);
         controller.getSpinnerSecondsDrone().setDisable(SpinnersState);
         controller.getSpinnerLifeTimeWorker().setDisable(SpinnersState);
+    }
+
+    public static class ControllerObjects {
+        @FXML
+        TextArea textAreaObject;
     }
 }

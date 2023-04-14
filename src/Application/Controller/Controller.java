@@ -1,17 +1,13 @@
 package Application.Controller;
 
-import Application.Controller.FXML.FXMLObjectsGets;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
+import Application.Controller.FXML.ApplicationFXMLObjectsGets;
 import javafx.fxml.Initializable;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller extends FXMLObjectsGets implements Initializable {
+public class Controller extends ApplicationFXMLObjectsGets implements Initializable {
     protected Boolean showLog = true;
 
     public Boolean getShowLog() {
