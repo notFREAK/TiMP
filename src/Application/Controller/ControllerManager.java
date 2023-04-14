@@ -1,11 +1,13 @@
 package Application.Controller;
 
+import Application.Controller.Music.Music;
 import Application.Manager.AppManager;
-import Application.Windows.WindowError;
+import Application.TImer.Time;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
@@ -13,23 +15,34 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 
-public class ControllerManager {
+public class ControllerManager{
 
     private Controller controller;
-    ControllerManager(FXMLLoader mainLoader) {
-        this.controller = mainLoader.getController();
-        controller.initialize();
-        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
+
+    private Music MED;
+
+    public ControllerManager(FXMLLoader loader, AppManager Application) {
+        controller = loader.getController();
+        MED = new Music();
+        initListeners(Application);
     }
 
-    public void musicPlay() {
-        String path = "C:\\MyProjects\\TiMP\\src\\Pic\\Theme_MED.mp3";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
+    public void setBackground(ImageView imageBackground) {
+        controller.getPaneStage().getChildren().addAll(new Node[]{imageBackground});
+    }
+    public void MusicPlay() {
+        MED.MusicPlay();
+    }
+
+    public void MusicPause() {
+        MED.MusicPause();
+    }
+
+    public void MusicStop() {
+        MED.MusicStop();
     }
     private void initListeners(AppManager appManager){
-        buttonStart.setOnAction(event ->
+        controller.getButtonStart().setOnAction(event ->
         {
             try {
                 appManager.appStart();
@@ -38,7 +51,7 @@ public class ControllerManager {
             }
         });
 
-        buttonStop.setOnAction(event ->
+        controller.getButtonStop().setOnAction(event ->
         {
             try {
                 appManager.appStop();
@@ -47,7 +60,7 @@ public class ControllerManager {
             }
         });
 
-        buttonPause.setOnAction(event ->
+        controller.getButtonPause().setOnAction(event ->
         {
             try {
                 appManager.appPause();
@@ -56,7 +69,7 @@ public class ControllerManager {
             }
         });
 
-        paneMain.setOnKeyPressed(new EventHandler<KeyEvent>(){
+        controller.getPaneMain().setOnKeyPressed(new EventHandler<KeyEvent>(){
             @Override
             public void handle(KeyEvent event) {
                 try {
@@ -66,78 +79,50 @@ public class ControllerManager {
                 }
             }
         });
-    }
 
-    private boolean isIntegerTextField(TextField textField){
-        try{
-            Integer.parseInt(textField.getText());
-            return true;
-        }
-        catch (NumberFormatException e){
-            showDialogError(textField);
-            return false;
-        }
-    }
-
-    private void showDialogError(TextField textField) {
-        String erroeMessage;
-        if(textField.getId() == textLifeTimeDrone.getId()){
-            erroeMessage =
-                    "Значание в поле: \n"
-                            + "\"Время рождения Волка\" \n"
-                            + "должно быть не пустим и целочисленным";
-            WindowError windowError = new WindowError(erroeMessage);
-            textField.requestFocus();
-        }
-        if(textField.getId() == textLifeTimeWorker.getId()){
-            erroeMessage =
-                    "Значание в поле: \n"
-                            + "\"Время рождения Льва\" \n"
-                            + "должно быть не пустим и целочисленным";
-            textField.requestFocus();
-            WindowError windowError = new WindowError(erroeMessage);
-        }
+        controller.getRadioButtonTimer().setOnAction(event ->
+        {
+            try {
+                controller.swapTimerShowState();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void writeKeyCode(KeyCode key, AppManager appManager) throws Exception {
 
         if(key == KeyCode.T) {
-            showTimer();
+            controller.swapTimerShowState();
         }
         if (key == KeyCode.B){
             try {
-                textTimer.setText("");
                 appManager.appStart();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (key == KeyCode.B){
+        if (key == KeyCode.E){
             appManager.appStop();
         }
     }
 
-    private void showTimer(){
-        if(showLog == false)
-        {
-            showLog = true;
-            textTimer.setVisible(true);
-        }
-        else
-        {
-            showLog = false;
-            textTimer.setVisible(false);
-        }
+    public void setTime(Time time) {
+        controller.setLabelTimerValue(time);
+    }
+    public Controller getController() {
+        return controller;
     }
 
-    private void initSpinners(){
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
-        spinnerLifeTimeDrone.setValueFactory(valueFactory);
-        spinnerSecondsDrone.setValueFactory(valueFactory);
-        spinnerLifeTimeDrone.setValueFactory(valueFactory);
-        spinnerCoefficientDrone.setValueFactory(valueFactory);
-        spinnerSecondsWorker.setValueFactory(valueFactory);
-        spinnerLifeTimeWorker.setValueFactory(valueFactory);
-        spinnerProbabilityWorker.setValueFactory(valueFactory);
+    public void setButtonState(boolean ButtonStopDisableState, boolean ButtonPauseDisableState, boolean ButtonStartDisableState, boolean SpinnersState) {
+        controller.getButtonStop().setDisable(ButtonStopDisableState);
+        controller.getButtonPause().setDisable(ButtonPauseDisableState);
+        controller.getButtonStart().setDisable(ButtonStartDisableState);
+        controller.getSpinnerSecondsWorker().setDisable(SpinnersState);
+        controller.getSpinnerCoefficientDrone().setDisable(SpinnersState);
+        controller.getSpinnerLifeTimeDrone().setDisable(SpinnersState);
+        controller.getSpinnerProbabilityWorker().setDisable(SpinnersState);
+        controller.getSpinnerSecondsDrone().setDisable(SpinnersState);
+        controller.getSpinnerLifeTimeWorker().setDisable(SpinnersState);
     }
 }

@@ -15,7 +15,7 @@ public class Drone extends Bee implements ILife {
         image = new DroneImage();
         image.setPosition(x,y);
         countDrone++;
-        typeAnimals = "bee_drone";
+        typeBee = "bee_drone";
     }
 
     @Override

@@ -10,5 +10,6 @@ public class WorkerImage extends BeeImage {
 
     public WorkerImage() {
         imageView = new ImageView(image);
+        setImageViewSize();
     }
 }

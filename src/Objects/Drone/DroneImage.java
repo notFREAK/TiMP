@@ -8,5 +8,6 @@ public class DroneImage extends BeeImage {
     private static final Image image = new Image("C:\\MyProjects\\TiMP\\src\\Pic\\sprite_Drone.png");
     public DroneImage() {
         imageView = new ImageView(image);
+        setImageViewSize();
     }
 }

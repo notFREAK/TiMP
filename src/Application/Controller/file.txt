@@ -71,24 +71,6 @@
         checkBoxShowDialog.setSelected(true);
     }
 
-    private void initSliders(){
-        sliderVariationBornLion.setMin(0);
-        sliderVariationBornLion.setMax(100);
-        sliderVariationBornLion.setBlockIncrement(10);
-        sliderVariationBornLion.setMajorTickUnit(10);
-        sliderVariationBornLion.setShowTickLabels(true);
-        sliderVariationBornLion.setShowTickMarks(true);
-        sliderVariationBornLion.setValue(70);
-
-        sliderVariationBornWolf.setMin(0);
-        sliderVariationBornWolf.setMax(100);
-        sliderVariationBornWolf.setBlockIncrement(10);
-        sliderVariationBornWolf.setMajorTickUnit(10);
-        sliderVariationBornWolf.setShowTickLabels(true);
-        sliderVariationBornWolf.setShowTickMarks(true);
-        sliderVariationBornWolf.setValue(70);
-    }
-
     private boolean isIntegerTextField(TextField textField){
         try{
             Integer.parseInt(textField.getText());

@@ -1,11 +1,5 @@
 package Objects.Bee;
 
-import Objects.Drone.DroneImage;
-import Objects.Drone.DroneLife;
-import Objects.IBehaviour;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-
 /*
 Вариант 11
         Объект – пчела.
@@ -14,7 +8,7 @@ import javafx.scene.layout.Pane;
         Рабочие рождаются каждые N2 секунд с вероятностью P.
 */
 public abstract class Bee{
-    protected String typeAnimals;
+    protected String typeBee;
     static public int countsAllBees = 0;
     protected int identifier = 0;
 
@@ -36,7 +30,7 @@ public abstract class Bee{
     }
 
     public String getTypeAnimals() {
-        return typeAnimals;
+        return typeBee;
     }
 
     protected void decrementCountsAllAnimals(){

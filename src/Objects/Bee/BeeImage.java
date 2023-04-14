@@ -10,7 +10,7 @@ abstract public class BeeImage extends Pane implements IBehaviour {
     public static final int ImageWidth = 50;
     public static final int ImageHeight = 50;
 
-    public BeeImage() {
+    public void setImageViewSize() {
         imageView.setFitWidth(ImageWidth);
         imageView.setFitHeight(ImageHeight);
     }

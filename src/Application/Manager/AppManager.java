@@ -1,184 +1,124 @@
 package Application.Manager;
 
 import Application.Controller.ControllerManager;
+import Application.Controller.FXML.FXMLObjectsGets;
 import Application.Habitat.Habitat;
-import Objects.Bee.Bee;
-import Objects.Drone.Drone;
-import Objects.Worker.Worker;
+import Application.Simulation.Simulation;
+import Application.Simulation.Value;
+import Application.TImer.Time;
+import Application.TImer.Timer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import Application.Controller.Controller;
-
-import java.io.File;
-import java.io.IOException;
 
 public class AppManager extends Application {
-    private int seconds = 0;
-    private int minutes = 0;
-    private int speedSimulation = 700;
-    private Thread thread;
-    public static final int  RUNNING = 1;
-    public static final int  PAUSE = 2;
-    public static final int  STOP = 3;
-
-    private int stateSimulation = -1;
+    private ControllerManager controllerManager;
+    public FXMLLoader mainLoader;
+    private Habitat habitat;
+    private Simulation simulation;
+    private Timer timer;
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
-    public void start(Stage stage) throws IOException{
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("Application.fxml"));
-        thread = new Thread(runnable);
-        habitat = new Habitat();
+    public void start(Stage stage) throws Exception{
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("../Application.fxml"));
         Parent root = mainLoader.load();
-        Scene scene = new Scene(root);
-        stage.setTitle("Playing Audio");
-        stage.show();
+        stage.setScene(new Scene(root));
         stage.setTitle("TiMP");
-        stage.centerOnScreen();
-        stage.setScene(scene);
         stage.show();
-       // disableButtons(stateSimulation);
+        timer = new Timer(this);
+        habitat = new Habitat();
+        controllerManager = new ControllerManager(mainLoader,this);
+        simulation = new Simulation();
     }
 
-    private Habitat habitat;
-    private ControllerManager controllerManager;
+    public ControllerManager getControllerManager() {
+        return controllerManager;
+    }
 
-    private Runnable runnable = new Runnable()
-    {
-        @Override
-        public  void run()
-        {
-            if (stateSimulation == RUNNING)
-            {
-                while (true) {
-                    try {
-                        Thread.sleep(speedSimulation);
-                        seconds++;
-                        if (seconds == 60) {
-                            minutes++;
-                            seconds = 0;
-                        }
+    public FXMLLoader getMainLoader() {
+        return mainLoader;
+    }
 
-                        // Use runLater to update object PANE
-                        Platform.runLater(new Runnable(){
-                            @Override
-                            public synchronized void run() {
-                                updateAppPerSecond();
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+    public Habitat getHabitat() {
+        return habitat;
+    }
 
-                }
-            }
-        }
-    };
+    public Simulation getSimulation() {
+        return simulation;
+    }
 
-
-
-    private void updateAppPerSecond(){
-        controller.getTextTimer().setText(minutes + ":" +seconds);
-        habitat.update(seconds,controller.getPaneStage());
+    public void setSimulationRunningTime(Time time) {
+        controllerManager.setTime(time);
     }
 
     public void appStart() {
-        setConditionsBornAndDeadRabbit();
-        switch (stateSimulation){
-            case PAUSE:{
-                stateSimulation = RUNNING;
-                this.thread.start();
-            } break;
-            case STOP:{
-                this.seconds = 0;
-                this.minutes = 0;
-                stateSimulation = RUNNING;
-                controller.getPaneStage().getChildren().addAll(habitat.SpaceSize.getImageViewBackground());
-                this.thread.start();
-            } break;
-            default: {
-                stateSimulation = RUNNING;
-                this.thread.start();
-                this.seconds = 0;
-                this.minutes = 0;
-            }
+        setSimulationValue();
+        if (!simulation.getState().isRunning()) {
+            if (simulation.getState().isStop())
+                controllerManager.setBackground(habitat.getSpaceSize().getImageViewBackground());
+            simulation.getState().setRunning();
+            controllerManager.MusicPlay();
+            timer.Play();
+            disableButtons();
         }
-        disableButtons(stateSimulation);
     }
-
-    private void setConditionsBornAndDeadRabbit(){
-        int N1 = controller.getValueSpinnerSecondsWorker();
-        int P1 = controller.getValueSpinnerProbabilityWorker();
-
-        int N2 = controller.getValueSpinnerSecondsDrone();
-        int K2 = controller.getValueSpinnerCoefficientDrone();
-
-        int timeLifeDrone = controller.getValueSpinnerLifeTimeDrone();
-        int timeLifeWorker = controller.getValueSpinnerLifeTimeWorker();
-
-        habitat.setConditionsBornBees(N1,P1,N2,K2);
-        habitat.setConditionsTimeLifeBees(timeLifeDrone,timeLifeWorker);
-    }
-
     public void appPause(){
-        if (stateSimulation == RUNNING)
+        if (simulation.getState().isRunning())
         {
-            stateSimulation = PAUSE;
-            this.thread.interrupt();
+            simulation.getState().setPause();
+            timer.Pause();
+            controllerManager.MusicPause();
+            disableButtons();
         }
-        disableButtons(stateSimulation);
     }
 
     public void appStop() {
-        if (stateSimulation == RUNNING || stateSimulation == PAUSE )
+        if (!simulation.getState().isStop())
         {
-            stateSimulation = STOP;
-            thread.interrupt();
+            simulation.getState().setStop();
+            timer.Stop();
+            controllerManager.MusicStop();
             removeAllHabitat();
-            disableButtons(stateSimulation);
+            disableButtons();
         }
     }
 
-    public void disableButtons(int stateTimer){
-        switch (stateTimer) {
-            case RUNNING: {
-                controller.getButtonStop().setDisable(true);
-                controller.getButtonPause().setDisable(false);
-                controller.getButtonStart().setDisable(false);
-            }
-            break;
-            case PAUSE: {
-                controller.getButtonStop().setDisable(false);
-                controller.getButtonPause().setDisable(true);
-                controller.getButtonStart().setDisable(false);
-            }
-            break;
-            case STOP: {
-                controller.getButtonStop().setDisable(false);
-                controller.getButtonPause().setDisable(true);
-                controller.getButtonStart().setDisable(true);
-            }
-            break;
-            default:
-                controller.getButtonStop().setDisable(false);
-                controller.getButtonPause().setDisable(true);
-                controller.getButtonStart().setDisable(true);
-        }
+    private void setSimulationValue()
+    {
+        simulation.getSimulationValue().setValueSecondsDrone(controllerManager.getController().getValueSpinnerSecondsDrone());
+        simulation.getSimulationValue().setValueCoefficientDrone(controllerManager.getController().getValueSpinnerCoefficientDrone());
+        simulation.getSimulationValue().setValueLifeTimeDrone(controllerManager.getController().getValueSpinnerLifeTimeDrone());
+        simulation.getSimulationValue().setValueSecondsWorker(controllerManager.getController().getValueSpinnerSecondsWorker());
+        simulation.getSimulationValue().setValueProbabilityWorker(controllerManager.getController().getValueSpinnerProbabilityWorker());
+        simulation.getSimulationValue().setValueLifeTimeWorker(controllerManager.getController().getValueSpinnerLifeTimeWorker());
+        habitat.setSimulationValue(simulation.getSimulationValue());
     }
-
     public void removeAllHabitat(){
         habitat.clear();
-        controller.getPaneStage().getChildren().addAll(habitat.SpaceSize.getImageViewBackground());
+        controllerManager.getController().getPaneStage().getChildren().addAll(habitat.getSpaceSize().getImageViewBackground());
     }
 
+   public void disableButtons(){
+       if (simulation.getState().isStop()) {
+            controllerManager.setButtonState(true, true, false, false);
+       }
+       if (simulation.getState().isRunning()) {
+           controllerManager.setButtonState(false, false, true, true);
+       }
+       if (simulation.getState().isPause()) {
+           controllerManager.setButtonState(false, true, false, true);
+       }
+    }
+
+    public void update(Time time) {
+        habitat.update(time.getSeconds(), controllerManager.getController().getPaneStage());
+        setSimulationRunningTime(time);
+    }
     private String makeResultLog(){
         return new String(
                 "Total Bee: " + Bee.countsAllBees +
@@ -188,23 +128,5 @@ public class AppManager extends Application {
         );
     }
 
-   /* public void showWindowCollectionsInformation(){
-        String message = habitat.getInfoAliveAnimals();
-        WindowInformation windows = new WindowInformation(
-                "Information about collections",
-                700,
-                700,
-                message,
-                this);
-        stateSimulation = PAUSE;
-        thread.interrupt();
-    }
-*/
-    public int getStateOfTimer() {
-        return stateSimulation;
-    }
-    public void setStateOfTimer(int stateOfSimulation) {
-        this.stateSimulation = stateOfSimulation;
-    }
 }
 
