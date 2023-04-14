@@ -17,8 +17,7 @@ public class Timer {
             if (manager.getSimulation().getState().isRunning()) {
                 try {
                     while (true) {
-                            double speedSimulation = 1000/(manager.getSimulation().getSpeedSimulation());
-                         //   time.increase(speedSimulation);
+                            double speedSimulation = manager.getSimulation().getSimulationSpeed();
                             Thread.sleep((int)Math.round(speedSimulation));
                             Platform.runLater(new Runnable() {
                                 @Override
@@ -70,5 +69,17 @@ public class Timer {
         else {
             runnable.resume();
         }
+    }
+
+    public int getMinutes() {
+        return time.getMinutes();
+    }
+
+    public int getSeconds() {
+        return time.getSeconds();
+    }
+
+    public int getMilliseconds() {
+        return time.getMillisecond();
     }
 }

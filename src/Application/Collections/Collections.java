@@ -7,14 +7,14 @@ import javafx.scene.layout.Pane;
 import java.util.*;
 
 public class Collections {
-    /*private ArrayList<Bee> arrayList;            //Коллекция для хранения объектов
+    private ArrayList<Bee> arrayList;            //Коллекция для хранения объектов
     private HashSet<Integer> hashSet;               //Коллекция для хранения и поиска уникальных идентификаторов
     private TreeMap<Integer,Integer> TreeMap;       //Коллекция для хранения времени рождения объектов
 
     public Collections(){
         this.arrayList = new ArrayList<Bee>();
-        this.hashSet = new HashMap<Integer>();
-        this.TreeMap = new TreeSet<Integer,Integer>();
+        this.hashSet = new HashSet<Integer>();
+        this.TreeMap = new TreeMap<Integer,Integer>();
     }
 
     public void adds(Bee bee){
@@ -36,15 +36,10 @@ public class Collections {
             Bee animalUpdate = iteratorUpdate.next();
             animalUpdate.life.updateTimeLiveAnimals();
         }
-
-
-
         while(checkIsAmyAnimalDead()){
-            Bee deletAnimal = findDeadAnimal();
-            //delete(deletAnimal);
-            pane.getChildren().remove(deletAnimal.image.getImageView());
+            Bee deleteAnimal = findDeadAnimal();
+            pane.getChildren().remove(deleteAnimal.image.getImageView());
         }
-
     }
 
     private boolean checkIsAmyAnimalDead(){
@@ -68,7 +63,7 @@ public class Collections {
                 return element;
             }
         }
-        return  null; // NEVER RETURN NULL!!
+        return  null;
     }
 
     public void clear(){
@@ -93,5 +88,5 @@ public class Collections {
             }
         }
         return resultString;
-    }*/
+    }
 }

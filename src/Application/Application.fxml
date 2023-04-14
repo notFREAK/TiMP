@@ -29,9 +29,10 @@
             <Spinner fx:id="spinnerSecondsWorker" layoutX="136.0" layoutY="125.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="145.0" />
             <Spinner fx:id="spinnerLifeTimeWorker" layoutX="136.0" layoutY="167.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="190.0" />
             <Spinner fx:id="spinnerProbabilityWorker" layoutX="136.0" layoutY="209.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="235.0" />
-            <RadioButton fx:id="radioButtonInformation" layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показывать информацию" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="280.0" />
-            <RadioButton fx:id="radioButtonTimer" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="300.0" />
-            <Label fx:id="labelTimer" layoutX="50.0" layoutY="323.0" prefHeight="36.0" prefWidth="100.0" text="00:00:00" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="323.0">
+            <RadioButton fx:id="radioButtonInformation" layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показывать информацию" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="270.0" />
+            <RadioButton fx:id="radioButtonTimer" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="290.0" />
+            <RadioButton fx:id="radioButtonObjects" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Текущие объекты" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="310.0" />
+            <Label fx:id="labelTimer" layoutX="90.0" layoutY="323.0" prefHeight="36.0" prefWidth="100.0" text="00:00:00" textAlignment="CENTER" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="323.0">
                <font>
                   <Font size="25.0" />
                </font>

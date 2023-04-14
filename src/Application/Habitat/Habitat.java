@@ -19,18 +19,16 @@ public class Habitat extends HabitatObjects{
         if (this.canBornDrone(value.getValueSecondsDrone(), value.getValueCoefficientDrone(), time))
         {
             Drone drone= makeDrone(time);
-            //this.collectionsBees.adds(drone);
+            this.collectionsBees.adds(drone);
             pane.getChildren().addAll(new Node[]{drone.image.getImageView()});
         }
-
         if (this.canBornWorker(value.getValueSecondsWorker(),value.getValueProbabilityWorker(),time))
         {
             Worker worker = makeWorker(time);
-            //this.collectionsBees.adds(worker);
+            this.collectionsBees.adds(worker);
             pane.getChildren().addAll(new Node[]{worker.image.getImageView()});
         }
-
-       // collectionsBees.updateCollectionsPerTime(pane);
+        collectionsBees.updateCollectionsPerTime(pane);
     }
 
     private boolean canBornDrone(int ValueSecondsDrone, int ValueCoefficientDrone, int time){
@@ -69,12 +67,12 @@ public class Habitat extends HabitatObjects{
         Bee.countsAllBees = 0;
         Worker.countWorker = 0;
         Drone.countDrone = 0;
-       // collectionsBees.clear();
+        collectionsBees.clear();
     }
 
 
 
-   /* public String getInfoAliveAnimals(){
+   public String getInfoAliveAnimals(){
         return collectionsBees.getAliveAnimals();
-    }*/
+    }
 };

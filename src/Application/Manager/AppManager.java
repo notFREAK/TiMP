@@ -7,6 +7,9 @@ import Application.Simulation.Simulation;
 import Application.Simulation.Value;
 import Application.TImer.Time;
 import Application.TImer.Timer;
+import Objects.Bee.Bee;
+import Objects.Drone.Drone;
+import Objects.Worker.Worker;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -124,7 +127,7 @@ public class AppManager extends Application {
                 "Total Bee: " + Bee.countsAllBees +
                         ";"+ '\n' +"Drone: " + Drone.countDrone +
                         ";"+ '\n' +"Worker: " + Worker.countWorker +
-                        ";"+ '\n' +"Time of simulation Min:" + this.minutes + " Sec: " +this.seconds
+                        ";"+ '\n' +"Time of simulation Min:" + this.timer.getMinutes() + " Sec: " +this.timer.getSeconds() + "MSd:" + timer.getMilliseconds()
         );
     }
 

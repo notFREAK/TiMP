@@ -9,10 +9,14 @@ public class Simulation {
         state = new State();
         simulationValue = new Value();
     }
-    private int speedSimulation = 60;
+    private int SimulationFPS = 60;
 
-    public int getSpeedSimulation() {
-        return speedSimulation;
+    public int getSimulationFPS() {
+        return SimulationFPS;
+    }
+
+    public double getSimulationSpeed() {
+        return 1000.0/((double)getSimulationFPS());
     }
     public State getState() {
         return state;
