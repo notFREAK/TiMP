@@ -10,12 +10,13 @@ import Application.Manager.AppManager;
 
 
 
-/*
-public class WindowInformation extends Window {
-    private Button okButton = new Button("Ок");
+
+public class ControllerInformation /*extends Window*/{
+
+   /* private Button okButton = new Button("Ок");
     private Button cancelButton = new Button("Отмена");
 
-    public WindowInformation(String titleOfWindow, String messageTextArea, AppManager appManager) {
+    public ControllerInformation(String titleOfWindow, String messageTextArea, AppManager appManager) {
         super(titleOfWindow);
         initActtionsButtons(appManager);
         Scene scene = new Scene(createInterfaceWindow(messageTextArea));
@@ -23,7 +24,7 @@ public class WindowInformation extends Window {
         window.show();
     }
 
-    public WindowInformation(String titleOfWindow, int width,int height, String messageTextArea, AppManager appManager) {
+    public ControllerInformation(String titleOfWindow, int width, int height, String messageTextArea, AppManager appManager) {
         super(titleOfWindow,width,height);
         initActtionsButtons(appManager);
         Scene scene = new Scene(createInterfaceWindow(messageTextArea));
@@ -75,6 +76,5 @@ public class WindowInformation extends Window {
 
         vBox.getChildren().addAll(textArea,hBox);
         return vBox;
-    }
+    }*/
 }
-*/

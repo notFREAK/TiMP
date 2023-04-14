@@ -28,6 +28,7 @@ public class Controller extends FXMLObjectsGets implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         initSpinners();
     }
 
