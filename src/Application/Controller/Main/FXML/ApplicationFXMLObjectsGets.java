@@ -1,4 +1,4 @@
-package Application.Controller.FXML;
+package Application.Controller.Main.FXML;
 
 import Application.TImer.Time;
 import javafx.scene.control.Button;
@@ -113,6 +113,8 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
     public RadioButton getRadioButtonTimer() {
         return radioButtonTimer;
     }
+
+    public RadioButton getRadioButtonInformationObjectDetail() {return  radioButtonInformationObjectDetail; }
 
     public Spinner<Integer> getSpinnerCoefficientDrone() {
         return spinnerCoefficientDrone;

@@ -1,8 +1,10 @@
-package Application.Manager.Main;
+package Application;
 
-import Application.Controller.ControllerManager;
+import Application.Controller.Music.Music;
+import Application.Manager.ControllerManager;
 import Application.Habitat.Habitat;
 import Application.Simulation.Simulation;
+import Application.Simulation.State;
 import Application.TImer.Time;
 import Application.TImer.Timer;
 import Objects.Bee.Bee;
@@ -14,12 +16,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class AppManager extends Application {
     private ControllerManager controllerManager;
     public FXMLLoader mainLoader;
     private Habitat habitat;
     private Simulation simulation;
     private Timer timer;
+    Stage mainStage;
     public static void main(String[] args) {
         launch(args);
     }
@@ -27,6 +32,7 @@ public class AppManager extends Application {
     public void start(Stage stage) throws Exception{
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("../Application.fxml"));
         Parent root = mainLoader.load();
+        mainStage = stage;
         stage.setScene(new Scene(root));
         stage.setTitle("TiMP");
         stage.show();
@@ -77,9 +83,10 @@ public class AppManager extends Application {
         }
     }
 
-    public void appStop() {
+    public void appStop() throws IOException {
         if (!simulation.getState().isStop())
         {
+            controllerManager.showLog(this);
             simulation.getState().setStop();
             timer.Stop();
             controllerManager.MusicStop();
@@ -130,5 +137,8 @@ public class AppManager extends Application {
         );
     }
 
+    public Stage getStage() {
+        return mainStage;
+    }
 }
 

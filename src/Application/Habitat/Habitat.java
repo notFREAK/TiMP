@@ -1,7 +1,5 @@
 package Application.Habitat;
 
-import Application.Collections.Collections;
-import Application.Simulation.Value;
 import Objects.Drone.*;
 import Objects.Worker.Worker;
 import javafx.scene.Node;

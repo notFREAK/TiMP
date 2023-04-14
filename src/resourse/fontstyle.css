@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Smeshariki';
+    src: url('fonts/smeshariki.otf');
+}
+
+.label {
+    -fx-font-family: 'Smeshariki';
+    -fx-font-size: 50;
+}
+
+.button .text {
+    -fx-font-family: 'Smeshariki';
+}

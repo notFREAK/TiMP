@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="paneMain" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.Controller">
+<AnchorPane fx:id="paneMain" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.Main.Controller">
    <children>
       <ToolBar prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -31,7 +31,7 @@
             <Spinner fx:id="spinnerProbabilityWorker" layoutX="136.0" layoutY="209.0" prefHeight="20.0" prefWidth="60.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="235.0" />
             <RadioButton fx:id="radioButtonInformation" layoutX="14.0" layoutY="272.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показывать информацию" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="270.0" />
             <RadioButton fx:id="radioButtonTimer" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="290.0" />
-            <RadioButton fx:id="radioButtonObjects" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Текущие объекты" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="310.0" />
+            <RadioButton fx:id="radioButtonInformationObjectDetail" layoutX="14.0" layoutY="304.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="174.0" text="Текущие объекты" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="310.0" />
             <Label fx:id="labelTimer" layoutX="90.0" layoutY="323.0" prefHeight="36.0" prefWidth="100.0" text="00:00.00" textAlignment="CENTER" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="323.0">
                <font>
                   <Font size="25.0" />

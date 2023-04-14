@@ -1,16 +1,23 @@
-package Application.Controller;
+package Application.Manager;
 
+import Application.AppManager;
+import Application.Controller.Main.Controller;
+import Application.Controller.ModalWindows.DetailObjects.ControllerDetailObjects;
+import Application.Controller.ModalWindows.Information.ControllerInformation;
 import Application.Controller.Music.Music;
-import Application.Manager.Main.AppManager;
 import Application.TImer.Time;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.TextArea;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ControllerManager{
 
@@ -18,15 +25,6 @@ public class ControllerManager{
 
     private Music MED;
 
-    public ControllerManager(FXMLLoader loader, AppManager Application) {
-        controller = loader.getController();
-        MED = new Music();
-        initListeners(Application);
-    }
-
-    public void setBackground(ImageView imageBackground) {
-        controller.getPaneStage().getChildren().addAll(new Node[]{imageBackground});
-    }
     public void MusicPlay() {
         MED.MusicPlay();
     }
@@ -37,6 +35,14 @@ public class ControllerManager{
 
     public void MusicStop() {
         MED.MusicStop();
+    }
+    private ControllerInformation controllerInformation;
+
+    private ControllerDetailObjects controllerDetailObjects;
+
+    public ControllerManager(FXMLLoader loader, AppManager Application) {
+        controller = loader.getController();
+        initListeners(Application);
     }
     private void initListeners(AppManager appManager){
         controller.getButtonStart().setOnAction(event ->
@@ -85,6 +91,22 @@ public class ControllerManager{
                 e.printStackTrace();
             }
         });
+
+        controller.getRadioButtonInformationObjectDetail().setOnAction(event -> {
+            try {
+                createModalWindow(appManager, "Живущие объекты", "src/Application/Controller/ModalWindows/Information/FXML/Information.fxml");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        controller.getRadioButtonInformation().setOnAction(event -> {
+            try {
+                controller.setShowLog(!controller.getShowLog());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void writeKeyCode(KeyCode key, AppManager appManager) throws Exception {
@@ -104,6 +126,18 @@ public class ControllerManager{
         }
     }
 
+    public void createModalWindow(AppManager appManager, String title, String resourse) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource(resourse));
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(appManager.getStage());
+        stage.show();
+    }
+    public void setBackground(ImageView imageBackground) {
+        controller.getPaneStage().getChildren().addAll(new Node[]{imageBackground});
+    }
     public void setTime(Time time) {
         controller.setLabelTimerValue(time);
     }
@@ -112,19 +146,12 @@ public class ControllerManager{
     }
 
     public void setButtonState(boolean ButtonStopDisableState, boolean ButtonPauseDisableState, boolean ButtonStartDisableState, boolean SpinnersState) {
-        controller.getButtonStop().setDisable(ButtonStopDisableState);
-        controller.getButtonPause().setDisable(ButtonPauseDisableState);
-        controller.getButtonStart().setDisable(ButtonStartDisableState);
-        controller.getSpinnerSecondsWorker().setDisable(SpinnersState);
-        controller.getSpinnerCoefficientDrone().setDisable(SpinnersState);
-        controller.getSpinnerLifeTimeDrone().setDisable(SpinnersState);
-        controller.getSpinnerProbabilityWorker().setDisable(SpinnersState);
-        controller.getSpinnerSecondsDrone().setDisable(SpinnersState);
-        controller.getSpinnerLifeTimeWorker().setDisable(SpinnersState);
+        controller.setButtonState(ButtonStopDisableState, ButtonPauseDisableState, ButtonStartDisableState, SpinnersState);
     }
 
-    public static class ControllerObjects {
-        @FXML
-        TextArea textAreaObject;
+    public void showLog(AppManager appManager) throws IOException {
+        if(controller.getShowLog()) {
+            createModalWindow(appManager, "Информация", "src/Application/Controller/ModalWindows/Information/FXML/Information.fxml");
+        }
     }
 }

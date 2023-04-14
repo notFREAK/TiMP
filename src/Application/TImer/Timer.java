@@ -1,6 +1,6 @@
 package Application.TImer;
 
-import Application.Manager.Main.AppManager;
+import Application.AppManager;
 import javafx.application.Platform;
 
 public class Timer {

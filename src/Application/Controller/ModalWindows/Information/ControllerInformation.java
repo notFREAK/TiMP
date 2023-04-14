@@ -1,9 +1,7 @@
-package Application.Controller;
+package Application.Controller.ModalWindows.Information;
 
-import Application.Controller.FXML.InformationFXMLObjectsGets;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import Application.Manager.Main.AppManager;
+import Application.Controller.ModalWindows.Information.FXML.InformationFXMLObjectsGets;
+import Application.AppManager;
 import javafx.stage.Stage;
 
 
@@ -12,19 +10,21 @@ public class ControllerInformation extends InformationFXMLObjectsGets {
     Stage stage;
 
     public ControllerInformation(Stage stage) {
-
+        this.stage = stage;
     }
 
     private void initButtons(AppManager appManager) {
-        buttonCancel.setOnAction(event -> {
+        getButtonCancel().setOnAction(event -> {
             try {
+                appManager.appStart();
                 stage.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        buttonOK.setOnAction(event -> {
+        getButtonCancel().setOnAction(event -> {
             try {
+                appManager.appStop();
                 stage.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -32,6 +32,7 @@ public class ControllerInformation extends InformationFXMLObjectsGets {
         });
         stage.setOnCloseRequest(event -> {
             try {
+                appManager.appStop();
                 stage.close();
             } catch (Exception e) {
                 e.printStackTrace();

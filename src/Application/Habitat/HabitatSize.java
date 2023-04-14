@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class HabitatSize {
-    public static final Image imageBackground = new Image("C:\\MyProjects\\TiMP\\src\\Pic\\background.gif");
+    public static final Image imageBackground = new Image("C:\\MyProjects\\TiMP\\src\\resourse.Pic\\background.gif");
     private static final int Width = 400;
     private static final int Height = 400;
 

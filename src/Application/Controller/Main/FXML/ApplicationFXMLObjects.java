@@ -1,4 +1,4 @@
-package Application.Controller.FXML;
+package Application.Controller.Main.FXML;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -67,5 +67,7 @@ public class ApplicationFXMLObjects {
     protected RadioButton radioButtonInformation;
     @FXML
     protected RadioButton radioButtonTimer;
+    @FXML
+    protected RadioButton radioButtonInformationObjectDetail;
 
 }
