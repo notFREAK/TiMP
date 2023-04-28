@@ -7,14 +7,15 @@ import javafx.scene.layout.Pane;
 import java.util.*;
 
 public class Collections {
+    int lastSecondsUpdate = 0;
     private ArrayList<Bee> arrayList;            //Коллекция для хранения объектов
-    private HashSet<Integer> hashSet;               //Коллекция для хранения и поиска уникальных идентификаторов
-    private TreeMap<Integer,Integer> TreeMap;       //Коллекция для хранения времени рождения объектов
+    private HashSet<UUID> hashSet;               //Коллекция для хранения и поиска уникальных идентификаторов
+    private TreeMap<UUID,Integer> TreeMap;       //Коллекция для хранения времени рождения объектов
 
     public Collections(){
         this.arrayList = new ArrayList<Bee>();
-        this.hashSet = new HashSet<Integer>();
-        this.TreeMap = new TreeMap<Integer,Integer>();
+        this.hashSet = new HashSet<UUID>();
+        this.TreeMap = new TreeMap<UUID,Integer>();
     }
 
     public void adds(Bee bee){
@@ -29,16 +30,19 @@ public class Collections {
         TreeMap.remove(bee.getIdentifier(), bee.life.getTimeBorn());
     }
 
-    public  void  updateCollectionsPerTime(Pane pane){
-        Iterator<Bee> iteratorUpdate = arrayList.iterator();
-        while (iteratorUpdate.hasNext())
-        {
-            Bee animalUpdate = iteratorUpdate.next();
-            animalUpdate.life.updateTimeLiveAnimals();
-        }
-        while(checkIsAmyAnimalDead()){
+    public  void  updateCollectionsPerTime(){
+            Iterator<Bee> iteratorUpdate = arrayList.iterator();
+            while (iteratorUpdate.hasNext()) {
+                Bee animalUpdate = iteratorUpdate.next();
+                animalUpdate.life.updateCountOfDeadBees();
+            }
+    }
+
+    public void updateCollectionsForDead(Pane pane) {
+        while (checkIsAmyAnimalDead()) {
             Bee deleteAnimal = findDeadAnimal();
-            pane.getChildren().remove(deleteAnimal.image.getImageView());
+            pane.getChildren().remove(deleteAnimal.getGraphic().getImageView());
+            delete(deleteAnimal);
         }
     }
 
@@ -72,21 +76,30 @@ public class Collections {
         TreeMap.clear();
     }
 
+    public ArrayList<Bee> getArrayList() {
+        return arrayList;
+    }
+
     public  String getAliveAnimals(){
-        String resultString = new String();
+        String resultString = "";
         Iterator<Bee> iteratorDelete = arrayList.listIterator();
-        int count = 0;
+        int count = 1;
         while (iteratorDelete.hasNext()) {
             Bee element = iteratorDelete.next();
-            count++;
-            if (element.life.isDead() == false)
+            if (!element.life.isDead())
             {
-                resultString += String.valueOf(count) + ". " +
-                                "Type: "+element.getTypeAnimals() +
-                                "; TimeBorn: "+ String.valueOf(element.life.getTimeBorn()) +
-                                "; Id: "+ String.valueOf(element.getIdentifier()) + "\n" ;
+                resultString += String.valueOf(count++) + ". " +
+                                "Тип: "+element.getTypeBees() +
+                                ";\nВремя рождения(сек): "+ String.valueOf(element.life.getTimeBorn()) +
+                                ";\nId: "+ String.valueOf(element.getIdentifier()) + "\n" ;
             }
         }
+       /* AtomicInteger cnt = new AtomicInteger();
+        var s = arrayList.stream().filter(x -> x.life.isDead()).map( element -> cnt.incrementAndGet() + ". " +
+                "Тип: "+element.getTypeBees() +
+                ";\nВремя рождения(сек): "+ String.valueOf(element.life.getTimeBorn()) +
+                ";\nId: "+ String.valueOf(element.getIdentifier())).toList();
+        String.join("\n", s);*/
         return resultString;
     }
 }

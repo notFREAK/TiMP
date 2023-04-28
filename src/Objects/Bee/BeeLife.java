@@ -1,6 +1,5 @@
 package Objects.Bee;
 
-import Objects.IBehaviour;
 import Objects.ILife;
 
 public abstract class BeeLife implements ILife {
@@ -17,7 +16,7 @@ public abstract class BeeLife implements ILife {
         return timeBorn;
     }
 
-    public void setTImeLife(int timeLife){
+    public void setTimeLife(int timeLife){
         this.timeLife = timeLife;
     }
 
@@ -29,7 +28,12 @@ public abstract class BeeLife implements ILife {
         return isDead;
     }
 
-    public void updateTimeLiveAnimals(){
+    public void update(){
+        this.timeLife--;
+        if (timeLife < 0) {
+            isDead = true;
+            updateCountOfDeadBees();
+            Bee.decrementCountsAllBees();
+        }
     }
-
 }

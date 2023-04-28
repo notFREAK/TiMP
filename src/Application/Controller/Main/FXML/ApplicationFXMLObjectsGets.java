@@ -204,6 +204,10 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
     }
 
     public void setLabelTimerValue(Time time) {
-        labelTimer.setText(new String(time.getTimeString()));
+        labelTimer.setText(time.getTimeString());
+    }
+
+    public static String getFXMLresourse() {
+        return FXMLresoursePath;
     }
 }

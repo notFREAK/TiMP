@@ -2,26 +2,26 @@ package Application.Simulation;
 
 public class State {
 
-    private int stateSimulation = 3;
+    private StateSimulation stateSimulation;
 
-    public static final int  RUNNING = 1;
-    public static final int  PAUSE = 2;
-    public static final int  STOP = 3;
+    public StateSimulation getStateSimulation() {
+        return stateSimulation;
+    }
 
     public void setRunning() {
-        stateSimulation = RUNNING;
+        stateSimulation = StateSimulation.RUNNING;
     }
 
     public void setPause() {
-        stateSimulation = PAUSE;
+        stateSimulation = StateSimulation.PAUSE;
     }
 
     public void setStop() {
-        stateSimulation = STOP;
+        stateSimulation = StateSimulation.STOP;
     }
 
     public boolean isRunning() {
-        if (stateSimulation == RUNNING) {
+        if (stateSimulation == StateSimulation.RUNNING) {
             return true;
         }
         else {
@@ -30,7 +30,7 @@ public class State {
     }
 
     public boolean isPause() {
-        if (stateSimulation == PAUSE) {
+        if (stateSimulation == StateSimulation.PAUSE) {
             return true;
         }
         else {
@@ -39,7 +39,7 @@ public class State {
     }
 
     public boolean isStop() {
-        if (stateSimulation == STOP) {
+        if (stateSimulation == StateSimulation.STOP) {
             return true;
         }
         else {

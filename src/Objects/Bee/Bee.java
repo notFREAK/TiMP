@@ -1,5 +1,9 @@
 package Objects.Bee;
 
+import Objects.Coordinates.Vector;
+
+import java.util.UUID;
+
 /*
 Вариант 11
         Объект – пчела.
@@ -7,13 +11,13 @@ package Objects.Bee;
         Трутни рождаются каждые N1 секунд, если их количество менее K% от общего числа пчел, в противном случае – не рождаются вовсе.
         Рабочие рождаются каждые N2 секунд с вероятностью P.
 */
-public abstract class Bee{
+public abstract class Bee {
     protected String typeBee;
     static public int countsAllBees = 0;
-    protected int identifier = 0;
-
-    public BeeImage image;
+    protected UUID identifier;
+    protected BeeGraphic beeGraphic;
     public BeeLife life;
+    protected Vector speed;
 
     public Bee(){
         generateIdentifier();
@@ -21,20 +25,24 @@ public abstract class Bee{
     }
 
     private void generateIdentifier(){
-        int randomIdentifier = (int)Math.floor(Math.random()*10000);
+        UUID randomIdentifier = UUID.randomUUID(); //UUID
         identifier = randomIdentifier;
     };
 
-    public int getIdentifier() {
+    public BeeGraphic getGraphic() {
+        return beeGraphic;
+    }
+
+    public UUID getIdentifier() {
         return identifier;
     }
 
-    public String getTypeAnimals() {
+    public String getTypeBees() {
         return typeBee;
     }
 
-    protected void decrementCountsAllAnimals(){
-        countsAllBees--;
+    public static void decrementCountsAllBees(){
+        Bee.countsAllBees--;
     }
-
 }
+

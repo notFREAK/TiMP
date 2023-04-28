@@ -7,11 +7,11 @@ import javafx.util.Duration;
 import java.io.File;
 
 public class Music {
-    MediaPlayer mainThemeMediaPlayer = new MediaPlayer(new Media(new File("C:\\MyProjects\\TiMP\\src\\resourse.Pic\\Theme_MED.mp3").toURI().toString()));
+    MediaPlayer mainThemeMediaPlayer = new MediaPlayer(new Media(new File("C:\\MyProjects\\TiMP\\src\\resourses\\Pic\\Theme_MED.mp3").toURI().toString()));
 
-    MediaPlayer beginThemeMediaPlayer = new MediaPlayer(new Media(new File("C:\\MyProjects\\TiMP\\src\\resourse.Pic\\Theme_MED_begin.mp3").toURI().toString()));
+    MediaPlayer beginThemeMediaPlayer = new MediaPlayer(new Media(new File("C:\\MyProjects\\TiMP\\src\\resourses\\Pic\\Theme_MED_begin.mp3").toURI().toString()));
 
-    MediaPlayer endThemeMediaPlayer = new MediaPlayer(new Media(new File("C:\\MyProjects\\TiMP\\src\\resourse.Pic\\Theme_MED_end.mp3").toURI().toString()));
+    MediaPlayer endThemeMediaPlayer = new MediaPlayer(new Media(new File("C:\\MyProjects\\TiMP\\src\\resourses\\Pic\\Theme_MED_end.mp3").toURI().toString()));
 
     private enum MusicState {
         NOTHING,

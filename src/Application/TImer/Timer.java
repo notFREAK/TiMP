@@ -1,7 +1,9 @@
 package Application.TImer;
 
 import Application.AppManager;
+import Application.Simulation.Simulation;
 import javafx.application.Platform;
+import javafx.scene.SubScene;
 
 public class Timer {
     private Thread thread;
@@ -17,7 +19,7 @@ public class Timer {
             if (manager.getSimulation().getState().isRunning()) {
                 try {
                     while (true) {
-                            double speedSimulation = manager.getSimulation().getSimulationSpeed();
+                            double speedSimulation = Simulation.getSimulationSpeed();
                             Thread.sleep((int)Math.round(speedSimulation));
                             Platform.runLater(new Runnable() {
                                 @Override
@@ -71,6 +73,7 @@ public class Timer {
         }
     }
 
+    public Time getTime() {return time;}
     public int getMinutes() {
         return time.getMinutes();
     }

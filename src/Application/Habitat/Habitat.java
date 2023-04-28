@@ -1,7 +1,11 @@
 package Application.Habitat;
 
+import Application.AppManager;
+import Objects.Bee.BeeBaseAI;
+import Objects.Bee.BeeGraphic;
 import Objects.Drone.*;
 import Objects.Worker.Worker;
+import Objects.Worker.WorkerBaseAI;
 import javafx.scene.Node;
 
 import javafx.scene.layout.Pane;
@@ -11,52 +15,71 @@ import Objects.Bee.Bee;
 public class Habitat extends HabitatObjects{
 
 
-    public Habitat(){}
+    public Habitat(){
+        /*droneBaseAI.start();
+        workerBaseAI.start();*/
+    }
 
-    public void update(int time, Pane pane) {
-        if (this.canBornDrone(value.getValueSecondsDrone(), value.getValueCoefficientDrone(), time))
-        {
-            Drone drone= makeDrone(time);
-            this.collectionsBees.adds(drone);
-            pane.getChildren().addAll(new Node[]{drone.image.getImageView()});
+    public void StartAi(AppManager appManager) {
+        droneBaseAI.startAI(appManager);
+        workerBaseAI.startAI(appManager);
+    }
+
+    public void StopAi() {
+        droneBaseAI.stopAI();
+        workerBaseAI.stopAI();
+    }
+
+    public void Update(int time, Pane pane) {
+        try {
+            if (time != lastSecondsUpdate) {
+                lastSecondsUpdate = time;
+                System.out.print(Bee.countsAllBees +" "+ Drone.countDrone+ " " + Worker.countWorker + " ");
+                if (this.canBornWorker(value.getValueSecondsWorker(), value.getValueProbabilityWorker(), time)) {
+                    Worker worker = makeWorker(time);
+                    this.collectionsBees.adds(worker);
+                    pane.getChildren().addAll(new Node[]{worker.getGraphic().getImageView()});
+                }
+                if (this.canBornDrone(value.getValueSecondsDrone(), value.getValueCoefficientDrone(), time)) {
+                    Drone drone = makeDrone(time);
+                    this.collectionsBees.adds(drone);
+                    pane.getChildren().addAll(new Node[]{drone.getGraphic().getImageView()});
+                }
+                collectionsBees.updateCollectionsPerTime();
+                collectionsBees.updateCollectionsForDead(pane);
+            }
+
         }
-        if (this.canBornWorker(value.getValueSecondsWorker(),value.getValueProbabilityWorker(),time))
-        {
-            Worker worker = makeWorker(time);
-            this.collectionsBees.adds(worker);
-            pane.getChildren().addAll(new Node[]{worker.image.getImageView()});
+        catch (Exception e) {
+            e.printStackTrace();
         }
-        collectionsBees.updateCollectionsPerTime(pane);
     }
 
     private boolean canBornDrone(int ValueSecondsDrone, int ValueCoefficientDrone, int time){
-        if (time != lastSecondsDrone && time % ValueSecondsDrone == 0 && Drone.countsAllBees != 0 && ((Drone.countDrone*100)/Drone.countsAllBees) < ValueCoefficientDrone) {
-            lastSecondsWorker = time;
+        if ((time-lastSecondsDroneBirth) % ValueSecondsDrone == 0 && Drone.countsAllBees != 0 && ((Drone.countDrone+1)*100)/(Drone.countsAllBees+1) <= ValueCoefficientDrone) {
+            lastSecondsDroneBirth = time;
             return true;
         }
-        lastSecondsDrone = time;
         return false;
     }
 
     private Drone makeDrone(int time){
-        int x = (int)Math.floor(Math.random()*(SpaceSize.getWidth() - new Drone().image.ImageWidth));
-        int y = (int)Math.floor(Math.random()*(SpaceSize.getHeight() - new Drone().image.ImageHeight));
+        int x = (int)Math.floor(Math.random()*(SpaceSize.getWidth() - BeeGraphic.getImageWidth()));
+        int y = (int)Math.floor(Math.random()*(SpaceSize.getHeight() - BeeGraphic.getImageHeight()));
         Drone drone = new Drone(x,y,time, value.getValueLifeTimeDrone());
         return drone;
     }
 
     private boolean canBornWorker(int ValueSecondsWorker, int ValueProbabilityWorker, int time){
-        if (time != lastSecondsWorker && time % ValueSecondsWorker == 0 && ((int)Math.floor(Math.random()*100))<=ValueProbabilityWorker) {
-            lastSecondsWorker = time;
+        if (time % ValueSecondsWorker == 0 && ((int)Math.floor(Math.random()*100))<=ValueProbabilityWorker) {
             return true;
         }
-        lastSecondsWorker = time;
         return false;
     }
 
     private Worker makeWorker(int time){
-        int x = (int)Math.floor(Math.random()*(SpaceSize.getWidth() - new Worker().image.ImageWidth));
-        int y = (int)Math.floor(Math.random()*(SpaceSize.getHeight() - new Worker().image.ImageHeight));
+        int x = (int)Math.floor(Math.random()*(SpaceSize.getWidth() - BeeGraphic.getImageWidth()));
+        int y = (int)Math.floor(Math.random()*(SpaceSize.getHeight() - BeeGraphic.getImageHeight()));
         Worker worker = new Worker(x,y,time, value.getValueLifeTimeWorker());
         return worker;
     }

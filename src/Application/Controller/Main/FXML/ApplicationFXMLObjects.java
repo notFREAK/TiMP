@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 
 
 public class ApplicationFXMLObjects {
-
+    final static String FXMLresoursePath = "/resourses/FXML/Application.fxml";
     @FXML
     protected AnchorPane paneMain;
 

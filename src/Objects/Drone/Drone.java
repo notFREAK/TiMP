@@ -1,28 +1,24 @@
 package Objects.Drone;
 
+import Application.Simulation.Simulation;
 import Objects.Bee.*;
-import Objects.ILife;
-import javafx.scene.image.ImageView;
 
-public class Drone extends Bee implements ILife {
+public class Drone extends Bee {
     public static int countDrone = 0;
 
+    //private static BeeBaseAI;
+
     public Drone(){
-        image = new DroneImage();
     }
     public Drone(int x, int y, int timeBorn, int timeLife){
-        life = new DroneLife(timeBorn,timeLife);
-        image = new DroneImage();
-        image.setPosition(x,y);
+        life = new BeeLife(timeBorn, timeLife) {
+            @Override
+            public void updateCountOfDeadBees() {
+                countDrone--;
+            }
+        };
+        beeGraphic = new BeeGraphic(getClass().getResource("/resourses/Pic/sprite_Drone.png").toString());
         countDrone++;
         typeBee = "bee_drone";
-    }
-
-    @Override
-    public void updateTimeLiveAnimals(){
-        if (life.isDead()) {
-            countDrone--;
-            decrementCountsAllAnimals();
-        }
     }
 }

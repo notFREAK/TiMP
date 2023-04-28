@@ -1,6 +1,6 @@
 package Application.Simulation;
 
-public class Simulation {
+public class Simulation { //Singletone
     State state;
 
     Value simulationValue;
@@ -9,13 +9,13 @@ public class Simulation {
         state = new State();
         simulationValue = new Value();
     }
-    private int SimulationFPS = 60;
+    private static int SimulationFPS = 60;
 
-    public int getSimulationFPS() {
+    public static int getSimulationFPS() {
         return SimulationFPS;
     }
 
-    public double getSimulationSpeed() {
+    public static double getSimulationSpeed() {
         return 1000.0/((double)getSimulationFPS());
     }
     public State getState() {

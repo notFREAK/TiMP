@@ -4,18 +4,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class HabitatSize {
-    public static final Image imageBackground = new Image("C:\\MyProjects\\TiMP\\src\\resourse.Pic\\background.gif");
-    private static final int Width = 400;
-    private static final int Height = 400;
+    public static final Image imageBackground = new Image("C:\\MyProjects\\TiMP\\src\\resourses\\Pic\\background.gif");
+    private static int Width = 400;
+    private static int Height = 400;
 
-    public int getWidth() {
+    public static int getWidth() {
         return Width;
     }
 
-    public int getHeight() {
+    public static int getHeight() {
         return Height;
     }
-    public ImageView getImageViewBackground() {
+    public static ImageView getImageViewBackground() {
         ImageView imageViewBackground = new ImageView(imageBackground);
         imageViewBackground.setFitWidth(Width);
         imageViewBackground.setFitHeight(Height);

@@ -1,5 +1,5 @@
 package Objects;
-
+@FunctionalInterface
 public interface ILife {
-    public void updateTimeLiveAnimals();
+    void updateCountOfDeadBees();
 }

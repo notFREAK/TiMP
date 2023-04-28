@@ -1,42 +1,83 @@
 package Application.Controller.ModalWindows.Information;
 
+import Application.Controller.IController;
 import Application.Controller.ModalWindows.Information.FXML.InformationFXMLObjectsGets;
 import Application.AppManager;
+import Application.Simulation.StateSimulation;
+import Application.TImer.Timer;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
-public class ControllerInformation extends InformationFXMLObjectsGets {
+
+public class ControllerInformation extends InformationFXMLObjectsGets implements IController {
 
     Stage stage;
-
-    public ControllerInformation(Stage stage) {
-        this.stage = stage;
+    private void initFont() {
+        buttonOK.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 12;");
+        buttonCancel.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 12;");
+        textAreaInformation.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 20;");
     }
-
-    private void initButtons(AppManager appManager) {
+    private void initButtons() {
         getButtonCancel().setOnAction(event -> {
             try {
-                appManager.appStart();
-                stage.close();
+                AppManager.getInstance().appState(StateSimulation.RUNNING);
+                hide();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        getButtonCancel().setOnAction(event -> {
+        getButtonOK().setOnAction(event -> {
             try {
-                appManager.appStop();
-                stage.close();
+                AppManager.getInstance().appState(StateSimulation.STOP);
+                hide();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         stage.setOnCloseRequest(event -> {
             try {
-                appManager.appStop();
-                stage.close();
+                AppManager.getInstance().appState(StateSimulation.STOP);
+                hide();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public ControllerType getType() {
+        return ControllerType.END_INFORMATION;
+    }
+
+    @Override
+    public void init(Stage stage) throws IOException {
+        stage.setTitle("Информ., бюро");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(AppManager.getInstance().getStage());
+        textAreaInformation.setText(AppManager.getInstance().makeResultLog());
+        textAreaInformation.setEditable(false);
+        initButtons();
+        initFont();
+        stage.show();
+    }
+
+    @Override
+    public void hide() {
+        stage.close();
+    }
+
+    @Override
+    public void update(Timer timer) {
+
+    }
+
+    @Override
+    public void swapState() {
+
     }
 }
