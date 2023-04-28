@@ -58,7 +58,7 @@ public class AppManager extends Application {
     public void appState(StateSimulation state) {
         switch (state) {
             case RUNNING:
-                habitat.StartAi(this);
+                habitat.StartAi();
                 simulation.getState().setRunning();
                 timer.Play();
                 break;

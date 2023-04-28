@@ -1,11 +1,9 @@
 package Application.Habitat;
 
 import Application.AppManager;
-import Objects.Bee.BeeBaseAI;
 import Objects.Bee.BeeGraphic;
 import Objects.Drone.*;
 import Objects.Worker.Worker;
-import Objects.Worker.WorkerBaseAI;
 import javafx.scene.Node;
 
 import javafx.scene.layout.Pane;
@@ -16,18 +14,18 @@ public class Habitat extends HabitatObjects{
 
 
     public Habitat(){
-        /*droneBaseAI.start();
-        workerBaseAI.start();*/
+        Drone.DroneBaseAI.start();
+        Worker.WorkerBaseAI.start();
     }
 
-    public void StartAi(AppManager appManager) {
-        droneBaseAI.startAI(appManager);
-        workerBaseAI.startAI(appManager);
+    public void StartAi() {
+        Drone.DroneBaseAI.startAI();
+        Worker.WorkerBaseAI.startAI();
     }
 
     public void StopAi() {
-        droneBaseAI.stopAI();
-        workerBaseAI.stopAI();
+        Drone.DroneBaseAI.stopAI();
+        Worker.WorkerBaseAI.stopAI();
     }
 
     public void Update(int time, Pane pane) {

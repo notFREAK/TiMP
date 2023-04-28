@@ -2,20 +2,15 @@ package Objects.Bee;
 
 import Application.AppManager;
 import Application.Simulation.Simulation;
-import Application.TImer.Time;
 import Objects.IBehaviour;
-import javafx.application.Platform;
 
 public abstract class BeeBaseAI extends Thread {
-    public abstract void move();
+    public abstract void move(Bee bee);
     private volatile boolean isActive = false;
 
-    protected AppManager appManager;
-
-    public synchronized void startAI(AppManager appManager) {
+    public synchronized void startAI() {
         isActive = true;
         notify();
-        this.appManager = appManager;
     }
 
     public synchronized void stopAI() {
@@ -31,19 +26,11 @@ public abstract class BeeBaseAI extends Thread {
                         wait();
                     }
                 }
-                /*for (Bee bee : appManager.getHabitat().getCollectionsBees().getArrayList()) {
-                    if (bee.getTypeBees() == "bee_worker") {
-                        int x = bee.beeGraphic.getX();
-                        int y = bee.beeGraphic.getY();
-                        double[] speedPolar = bee.getVectorSpeedPolar();
-
-                        Graphic.setX((int) (x + (speedPolar[0] * Math.cos(speedPolar[1]))));
-                        bee.beeGraphic.setY((int) (y + (speedPolar[0] * Math.sin(speedPolar[1]))));
-                        if (Math.abs(bee.positionHabitat[0] - bee.beeGraphic.getX()) < 10 || Math.abs(bee.positionHabitat[1] - bee.beeGraphic.getY()) < 10)
-                            goHome = true;
-                        bee.setVectorSpeedPolar(speedPolar);
-                    }
-                }*/
+                for (Bee bee : AppManager.getInstance().getHabitat().getCollectionsBees().getArrayList()) {
+                    move(bee);
+                    IBehaviour behaviour = bee;
+                    behaviour.move();
+                }
                 Thread.sleep((int)Math.round(Simulation.getSimulationSpeed()));
             } catch (InterruptedException e) {
                 e.printStackTrace();
