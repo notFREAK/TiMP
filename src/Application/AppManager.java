@@ -1,11 +1,9 @@
 package Application;
 
 import Application.Controller.IController;
-import Application.Controller.Music.Music;
 import Application.Manager.ControllerManager;
 import Application.Habitat.Habitat;
 import Application.Simulation.Simulation;
-import Application.Simulation.State;
 import Application.Simulation.StateSimulation;
 import Application.TImer.Time;
 import Application.TImer.Timer;
@@ -13,17 +11,8 @@ import Objects.Bee.Bee;
 import Objects.Drone.Drone;
 import Objects.Worker.Worker;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class AppManager extends Application {
     private static class AppManagerHolder {

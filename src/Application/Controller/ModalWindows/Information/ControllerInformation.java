@@ -57,8 +57,8 @@ public class ControllerInformation extends InformationFXMLObjectsGets implements
     @Override
     public void init(Stage stage) throws IOException {
         stage.setTitle("Информ., бюро");
-        stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(AppManager.getInstance().getStage());
+        stage.initModality(Modality.WINDOW_MODAL);
         textAreaInformation.setText(AppManager.getInstance().makeResultLog());
         textAreaInformation.setEditable(false);
         initButtons();
