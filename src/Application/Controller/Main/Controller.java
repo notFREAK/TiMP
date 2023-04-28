@@ -177,7 +177,6 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
 
     @Override
     public void init(Stage stage) throws IOException {
-        this.stage = stage;
         stage.setTitle("TiMP");
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -191,6 +190,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         initListeners();
         MED = new Music();
         stage.show();
+        this.stage = stage;
     }
 
     @Override

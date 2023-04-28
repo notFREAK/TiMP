@@ -57,13 +57,12 @@ public class ControllerInformation extends InformationFXMLObjectsGets implements
     @Override
     public void init(Stage stage) throws IOException {
         stage.setTitle("Информ., бюро");
-        stage.initOwner(AppManager.getInstance().getStage());
-        stage.initModality(Modality.WINDOW_MODAL);
         textAreaInformation.setText(AppManager.getInstance().makeResultLog());
         textAreaInformation.setEditable(false);
+        stage.show();
+        this.stage = stage;
         initButtons();
         initFont();
-        stage.show();
     }
 
     @Override

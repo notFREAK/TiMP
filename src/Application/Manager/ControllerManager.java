@@ -9,6 +9,7 @@ import Application.TImer.Timer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -86,10 +87,14 @@ public class ControllerManager{
             case DETAIL_OBJECTS:
                 loader = new FXMLLoader(getClass().getResource("/resourses/FXML/Objects.fxml"));
                 stage = new Stage();
+                stage.initModality(Modality.NONE);
+                stage.initOwner(AppManager.getInstance().getStage());
                 break;
             case END_INFORMATION:
                 loader = new FXMLLoader(getClass().getResource("/resourses/FXML/Information.fxml"));
                 stage = new Stage();
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(AppManager.getInstance().getStage());
                 break;
             default:
                 loader = new FXMLLoader(getClass().getResource("/resourses/FXML/Application.fxml"));
@@ -114,7 +119,7 @@ public class ControllerManager{
                 break;
         }
         controllers.add(iController);
-        iController.init(AppManager.getInstance().getStage());
+        iController.init(stage);
     }
 
     public void ControllerDelete(IController.ControllerType controllerType) {
