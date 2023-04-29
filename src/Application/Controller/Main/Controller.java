@@ -267,8 +267,8 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         buttonPause.setDisable(ButtonPauseDisableState);
         buttonStart.setDisable(ButtonStartDisableState);
         menuItemSimulationStart.setDisable(ButtonStartDisableState);
-        menuItemSimulationPause.setDisable(ButtonStartDisableState);
-        menuItemSimulationStop.setDisable(ButtonStartDisableState);
+        menuItemSimulationPause.setDisable(ButtonPauseDisableState);
+        menuItemSimulationStop.setDisable(ButtonStopDisableState);
         spinnerSecondsWorker.setDisable(SpinnersState);
         comboBoxProbabilityWorker.setDisable(SpinnersState);
         spinnerLifeTimeDrone.setDisable(SpinnersState);
