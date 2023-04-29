@@ -30,9 +30,9 @@
            </Menu>
            <Menu mnemonicParsing="false" text="Вид">
               <items>
-                 <MenuItem mnemonicParsing="false" text="Показывать окно “Текущие объекты”" />
-                 <MenuItem mnemonicParsing="false" text="Показывать дополнительную информацию" />
-                 <MenuItem mnemonicParsing="false" text="Показывать время симуляции" />
+                 <MenuItem fx:id="menuItemViewDetailObjects" mnemonicParsing="false" text="Показывать окно “Текущие объекты”" />
+                 <MenuItem fx:id="menuItemViewInformation" mnemonicParsing="false" text="Показывать дополнительную информацию" />
+                 <MenuItem fx:id="menuItemViewTimer" mnemonicParsing="false" text="Показывать время симуляции" />
               </items>
            </Menu>
           <Menu mnemonicParsing="false" text="Помощь">

@@ -141,6 +141,15 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
+        menuItemViewTimer.setOnAction(event ->
+        {
+            try {
+                swapTimerShowState();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
         checkboxDetailObjects.setOnAction(event -> {
             try {
                 if (checkboxDetailObjects.isSelected()) {

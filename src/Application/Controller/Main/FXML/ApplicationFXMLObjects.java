@@ -89,6 +89,15 @@ public class ApplicationFXMLObjects {
     protected RadioButton radioButtonTimerOff;
 
     @FXML
+    protected MenuItem menuItemViewDetailObjects;
+
+    @FXML
+    protected MenuItem menuItemViewInformation;
+
+    @FXML
+    protected MenuItem menuItemViewTimer;
+
+    @FXML
     protected Label labelVolume;
 
     @FXML
