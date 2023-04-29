@@ -51,7 +51,7 @@
            <Button fx:id="buttonStop" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Стоп" />
         </items>
       </ToolBar>
-      <Pane fx:id="paneStage" layoutX="400.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Pane fx:id="paneStage" layoutX="400.0" maxHeight="1200.0" maxWidth="1200.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.leftAnchor="401.0" AnchorPane.topAnchor="31.0" />
       <AnchorPane fx:id="paneMenu" layoutX="108.0" layoutY="92.0" prefHeight="550.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
             <Label fx:id="textSecondsDrone" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
