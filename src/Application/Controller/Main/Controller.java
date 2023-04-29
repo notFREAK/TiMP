@@ -144,6 +144,8 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         menuItemViewTimer.setOnAction(event ->
         {
             try {
+                radioButtonTimerOn.setSelected(!radioButtonTimerOn.isSelected());
+                radioButtonTimerOff.setSelected(!radioButtonTimerOff.isSelected());
                 swapTimerShowState();
             } catch (Exception e) {
                 e.printStackTrace();
