@@ -8,6 +8,6 @@ public class Polar extends Vector {
 
     public Cartesian changeTypeToCartesian() {
             double modulus = vector[0];
-        return new Cartesian((int)Math.round(modulus * Math.sin(vector[1])), (int)Math.round(modulus * Math.cos(vector[1])));
+        return new Cartesian((int)Math.round(modulus * Math.cos(vector[1])), (int)Math.round((modulus * Math.sin(vector[1]))));
     }
 }

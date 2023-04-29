@@ -181,7 +181,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
 
         checkMenuItemViewDetailObjects.setOnAction(event -> {
             try {
-                if (checkboxDetailObjects.isSelected()) {
+                if (!checkboxDetailObjects.isSelected()) {
                     checkboxDetailObjects.setSelected(true);
                     ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
                 }
@@ -310,6 +310,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         initListeners();
         MED = new Music();
         MED.setMusicVolume((double)0);
+        setButtonState(true, false, false, true);
         stage.show();
         this.stage = stage;
         HabitatSize.setHeight((int)paneStage.getHeight());

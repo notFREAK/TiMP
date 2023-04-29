@@ -8,6 +8,8 @@ import Application.Simulation.StateSimulation;
 import Application.TImer.Time;
 import Application.TImer.Timer;
 import Objects.Bee.Bee;
+import Objects.Coordinates.Vector.Cartesian;
+import Objects.Coordinates.Vector.Polar;
 import Objects.Drone.Drone;
 import Objects.Worker.Worker;
 import javafx.application.Application;
@@ -38,6 +40,10 @@ public class AppManager extends Application {
         simulation = new Simulation();
         habitat = new Habitat();
         ControllerManager.getInstance().ControllerCreate(IController.ControllerType.MAIN);
+        Polar vector = new Cartesian(20, 0).changeTypeToPolar();
+        Polar vector1 = new Cartesian(0, 20).changeTypeToPolar();
+        Polar vector2 = new Cartesian(0, 0).changeTypeToPolar();
+        Polar vector3 = new Cartesian(20, 20).changeTypeToPolar();
     }
 
     public Stage getStage() {
