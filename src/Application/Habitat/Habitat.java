@@ -32,7 +32,6 @@ public class Habitat extends HabitatObjects{
         try {
             if (time != lastSecondsUpdate) {
                 lastSecondsUpdate = time;
-                System.out.print(Bee.countsAllBees +" "+ Drone.countDrone+ " " + Worker.countWorker + " ");
                 if (this.canBornWorker(value.getValueSecondsWorker(), value.getValueProbabilityWorker(), time)) {
                     Worker worker = makeWorker(time);
                     this.collectionsBees.adds(worker);

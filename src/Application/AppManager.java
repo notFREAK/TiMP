@@ -35,8 +35,8 @@ public class AppManager extends Application {
         Font.loadFont(getClass().getResourceAsStream("/resourses/Font/smeshariki.ttf"), 12);
         mainStage = stage;
         timer = new Timer(this);
-        habitat = new Habitat();
         simulation = new Simulation();
+        habitat = new Habitat();
         ControllerManager.getInstance().ControllerCreate(IController.ControllerType.MAIN);
     }
 

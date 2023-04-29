@@ -44,6 +44,6 @@ public class Position  {
         return position[1];
     }
     public Vector BeeGoTo(Position End) {
-        return new Vector(End.getX()-getX(),End.getY() - getY(), Vector.CoordinatesType.Cartesian ).changeTypeToPolar();
+        return (new Vector(End.getX()-getX(),End.getY() - getY(), Vector.CoordinatesType.Cartesian));
     }
 }

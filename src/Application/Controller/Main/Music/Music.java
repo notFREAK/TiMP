@@ -48,6 +48,8 @@ public class Music {
                 flag = MusicState.NOTHING;
             }
         });
+        beginThemeMediaPlayer.setMute(true);
+        endThemeMediaPlayer.setMute(true);
     }
 
     public void MusicPlay() {
