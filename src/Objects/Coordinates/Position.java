@@ -1,6 +1,7 @@
 package Objects.Coordinates;
 
-import Objects.IBehaviour;
+import Objects.Coordinates.Vector.Cartesian;
+import Objects.Coordinates.Vector.Vector;
 
 import static java.lang.Math.*;
 
@@ -43,7 +44,7 @@ public class Position  {
     public int getY() {
         return position[1];
     }
-    public Vector BeeGoTo(Position End) {
-        return (new Vector(End.getX()-getX(),End.getY() - getY(), Vector.CoordinatesType.Cartesian));
-    }
+    public Cartesian BeeGoTo(Position End) {
+        return new Cartesian(End.getX() - getX(), End.getY() - getY());
+    };
 }

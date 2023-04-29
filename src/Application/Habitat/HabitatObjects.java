@@ -5,7 +5,7 @@ import Application.Simulation.Value;
 
 public class HabitatObjects {
     protected Value value;
-    protected  Collections collectionsBees = new Collections();
+    protected  Collections collectionsBees;
     protected  HabitatSize SpaceSize = new HabitatSize();
 
     protected int lastSecondsUpdate = 0;

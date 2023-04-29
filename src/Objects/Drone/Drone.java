@@ -2,8 +2,8 @@ package Objects.Drone;
 
 import Application.AppManager;
 import Application.Habitat.HabitatSize;
+import Application.Simulation.Simulation;
 import Objects.Bee.*;
-import Objects.Coordinates.Vector;
 
 public class Drone extends Bee {
     public static int countDrone = 0;
@@ -38,16 +38,13 @@ public class Drone extends Bee {
     public void ChangeDirection() {
         if (DroneLastChangeDirectionTime != AppManager.getInstance().getTimer().getSeconds() && DroneLastChangeDirectionTime % ValueDroneChangeDirection != 0) {
             DroneLastChangeDirectionTime = AppManager.getInstance().getTimer().getSeconds();
-            speed.changeTypeToPolar();
             speed.setSecondCoordinate(Math.random() * Math.PI);
-            speed.setFirstCoordinate(10);
+            speed.setFirstCoordinate(0.1* Simulation.getSimulationFPS());
         }
         if (beeGraphic.getCurrent().getX() < 0 || beeGraphic.getCurrent().getX() > HabitatSize.getWidth() - BeeGraphic.getImageWidth()) {
-            speed.changeTypeToCartesian();
             speed.setFirstCoordinate(0);
         }
         if (beeGraphic.getCurrent().getX() < 0 || beeGraphic.getCurrent().getX() > HabitatSize.getHeight() - BeeGraphic.getImageHeight()) {
-            speed.changeTypeToCartesian();
             speed.setSecondCoordinate(0);
         }
     }

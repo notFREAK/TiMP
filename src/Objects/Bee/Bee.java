@@ -1,6 +1,8 @@
 package Objects.Bee;
 
-import Objects.Coordinates.Vector;
+import Application.Simulation.Simulation;
+import Objects.Coordinates.Vector.Polar;
+import Objects.Coordinates.Vector.Vector;
 import Objects.IBehaviour;
 
 import java.util.UUID;
@@ -18,12 +20,12 @@ public abstract class Bee implements IBehaviour{
     protected UUID identifier;
     protected BeeGraphic beeGraphic;
     public BeeLife life;
-    protected Vector speed ;
+    protected Polar speed ;
 
     public Bee(){
         generateIdentifier();
         countsAllBees++;
-        speed = new Vector(0, (int) (Math.random() * Math.PI));
+        speed = new Polar(0.1 * Simulation.getSimulationSpeed(), (int)(Math.random() * 2*Math.PI));
     }
 
     private void generateIdentifier(){

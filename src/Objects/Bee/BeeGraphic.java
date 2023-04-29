@@ -1,10 +1,9 @@
 package Objects.Bee;
 
-import Application.Habitat.HabitatObjects;
 import Application.Habitat.HabitatSize;
 import Objects.Coordinates.Position;
-import Objects.Coordinates.Vector;
-import Objects.IBehaviour;
+import Objects.Coordinates.Vector.Cartesian;
+import Objects.Coordinates.Vector.Vector;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -69,12 +68,11 @@ public class BeeGraphic extends Pane {
     public void setPosition(int x, int y){
         this.setX(x);
         this.setY(y);
+        current.setX(x);
+        current.setY(y);
     }
 
-    public void go(Vector speed) {
-        current.setX(current.getX()+(int)Math.round(speed.getInTypeCartesian().getFirstCoordinate()));
-        current.setY(current.getY()+(int)Math.round(speed.getInTypeCartesian().getSecondCoordinate()));
-        setX(current.getX());
-        setY(current.getY());
+    public void go(Cartesian speed) {
+        setPosition((int) Math.round(current.getX()+ speed.getFirstCoordinate()),(int) Math.round(current.getY()+ speed.getSecondCoordinate()));
     }
 }

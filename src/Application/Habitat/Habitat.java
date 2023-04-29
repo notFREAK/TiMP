@@ -1,6 +1,7 @@
 package Application.Habitat;
 
 import Application.AppManager;
+import Application.Collections.Collections;
 import Objects.Bee.BeeGraphic;
 import Objects.Drone.*;
 import Objects.Worker.Worker;
@@ -14,18 +15,22 @@ public class Habitat extends HabitatObjects{
 
 
     public Habitat(){
-        Drone.DroneBaseAI.start();
-        Worker.WorkerBaseAI.start();
+       /* Drone.DroneBaseAI.start();
+        Worker.WorkerBaseAI.start();*/
+        collectionsBees = new Collections();
     }
 
     public void StartAi() {
         Drone.DroneBaseAI.startAI();
         Worker.WorkerBaseAI.startAI();
+        AI = true;
     }
 
+    public boolean AI = false;
     public void StopAi() {
         Drone.DroneBaseAI.stopAI();
         Worker.WorkerBaseAI.stopAI();
+        AI = false;
     }
 
     public void Update(int time, Pane pane) {

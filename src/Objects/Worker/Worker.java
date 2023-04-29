@@ -6,9 +6,9 @@ import Objects.Bee.BeeBaseAI;
 import Objects.Bee.BeeGraphic;
 import Objects.Bee.BeeLife;
 import Objects.Coordinates.Position;
-import Objects.Coordinates.Vector;
-
-import static java.lang.Math.sqrt;
+import Objects.Coordinates.Vector.Cartesian;
+import Objects.Coordinates.Vector.Polar;
+import Objects.Coordinates.Vector.Vector;
 
 public class Worker extends Bee{
     public static int countWorker = 0;
@@ -48,27 +48,20 @@ public class Worker extends Bee{
 
     @Override
     public void ChangeDirection() {
-
-        System.out.print(identifier + " " + beeGraphic.getCurrent().getX() + " " +beeGraphic.getCurrent().getY() + " " + isWorkerGoHabitat + " ");
         if (isWorkerGoHabitat) {
-            Vector toHab = beeGraphic.getCurrent().BeeGoTo(positionHabitat);
-            System.out.print(positionHabitat.getX() + " " + positionHabitat.getY() + " " + toHab.getFirstCoordinate() + " " + toHab.getSecondCoordinate() +  " ");
-            toHab.changeTypeToPolar();
+            Polar toHab = beeGraphic.getCurrent().BeeGoTo(positionHabitat).changeTypeToPolar();
+            System.out.print(beeGraphic.getCurrent().getX() + " "+ beeGraphic.getCurrent().getY() + " " + life.getTimeLife() + "\n");
             if (toHab.getFirstCoordinate() <= speed.getFirstCoordinate()) {
                 isWorkerGoHabitat = !isWorkerGoHabitat;
             }
-            speed.changeTypeToPolar();
             speed.setSecondCoordinate(toHab.getSecondCoordinate());
-            System.out.print(toHab.getFirstCoordinate() + " " + toHab.getSecondCoordinate() + " " + speed.getFirstCoordinate() + " " + speed.getSecondCoordinate()+ "\n");
-        }
+            }
         else {
             Vector toBir = beeGraphic.getCurrent().BeeGoTo(positionBirth).changeTypeToPolar();
             if (toBir.getFirstCoordinate() <= speed.getFirstCoordinate()) {
                 isWorkerGoHabitat = !isWorkerGoHabitat;
             }
-            speed.changeTypeToPolar();
             speed.setSecondCoordinate(toBir.getSecondCoordinate());
-            System.out.print(positionBirth.getX() + " " + positionBirth.getY() + " " + toBir.getFirstCoordinate() + " " + toBir.getSecondCoordinate() +" " + speed.getFirstCoordinate() + " " + speed.getSecondCoordinate()+ "\n");
         }
     }
 }

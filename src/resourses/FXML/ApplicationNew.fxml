@@ -55,8 +55,8 @@
       <AnchorPane fx:id="paneMenu" layoutX="108.0" layoutY="92.0" prefHeight="550.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
             <Label fx:id="textSecondsDrone" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <Label fx:id="textLifeTimeDrone" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
-            <Label fx:id="textLifeTimeWorker" prefHeight="30.0" prefWidth="260.0" text="Время жизни трутня" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
+            <Label fx:id="textLifeTimeWorker" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+            <Label fx:id="textLifeTimeDrone" prefHeight="30.0" prefWidth="260.0" text="Время жизни трутня" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
             <Label fx:id="textSecondsWorker" prefHeight="30.0" prefWidth="260.0" text="Время жизни рабочего" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
             <Spinner fx:id="spinnerSecondsDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <Spinner fx:id="spinnerSecondsWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
