@@ -15,7 +15,7 @@ public class Habitat extends HabitatObjects{
 
 
     public Habitat(){
-       /* Drone.DroneBaseAI.start();
+        /*Drone.DroneBaseAI.start();
         Worker.WorkerBaseAI.start();*/
         collectionsBees = new Collections();
     }
