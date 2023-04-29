@@ -60,6 +60,33 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
+        menuItemStart.setOnAction(event ->
+        {
+            try {
+                AppManager.getInstance().appState(StateSimulation.RUNNING);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        buttonPause.setOnAction(event ->
+        {
+            try {
+                AppManager.getInstance().appState(StateSimulation.PAUSE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        menuItemPause.setOnAction(event ->
+        {
+            try {
+                AppManager.getInstance().appState(StateSimulation.PAUSE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
         buttonStop.setOnAction(event ->
         {
             try {
@@ -74,10 +101,15 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        buttonPause.setOnAction(event ->
+        menuItemStop.setOnAction(event ->
         {
             try {
-                AppManager.getInstance().appState(StateSimulation.PAUSE);
+                if (showLog) {
+                    AppManager.getInstance().appState(StateSimulation.PAUSE);
+                    ControllerManager.getInstance().ControllerCreate(ControllerType.END_INFORMATION);
+                }
+                else
+                    AppManager.getInstance().appState(StateSimulation.STOP);
             } catch (Exception e) {
                 e.printStackTrace();
             }

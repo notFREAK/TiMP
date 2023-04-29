@@ -16,6 +16,19 @@ public class ApplicationFXMLObjects {
 
     @FXML
     protected Pane paneStage;
+
+    @FXML
+    protected MenuBar menuBarMain;
+
+    @FXML
+    protected MenuItem menuItemStart;
+
+    @FXML
+    protected MenuItem menuItemPause;
+
+    @FXML
+    protected MenuItem menuItemStop;
+
     @FXML
     protected Button buttonStart;
 
@@ -59,13 +72,30 @@ public class ApplicationFXMLObjects {
 
     @FXML
     protected ComboBox<Integer> comboBoxProbabilityWorker;
-    @FXML protected ComboBox<Integer> comboBoxCoefficientDrone;
-    @FXML protected CheckBox checkboxDetailObjects;
-    @FXML protected CheckBox checkboxInformation;
-    @FXML protected RadioButton radioButtonTimerOn;
-    @FXML protected RadioButton radioButtonTimerOff;
-    @FXML protected Label labelVolume;
-    @FXML protected Label labelTime;
-    @FXML protected Slider sliderVolume;
+
+    @FXML
+    protected ComboBox<Integer> comboBoxCoefficientDrone;
+
+    @FXML
+    protected CheckBox checkboxDetailObjects;
+
+    @FXML
+    protected CheckBox checkboxInformation;
+
+    @FXML
+    protected RadioButton radioButtonTimerOn;
+
+    @FXML
+    protected RadioButton radioButtonTimerOff;
+
+    @FXML
+    protected Label labelVolume;
+
+    @FXML
+    protected Label labelTime;
+
+    @FXML
+    protected Slider sliderVolume;
+
 
 }

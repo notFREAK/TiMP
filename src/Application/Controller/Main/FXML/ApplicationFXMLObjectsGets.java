@@ -1,10 +1,7 @@
 package Application.Controller.Main.FXML;
 
 import Application.TImer.Time;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -19,6 +16,18 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
 
     public AnchorPane getPaneMenu() {
         return paneMenu;
+    }
+
+    public MenuItem getMenuItemStart() {
+        return menuItemStart;
+    }
+
+    public MenuItem getMenuItemPause() {
+        return menuItemPause;
+    }
+
+    public MenuItem getMenuItemStop() {
+        return menuItemStop;
     }
 
     public Button getButtonPause() {
@@ -117,6 +126,10 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
 
     public void setPaneMenu(AnchorPane paneMenu) {
         this.paneMenu = paneMenu;
+    }
+
+    public void setMenuBarMain(MenuBar menuBarMain) {
+        this.menuBarMain = menuBarMain;
     }
 
     public void setPaneStage(Pane paneStage) {
