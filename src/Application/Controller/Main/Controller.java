@@ -141,6 +141,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
+
         menuItemViewTimer.setOnAction(event ->
         {
             try {
