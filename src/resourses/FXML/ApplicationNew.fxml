@@ -49,7 +49,7 @@
            <Button fx:id="buttonStop" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Stop" />
         </items>
       </ToolBar>
-      <Pane fx:id="paneStage" layoutX="400.0" layoutY="4.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Pane fx:id="paneStage" layoutX="400.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <AnchorPane fx:id="paneMenu" layoutY="92.0" prefHeight="550.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
             <Label fx:id="textSecondsDrone" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
@@ -66,8 +66,11 @@
             <ComboBox fx:id="comboBoxCoefficientDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
             <CheckBox fx:id="checkboxDetailObjects" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать окно &quot;Текущие объекты&quot;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="250.0" />
             <CheckBox fx:id="checkboxInformation" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать дополнительную информацию" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="290.0" />
-            <RadioButton fx:id="radioButtonTimerOn" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" selected="true" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="330.0" />
-            <RadioButton fx:id="radioButtonTimerOff" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0" />
+            <RadioButton fx:id="radioButtonTimerOn" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" selected="true" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="330.0">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radioButtonTimerGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="radioButtonTimerOff" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" toggleGroup="$radioButtonTimerGroup" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0" />
             <Label fx:id="labelVolume" alignment="CENTER" layoutX="102.0" layoutY="462.0" prefHeight="30.0" prefWidth="240.0" text="Громкость" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" />
             <Slider fx:id="sliderVolume" layoutX="14.0" layoutY="515.0" prefHeight="30.0" prefWidth="240.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
             <Label fx:id="labelTime" alignment="CENTER" layoutX="316.0" layoutY="467.0" prefHeight="30.0" prefWidth="120.0" text="Время" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" />
