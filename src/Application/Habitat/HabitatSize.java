@@ -8,6 +8,14 @@ public class HabitatSize {
     private static int Width = 400;
     private static int Height = 400;
 
+    public static void setHeight(int height) {
+        Height = height;
+    }
+
+    public static void setWidth(int width) {
+        Width = width;
+    }
+
     public static int getWidth() {
         return Width;
     }

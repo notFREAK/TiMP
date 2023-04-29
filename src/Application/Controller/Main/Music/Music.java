@@ -48,8 +48,6 @@ public class Music {
                 flag = MusicState.NOTHING;
             }
         });
-        beginThemeMediaPlayer.setMute(true);
-        endThemeMediaPlayer.setMute(true);
     }
 
     public void MusicPlay() {
@@ -67,6 +65,12 @@ public class Music {
         }
     }
 
+    public void setMusicVolume(double soundVolume) {
+        float volume = (float) (1 - (Math.log(100 - soundVolume) / Math.log(100)));
+        mainThemeMediaPlayer.setVolume(volume);
+        beginThemeMediaPlayer.setVolume(volume);
+        endThemeMediaPlayer.setVolume(volume);
+    }
     public void MusicPause() {
 
         switch (flag) {

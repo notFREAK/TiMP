@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 
 
 public class ApplicationFXMLObjects {
-    final static String FXMLresoursePath = "/resourses/FXML/Application.fxml";
+    final static String FXMLresoursePath = "/resourses/FXML/ApplicationNew.fxml";
     @FXML
     protected AnchorPane paneMain;
 
@@ -52,22 +52,20 @@ public class ApplicationFXMLObjects {
     protected Spinner<Integer>  spinnerLifeTimeDrone;
 
     @FXML
-    protected Spinner<Integer> spinnerCoefficientDrone;
-
-    @FXML
     protected Spinner<Integer>  spinnerSecondsWorker;
 
     @FXML
     protected Spinner<Integer>  spinnerLifeTimeWorker;
 
     @FXML
-    protected Spinner<Integer>  spinnerProbabilityWorker;
-
-    @FXML
-    protected RadioButton radioButtonInformation;
-    @FXML
-    protected RadioButton radioButtonTimer;
-    @FXML
-    protected RadioButton radioButtonInformationObjectDetail;
+    protected ComboBox<Integer> comboBoxProbabilityWorker;
+    @FXML protected ComboBox<Integer> comboBoxCoefficientDrone;
+    @FXML protected CheckBox checkboxDetailObjects;
+    @FXML protected CheckBox checkboxInformation;
+    @FXML protected RadioButton radioButtonTimerOn;
+    @FXML protected RadioButton radioButtonTimerOff;
+    @FXML protected Label labelVolume;
+    @FXML protected Label labelTime;
+    @FXML protected Slider sliderVolume;
 
 }

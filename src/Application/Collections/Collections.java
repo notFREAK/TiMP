@@ -34,7 +34,7 @@ public class Collections {
             Iterator<Bee> iteratorUpdate = arrayList.iterator();
             while (iteratorUpdate.hasNext()) {
                 Bee animalUpdate = iteratorUpdate.next();
-                animalUpdate.life.updateCountOfDeadBees();
+                animalUpdate.life.update();
             }
     }
 

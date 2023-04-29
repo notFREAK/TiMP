@@ -23,11 +23,11 @@ public abstract class Bee implements IBehaviour{
     public Bee(){
         generateIdentifier();
         countsAllBees++;
-        speed = new Vector(10, (int) (Math.random() * Math.PI));
+        speed = new Vector(0, (int) (Math.random() * Math.PI));
     }
 
     private void generateIdentifier(){
-        UUID randomIdentifier = UUID.randomUUID(); //UUID
+        UUID randomIdentifier = UUID.randomUUID();
         identifier = randomIdentifier;
     };
 

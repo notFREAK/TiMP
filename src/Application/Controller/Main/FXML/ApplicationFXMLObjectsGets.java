@@ -36,11 +36,6 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
     public Pane getPaneStage() {
         return paneStage;
     }
-
-    public int getValueSpinnerCoefficientDrone() {
-        return spinnerCoefficientDrone.getValue();
-    }
-
     public int getValueSpinnerLifeTimeDrone() {
         return spinnerLifeTimeDrone.getValue();
     }
@@ -57,9 +52,6 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         return spinnerSecondsWorker.getValue();
     }
 
-    public int getValueSpinnerProbabilityWorker() {
-        return spinnerProbabilityWorker.getValue();
-    }
 
     public Spinner<Integer> getSpinnerSecondsWorker() {
         return spinnerSecondsWorker;
@@ -67,10 +59,6 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
 
     public Spinner<Integer> getSpinnerSecondsDrone() {
         return spinnerSecondsDrone;
-    }
-
-    public Spinner<Integer> getSpinnerProbabilityWorker() {
-        return spinnerProbabilityWorker;
     }
 
     public Spinner<Integer> getSpinnerLifeTimeWorker() {
@@ -106,19 +94,6 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         return textSecondsWorker;
     }
 
-    public RadioButton getRadioButtonInformation() {
-        return radioButtonInformation;
-    }
-
-    public RadioButton getRadioButtonTimer() {
-        return radioButtonTimer;
-    }
-
-    public RadioButton getRadioButtonInformationObjectDetail() {return  radioButtonInformationObjectDetail; }
-
-    public Spinner<Integer> getSpinnerCoefficientDrone() {
-        return spinnerCoefficientDrone;
-    }
 
     public void setButtonPause(Button buttonPause) {
         this.buttonPause = buttonPause;
@@ -148,16 +123,6 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         this.paneStage = paneStage;
     }
 
-    public void setRadioButtonInformation(RadioButton radioButtonInformation) {
-        this.radioButtonInformation = radioButtonInformation;
-    }
-
-    public void setRadioButtonTimer(RadioButton radioButtonTimer) {
-        this.radioButtonTimer = radioButtonTimer;
-    }
-    public void setSpinnerCoefficientDrone(Spinner<Integer> spinnerCoefficientDrone) {
-        this.spinnerCoefficientDrone = spinnerCoefficientDrone;
-    }
 
     public void setSpinnerLifeTimeDrone(Spinner<Integer> spinnerLifeTimeDrone) {
         this.spinnerLifeTimeDrone = spinnerLifeTimeDrone;
@@ -167,9 +132,7 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         this.spinnerLifeTimeWorker = spinnerLifeTimeWorker;
     }
 
-    public void setSpinnerProbabilityWorker(Spinner<Integer> spinnerProbabilityWorker) {
-        this.spinnerProbabilityWorker = spinnerProbabilityWorker;
-    }
+
 
     public void setSpinnerSecondsDrone(Spinner<Integer> spinnerSecondsDrone) {
         this.spinnerSecondsDrone = spinnerSecondsDrone;
@@ -209,5 +172,13 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
 
     public static String getFXMLresourse() {
         return FXMLresoursePath;
+    }
+
+    protected Integer getValueComboBoxProbabilityWorker() {
+        return comboBoxProbabilityWorker.getSelectionModel().getSelectedItem();
+    }
+
+    protected Integer getValueComboBoxCoefficientDrone() {
+        return comboBoxCoefficientDrone.getSelectionModel().getSelectedItem();
     }
 }

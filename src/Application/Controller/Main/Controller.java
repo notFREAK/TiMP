@@ -4,13 +4,18 @@ import Application.AppManager;
 import Application.Controller.IController;
 import Application.Controller.Main.FXML.ApplicationFXMLObjectsGets;
 import Application.Controller.Main.Music.Music;
+import Application.Habitat.HabitatSize;
 import Application.Manager.ControllerManager;
 import Application.Simulation.StateSimulation;
 import Application.TImer.Timer;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -86,7 +91,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        radioButtonTimer.setOnAction(event ->
+        radioButtonTimerOn.setOnAction(event ->
         {
             try {
                 swapTimerShowState();
@@ -95,9 +100,18 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        radioButtonInformationObjectDetail.setOnAction(event -> {
+        radioButtonTimerOff.setOnAction(event ->
+        {
             try {
-                if (radioButtonInformationObjectDetail.isSelected()) {
+                swapTimerShowState();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        checkboxDetailObjects.setOnAction(event -> {
+            try {
+                if (checkboxDetailObjects.isSelected()) {
                     ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
                 }
                 else {
@@ -108,7 +122,17 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        radioButtonInformation.setOnAction(event -> {
+        sliderVolume.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(
+                    ObservableValue<? extends Number> observableValue,
+                    Number oldValue,
+                    Number newValue) {
+                MED.setMusicVolume((double)newValue);
+            }
+        });
+
+        checkboxInformation.setOnAction(event -> {
             try {
                 showLog  = !showLog;
             } catch (Exception e) {
@@ -133,22 +157,37 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             AppManager.getInstance().appState(StateSimulation.STOP);
         }
     }
+    private void initComboBox() {
+        ObservableList<Integer> CoefficientDrone =
+                FXCollections.observableArrayList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+        ObservableList<Integer> ProbabilityWorker =
+                FXCollections.observableArrayList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+        comboBoxCoefficientDrone.setItems(CoefficientDrone);
+        comboBoxProbabilityWorker.setItems(ProbabilityWorker);
+        comboBoxCoefficientDrone.getSelectionModel().select(0);
+        comboBoxProbabilityWorker.getSelectionModel().select(0);
+    }
+
+    private void initSlider() {
+         sliderVolume.setMin(0);
+         sliderVolume.setMax(100);
+         sliderVolume.setShowTickLabels(true);
+
+    }
     private void initSpinners() {
         spinnerLifeTimeDrone.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         spinnerSecondsDrone.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
-        spinnerCoefficientDrone.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         spinnerSecondsWorker.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
         spinnerLifeTimeWorker.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
-        spinnerProbabilityWorker.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1));
     }
     public void setButtonState(boolean ButtonStopDisableState, boolean ButtonPauseDisableState, boolean ButtonStartDisableState, boolean SpinnersState) {
         buttonStop.setDisable(ButtonStopDisableState);
         buttonPause.setDisable(ButtonPauseDisableState);
         buttonStart.setDisable(ButtonStartDisableState);
         spinnerSecondsWorker.setDisable(SpinnersState);
-        spinnerCoefficientDrone.setDisable(SpinnersState);
+        comboBoxProbabilityWorker.setDisable(SpinnersState);
         spinnerLifeTimeDrone.setDisable(SpinnersState);
-        spinnerProbabilityWorker.setDisable(SpinnersState);
+        comboBoxCoefficientDrone.setDisable(SpinnersState);
         spinnerSecondsDrone.setDisable(SpinnersState);
         spinnerLifeTimeWorker.setDisable(SpinnersState);
     }
@@ -158,9 +197,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         buttonStart.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         buttonStop.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         spinnerSecondsWorker.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
-        spinnerCoefficientDrone.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         spinnerLifeTimeDrone.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
-        spinnerProbabilityWorker.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         spinnerSecondsDrone.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         spinnerLifeTimeWorker.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         textSecondsDrone.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
@@ -170,9 +207,6 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         textLifeTimeWorker.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         textProbabilityWorker.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
         labelTimer.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 25;");
-        radioButtonInformation.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
-        radioButtonTimer.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
-        radioButtonInformationObjectDetail.setStyle("-fx-font-family: Smeshariki2007Fixed-Regular; -fx-font-size: 14;");
     }
 
     @Override
@@ -186,11 +220,15 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
         initSpinners();
+        initComboBox();
         initLabelsFont();
         initListeners();
         MED = new Music();
+        MED.setMusicVolume((double)0);
         stage.show();
         this.stage = stage;
+        HabitatSize.setHeight((int)paneStage.getHeight());
+        HabitatSize.setWidth((int)paneStage.getWidth());
     }
 
     @Override
@@ -201,7 +239,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
     @Override
     public void update(Timer timer) {
         if(ControllerManager.getInstance().checkIsType(ControllerType.DETAIL_OBJECTS)) {
-            radioButtonInformationObjectDetail.setSelected(false);
+            checkboxDetailObjects.setSelected(false);
         }
         labelTimer.setText(timer.getTime().getTimeString());
         AppManager.getInstance().getHabitat().Update(timer.getSeconds(), paneStage);
@@ -233,12 +271,14 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
     {
         AppManager.getInstance().getSimulation().getSimulationValue().setValue(
                 getValueSpinnerSecondsDrone(),
-                getValueSpinnerCoefficientDrone(),
+                getValueComboBoxCoefficientDrone(),
                 getValueSpinnerLifeTimeDrone(),
                 getValueSpinnerSecondsWorker(),
-                getValueSpinnerProbabilityWorker(),
+                getValueComboBoxProbabilityWorker(),
                 getValueSpinnerLifeTimeWorker()
         );
         AppManager.getInstance().getHabitat().setSimulationValue(AppManager.getInstance().getSimulation().getSimulationValue());
     }
+
+
 }

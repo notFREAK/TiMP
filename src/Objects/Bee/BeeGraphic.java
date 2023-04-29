@@ -1,5 +1,7 @@
 package Objects.Bee;
 
+import Application.Habitat.HabitatObjects;
+import Application.Habitat.HabitatSize;
 import Objects.Coordinates.Position;
 import Objects.Coordinates.Vector;
 import Objects.IBehaviour;
@@ -10,8 +12,8 @@ import javafx.scene.layout.Pane;
 public class BeeGraphic extends Pane {
 
     private ImageView imageView;
-    private static int ImageWidth = 50;
-    private static int ImageHeight = 50;
+    private static int ImageWidth = HabitatSize.getWidth()/12;
+    private static int ImageHeight = HabitatSize.getHeight()/12;
     Position current;
     public BeeGraphic(int x, int y, String path) {
         imageView = new ImageView(new Image(path));
