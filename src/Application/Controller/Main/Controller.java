@@ -128,6 +128,10 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 radioMenuItemViewTimerOn.setSelected(true);
+                radioButtonTimerOn.setDisable(true);
+                radioButtonTimerOff.setDisable(false);
+                radioMenuItemViewTimerOn.setDisable(true);
+                radioMenuItemViewTimerOff.setDisable(false);
                 swapTimerShowState();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -138,6 +142,10 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 radioMenuItemViewTimerOff.setSelected(true);
+                radioButtonTimerOn.setDisable(false);
+                radioButtonTimerOff.setDisable(true);
+                radioMenuItemViewTimerOn.setDisable(false);
+                radioMenuItemViewTimerOff.setDisable(true);
                 swapTimerShowState();
             } catch (Exception e) {
                 e.printStackTrace();
