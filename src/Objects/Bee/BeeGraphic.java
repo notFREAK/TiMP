@@ -1,19 +1,21 @@
 package Objects.Bee;
 
 import Objects.Coordinates.Position;
+import Objects.Coordinates.Vector;
 import Objects.IBehaviour;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class BeeGraphic extends Pane implements IBehaviour {
+public class BeeGraphic extends Pane {
 
     private ImageView imageView;
     private static int ImageWidth = 50;
     private static int ImageHeight = 50;
     Position current;
-    public BeeGraphic(String path) {
+    public BeeGraphic(int x, int y, String path) {
         imageView = new ImageView(new Image(path));
+        current = new Position(x, y);
         setImageViewSize();
     }
 
@@ -42,22 +44,22 @@ public class BeeGraphic extends Pane implements IBehaviour {
         ImageHeight = imageHeight;
     }
 
-    @Override
+    public Position getCurrent() {
+        return current;
+    }
+
     public void setX(double x) {
         imageView.setTranslateX(x);
     }
 
-    @Override
     public void setY(double y) {
         imageView.setTranslateY(y);
     }
 
-    @Override
     public double getX() {
         return imageView.getX();
     }
 
-    @Override
     public double getY() {
         return imageView.getY();
     }
@@ -65,5 +67,12 @@ public class BeeGraphic extends Pane implements IBehaviour {
     public void setPosition(int x, int y){
         this.setX(x);
         this.setY(y);
+    }
+
+    public void go(Vector speed) {
+        current.setX(current.getX()+(int)Math.round(speed.getInTypeCartesian().getFirstCoordinate()));
+        current.setY(current.getY()+(int)Math.round(speed.getInTypeCartesian().getSecondCoordinate()));
+        setX(current.getX());
+        setY(current.getY());
     }
 }

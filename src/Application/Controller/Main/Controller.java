@@ -3,7 +3,7 @@ package Application.Controller.Main;
 import Application.AppManager;
 import Application.Controller.IController;
 import Application.Controller.Main.FXML.ApplicationFXMLObjectsGets;
-import Application.Controller.Music.Music;
+import Application.Controller.Main.Music.Music;
 import Application.Manager.ControllerManager;
 import Application.Simulation.StateSimulation;
 import Application.TImer.Timer;
@@ -177,7 +177,6 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
 
     @Override
     public void init(Stage stage) throws IOException {
-        this.stage = stage;
         stage.setTitle("TiMP");
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -191,6 +190,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         initListeners();
         MED = new Music();
         stage.show();
+        this.stage = stage;
     }
 
     @Override
@@ -211,7 +211,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
     public void swapState() {
         switch (AppManager.getInstance().getSimulation().getState().getStateSimulation()) {
             case RUNNING:
-                setButtonState(true, true, false, false);
+                setButtonState(false, false, true, true);
                 paneStage.getChildren().addAll(new Node[]{getImageViewBackground()});
                 setSimulationValue();
                 MED.MusicPlay();
@@ -221,7 +221,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 MED.MusicPause();
                 break;
             default:
-                setButtonState(false, false, true, true);
+                setButtonState(true, true, false, false);
                 paneStage.getChildren().removeAll();
                 MED.MusicStop();
                 break;

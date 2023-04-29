@@ -3,7 +3,7 @@ package Objects.Coordinates;
 public class Vector implements Cloneable {
     private double[] vector = {0, 0};
 
-    enum CoordinatesType {
+    public enum CoordinatesType {
         Polar,
         Cartesian
     };
@@ -92,19 +92,19 @@ public class Vector implements Cloneable {
     }
 
     public void setFirstCoordinate(double value) {
-        vector[1] = value;
+        vector[0] = value;
     }
 
     public void setSecondCoordinate(double value) {
-        vector[2] = value;
-    }
-
-    public void setFirstCoordinate(int value) {
         vector[1] = value;
     }
 
+    public void setFirstCoordinate(int value) {
+        vector[0] = value;
+    }
+
     public void setSecondCoordinate(int value) {
-        vector[2] = value;
+        vector[1] = value;
     }
 
     public double getFirstCoordinate() {

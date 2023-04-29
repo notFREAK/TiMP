@@ -2,8 +2,6 @@ package Application.Habitat;
 
 import Application.Collections.Collections;
 import Application.Simulation.Value;
-import Objects.Drone.DroneBaseAI;
-import Objects.Worker.WorkerBaseAI;
 
 public class HabitatObjects {
     protected Value value;
@@ -14,9 +12,6 @@ public class HabitatObjects {
     protected int lastSecondsDroneBirth = 0;
 
     protected int lastSecondsDroneDirectionChanged = 0;
-    DroneBaseAI droneBaseAI = new DroneBaseAI();
-
-    WorkerBaseAI workerBaseAI = new WorkerBaseAI();
     public void setSimulationValue(Value simulationValue){
         value = simulationValue;
     }

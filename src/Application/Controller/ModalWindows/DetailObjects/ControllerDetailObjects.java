@@ -36,14 +36,12 @@ public class ControllerDetailObjects extends ObjectsFXMLObjectsGets implements I
 
     @Override
     public void init(Stage stage) throws IOException {
-        this.stage = stage;
         stage.setTitle("Трудятся во славу мёда");
-        stage.initModality(Modality.NONE);
-        stage.initOwner(AppManager.getInstance().getStage());
+        textAreaObject.setEditable(false);
+        this.stage = stage;
+        stage.show();
         initButtons();
         initFont();
-        textAreaObject.setEditable(false);
-        stage.show();
     }
 
     @Override
