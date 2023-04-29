@@ -29,15 +29,15 @@
             <Spinner fx:id="spinnerLifeTimeDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0" />
             <Label fx:id="textProbabilityWorker" prefHeight="30.0" prefWidth="260.0" text="Вероятность рождения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="170.0" />
             <Label fx:id="textCoefficientDrone" prefHeight="30.0" prefWidth="260.0" text="Процент трутней от пчёл" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="210.0" />
-            <ComboBox prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0" />
-            <ComboBox prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
-            <CheckBox mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать окно &quot;Текущие объекты&quot;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="250.0" />
-            <CheckBox mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать дополнительную информацию" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="290.0" />
-            <RadioButton fx:id="radioButtonTimer" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" selected="true" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="330.0" />
-            <RadioButton layoutX="14.0" layoutY="375.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0" />
-            <Label alignment="CENTER" layoutX="102.0" layoutY="462.0" prefHeight="30.0" prefWidth="240.0" text="Громкость" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" />
-            <Slider layoutX="14.0" layoutY="515.0" prefHeight="30.0" prefWidth="240.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-            <Label alignment="CENTER" layoutX="316.0" layoutY="467.0" prefHeight="30.0" prefWidth="120.0" text="Время" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" />
+            <ComboBox fx:id="comboBoxProbabilityWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0" />
+            <ComboBox fx:id="comboBoxCoefficientDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
+            <CheckBox fx:id="checkboxDetailObjects" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать окно &quot;Текущие объекты&quot;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="250.0" />
+            <CheckBox fx:id="checkboxInformation" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать дополнительную информацию" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="290.0" />
+            <RadioButton fx:id="radioButtonTimerOn" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" selected="true" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="330.0" />
+            <RadioButton fx:id="radioButtonTimerOff" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0" />
+            <Label fx:id="labelVolume" alignment="CENTER" layoutX="102.0" layoutY="462.0" prefHeight="30.0" prefWidth="240.0" text="Громкость" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" />
+            <Slider fx:id="sliderVolume" layoutX="14.0" layoutY="515.0" prefHeight="30.0" prefWidth="240.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Label fx:id="labelTime" alignment="CENTER" layoutX="316.0" layoutY="467.0" prefHeight="30.0" prefWidth="120.0" text="Время" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" />
             <Label fx:id="labelTimer" alignment="CENTER" layoutX="126.0" layoutY="434.0" prefHeight="30.0" prefWidth="120.0" text="00:00.00" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font size="25.0" />

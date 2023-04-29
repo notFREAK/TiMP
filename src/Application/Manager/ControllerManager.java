@@ -97,7 +97,7 @@ public class ControllerManager{
                 stage.initOwner(AppManager.getInstance().getStage());
                 break;
             default:
-                loader = new FXMLLoader(getClass().getResource("/resourses/FXML/Application.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/resourses/FXML/ApplicationNew.fxml"));
                 stage = AppManager.getInstance().getStage();
                 break;
         }
