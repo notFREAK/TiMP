@@ -21,13 +21,13 @@ public class ApplicationFXMLObjects {
     protected MenuBar menuBarMain;
 
     @FXML
-    protected MenuItem menuItemStart;
+    protected MenuItem menuItemSimulationStart;
 
     @FXML
-    protected MenuItem menuItemPause;
+    protected MenuItem menuItemSimulationPause;
 
     @FXML
-    protected MenuItem menuItemStop;
+    protected MenuItem menuItemSimulationStop;
 
     @FXML
     protected Button buttonStart;
@@ -89,13 +89,16 @@ public class ApplicationFXMLObjects {
     protected RadioButton radioButtonTimerOff;
 
     @FXML
-    protected MenuItem menuItemViewDetailObjects;
+    protected CheckMenuItem checkMenuItemViewDetailObjects;
 
     @FXML
-    protected MenuItem menuItemViewInformation;
+    protected CheckMenuItem checkMenuItemViewInformation;
 
     @FXML
-    protected MenuItem menuItemViewTimer;
+    protected RadioMenuItem radioMenuItemViewTimerOn;
+
+    @FXML
+    protected RadioMenuItem radioMenuItemViewTimerOff;
 
     @FXML
     protected Label labelVolume;

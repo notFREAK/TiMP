@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.swing.*;
 import java.io.IOException;
 
 import static Application.Habitat.HabitatSize.getImageViewBackground;
@@ -60,7 +61,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        menuItemStart.setOnAction(event ->
+        menuItemSimulationStart.setOnAction(event ->
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.RUNNING);
@@ -78,7 +79,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        menuItemPause.setOnAction(event ->
+        menuItemSimulationPause.setOnAction(event ->
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.PAUSE);
@@ -101,7 +102,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        menuItemStop.setOnAction(event ->
+        menuItemSimulationStop.setOnAction(event ->
         {
             try {
                 if (showLog) {
@@ -126,6 +127,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         radioButtonTimerOn.setOnAction(event ->
         {
             try {
+                radioMenuItemViewTimerOn.setSelected(true);
                 swapTimerShowState();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -135,22 +137,27 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         radioButtonTimerOff.setOnAction(event ->
         {
             try {
+                radioMenuItemViewTimerOff.setSelected(true);
                 swapTimerShowState();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        menuItemViewTimer.setOnAction(event ->
+        radioMenuItemViewTimerOn.setOnAction(event ->
         {
             try {
-                if (radioButtonTimerOn.isSelected()) {
-                    radioButtonTimerOn.setSelected(!radioButtonTimerOn.isSelected());
-                    radioButtonTimerOff.setSelected(!radioButtonTimerOff.isSelected());
-                } else {
-                    radioButtonTimerOff.setSelected(!radioButtonTimerOff.isSelected());
-                    radioButtonTimerOn.setSelected(!radioButtonTimerOn.isSelected());
-                }
+                radioButtonTimerOn.setSelected(true);
+                swapTimerShowState();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        radioMenuItemViewTimerOff.setOnAction(event ->
+        {
+            try {
+                radioButtonTimerOff.setSelected(true);
                 swapTimerShowState();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -160,9 +167,26 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         checkboxDetailObjects.setOnAction(event -> {
             try {
                 if (checkboxDetailObjects.isSelected()) {
+                    checkMenuItemViewDetailObjects.setSelected(true);
                     ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
                 }
                 else {
+                    checkMenuItemViewDetailObjects.setSelected(false);
+                    ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        checkMenuItemViewDetailObjects.setOnAction(event -> {
+            try {
+                if (checkboxDetailObjects.isSelected()) {
+                    checkboxDetailObjects.setSelected(true);
+                    ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
+                }
+                else {
+                    checkboxDetailObjects.setSelected(false);
                     ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
                 }
             } catch (Exception e) {
@@ -182,6 +206,16 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
 
         checkboxInformation.setOnAction(event -> {
             try {
+                checkMenuItemViewInformation.setSelected(!checkMenuItemViewInformation.isSelected());
+                showLog  = !showLog;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        checkMenuItemViewInformation.setOnAction(event -> {
+            try {
+                checkboxInformation.setSelected(!checkboxInformation.isSelected());
                 showLog  = !showLog;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -232,6 +266,9 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         buttonStop.setDisable(ButtonStopDisableState);
         buttonPause.setDisable(ButtonPauseDisableState);
         buttonStart.setDisable(ButtonStartDisableState);
+        menuItemSimulationStart.setDisable(ButtonStartDisableState);
+        menuItemSimulationPause.setDisable(ButtonStartDisableState);
+        menuItemSimulationStop.setDisable(ButtonStartDisableState);
         spinnerSecondsWorker.setDisable(SpinnersState);
         comboBoxProbabilityWorker.setDisable(SpinnersState);
         spinnerLifeTimeDrone.setDisable(SpinnersState);
@@ -288,6 +325,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
     public void update(Timer timer) {
         if(ControllerManager.getInstance().checkIsType(ControllerType.DETAIL_OBJECTS)) {
             checkboxDetailObjects.setSelected(false);
+            checkMenuItemViewDetailObjects.setSelected(false);
         }
         labelTimer.setText(timer.getTime().getTimeString());
         AppManager.getInstance().getHabitat().Update(timer.getSeconds(), paneStage);

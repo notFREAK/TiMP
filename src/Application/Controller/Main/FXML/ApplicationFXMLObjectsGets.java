@@ -18,16 +18,16 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         return paneMenu;
     }
 
-    public MenuItem getMenuItemStart() {
-        return menuItemStart;
+    public MenuItem getMenuItemSimulationStart() {
+        return menuItemSimulationStart;
     }
 
-    public MenuItem getMenuItemPause() {
-        return menuItemPause;
+    public MenuItem getMenuItemSimulationPause() {
+        return menuItemSimulationPause;
     }
 
-    public MenuItem getMenuItemStop() {
-        return menuItemStop;
+    public MenuItem getMenuItemSimulationStop() {
+        return menuItemSimulationStop;
     }
 
     public Button getButtonPause() {
