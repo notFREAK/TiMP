@@ -32,8 +32,11 @@
               <items>
                  <CheckMenuItem fx:id="checkMenuItemViewDetailObjects" mnemonicParsing="false" text="Показывать окно “Текущие объекты”" />
                  <CheckMenuItem fx:id="checkMenuItemViewInformation" mnemonicParsing="false" text="Показывать дополнительную информацию" />
-                 <RadioMenuItem fx:id="radioMenuItemViewTimerOn" mnemonicParsing="false" text="Показать время симуляции" />
-                 <RadioMenuItem fx:id="radioMenuItemViewTimerOff" mnemonicParsing="false" text="Скрыть время симуляции" />
+                 <RadioMenuItem fx:id="radioMenuItemViewTimerOn" mnemonicParsing="false" text="Показать время симуляции">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="radioMenuItemViewTimerGroup" />
+                     </toggleGroup></RadioMenuItem>
+                 <RadioMenuItem fx:id="radioMenuItemViewTimerOff" mnemonicParsing="false" text="Скрыть время симуляции" toggleGroup="$radioMenuItemViewTimerGroup" />
               </items>
            </Menu>
           <Menu mnemonicParsing="false" text="Помощь">
