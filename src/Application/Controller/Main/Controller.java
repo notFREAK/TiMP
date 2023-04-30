@@ -326,7 +326,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         initListeners();
         MED = new Music();
         MED.setMusicVolume((double)0);
-        setButtonState(true, false, false, true);
+        setButtonState(true, true, false, false);
         stage.show();
         this.stage = stage;
         HabitatSize.setHeight((int)paneStage.getHeight());
@@ -343,6 +343,10 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         if(ControllerManager.getInstance().checkIsType(ControllerType.DETAIL_OBJECTS)) {
             checkboxDetailObjects.setSelected(false);
             checkMenuItemViewDetailObjects.setSelected(false);
+        }
+        else {
+            checkboxDetailObjects.setSelected(true);
+            checkMenuItemViewDetailObjects.setSelected(true);
         }
         labelTimer.setText(timer.getTime().getTimeString());
         AppManager.getInstance().getHabitat().Update(timer.getSeconds(), paneStage);

@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.ModalWindows.Information.ControllerInformation">
+<AnchorPane prefHeight="286.0" prefWidth="192.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.ModalWindows.Information.ControllerInformation">
    <children>
-      <TextArea fx:id="textAreaInformation" prefHeight="168.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" />
+      <TextArea fx:id="textAreaInformation" prefHeight="248.0" prefWidth="268.0" AnchorPane.bottomAnchor="35.0" />
       <Button fx:id="buttonOK" layoutX="14.0" layoutY="162.0" mnemonicParsing="false" text="ОК" AnchorPane.bottomAnchor="5.0" />
-      <Button fx:id="buttonCancel" layoutX="134.0" layoutY="162.0" mnemonicParsing="false" text="Отмена" AnchorPane.bottomAnchor="5.0" />
+      <Button fx:id="buttonCancel" layoutX="196.0" layoutY="255.0" mnemonicParsing="false" text="Отмена" AnchorPane.bottomAnchor="5.666666666666686" />
    </children>
 </AnchorPane>

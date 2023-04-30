@@ -25,9 +25,9 @@ public class Collections {
     }
 
     public void delete(Bee bee){
-        arrayList.remove(bee);
-        hashSet.remove(bee.getIdentifier());
-        TreeMap.remove(bee.getIdentifier(), bee.life.getTimeBorn());
+       arrayList.remove(bee);
+       hashSet.remove(bee.getIdentifier());
+       TreeMap.remove(bee.getIdentifier(), bee.life.getTimeBorn());
     }
 
     public  void  updateCollectionsPerTime(){
