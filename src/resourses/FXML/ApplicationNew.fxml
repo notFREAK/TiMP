@@ -5,20 +5,15 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="paneMain" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.Main.Controller">
+<AnchorPane fx:id="paneMain" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.Main.Controller">
    <children>
-      <MenuBar fx:id="menuBarMain" prefHeight="30.0" prefWidth="1000.0">
+      <MenuBar fx:id="menuBarMain" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1000.0">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem mnemonicParsing="false" text="Закрыть" />
               <MenuItem mnemonicParsing="false" text="Сохранить" />
               <MenuItem mnemonicParsing="false" text="Загрузить" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Редактировать">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Удалить" />
+              <MenuItem mnemonicParsing="false" text="Закрыть" />
             </items>
           </Menu>
            <Menu mnemonicParsing="false" text="Симуляция">
@@ -28,6 +23,17 @@
                  <MenuItem fx:id="menuItemSimulationStop" mnemonicParsing="false" text="Стоп" />
               </items>
            </Menu>
+            <Menu mnemonicParsing="false" text="ИИ">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Включить" />
+                  <MenuItem mnemonicParsing="false" text="Отключить" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Отладка">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Консоль" />
+              </items>
+            </Menu>
            <Menu mnemonicParsing="false" text="Вид">
               <items>
                  <CheckMenuItem fx:id="checkMenuItemViewDetailObjects" mnemonicParsing="false" text="Показывать окно “Текущие объекты”" />
@@ -56,37 +62,50 @@
         </items>
       </ToolBar>
       <Pane fx:id="paneStage" layoutX="401.0" layoutY="31.0" maxHeight="1200.0" maxWidth="1200.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.leftAnchor="401.0" AnchorPane.topAnchor="31.0" />
-      <AnchorPane fx:id="paneMenu" layoutX="108.0" layoutY="92.0" prefHeight="550.0" prefWidth="292.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <ScrollPane layoutY="80.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="400.0">
+        <content>
+          <AnchorPane layoutY="8.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="385.0">
+               <children>
+                  <Label fx:id="textSecondsDrone" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Label fx:id="textLifeTimeWorker" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                  <Label fx:id="textLifeTimeDrone" prefHeight="30.0" prefWidth="260.0" text="Время жизни трутня" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
+                  <Label fx:id="textSecondsWorker" prefHeight="30.0" prefWidth="260.0" text="Время жизни рабочего" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                  <Spinner fx:id="spinnerSecondsDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Spinner fx:id="spinnerSecondsWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                  <Spinner fx:id="spinnerLifeTimeDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="90.0" />
+                  <Spinner fx:id="spinnerLifeTimeWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                  <Label fx:id="textProbabilityWorker" prefHeight="30.0" prefWidth="260.0" text="Вероятность рождения рабочего" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="170.0" />
+                  <Label fx:id="textCoefficientDrone" prefHeight="30.0" prefWidth="260.0" text="Процент трутней от пчёл" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="210.0" />
+                  <ComboBox fx:id="comboBoxProbabilityWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0" />
+                  <ComboBox fx:id="comboBoxCoefficientDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
+                  <CheckBox fx:id="checkboxDetailObjects" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать окно &quot;Текущие объекты&quot;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="250.0" />
+                  <CheckBox fx:id="checkboxInformation" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать дополнительную информацию" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="290.0" />
+                  <RadioButton fx:id="radioButtonTimerOn" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" selected="true" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="330.0">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="radioButtonTimerGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButtonTimerOff" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" toggleGroup="$radioButtonTimerGroup" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="370.0" />
+                  <Label alignment="CENTER" layoutX="21.0" layoutY="400.0" prefHeight="30.0" prefWidth="365.0" text="Искусcтвенный интеллект" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="410.0" />
+                  <Button disable="true" layoutX="10.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Включить" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="450.0" />
+                  <Button layoutX="215.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Отключить" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="450.0" />
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="365.0" text="Приоритет" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="490.0" />
+                  <ComboBox layoutX="10.0" layoutY="546.0" prefHeight="30.0" prefWidth="160.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="530.0" />
+                  <ComboBox layoutX="215.0" layoutY="546.0" prefHeight="30.0" prefWidth="160.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="530.0" />
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+      <AnchorPane fx:id="paneMenu" layoutX="108.0" layoutY="92.0" prefHeight="80.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Label fx:id="textSecondsDrone" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения трутней" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <Label fx:id="textLifeTimeWorker" prefHeight="30.0" prefWidth="260.0" text="Интервал рождения рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
-            <Label fx:id="textLifeTimeDrone" prefHeight="30.0" prefWidth="260.0" text="Время жизни трутня" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
-            <Label fx:id="textSecondsWorker" prefHeight="30.0" prefWidth="260.0" text="Время жизни рабочего" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
-            <Spinner fx:id="spinnerSecondsDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-            <Spinner fx:id="spinnerSecondsWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-            <Spinner fx:id="spinnerLifeTimeDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="90.0" />
-            <Spinner fx:id="spinnerLifeTimeWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0" />
-            <Label fx:id="textProbabilityWorker" prefHeight="30.0" prefWidth="260.0" text="Вероятность рождения рабочего" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="170.0" />
-            <Label fx:id="textCoefficientDrone" prefHeight="30.0" prefWidth="260.0" text="Процент трутней от пчёл" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="210.0" />
-            <ComboBox fx:id="comboBoxProbabilityWorker" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0" />
-            <ComboBox fx:id="comboBoxCoefficientDrone" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
-            <CheckBox fx:id="checkboxDetailObjects" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать окно &quot;Текущие объекты&quot;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="250.0" />
-            <CheckBox fx:id="checkboxInformation" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Показывать дополнительную информацию" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="290.0" />
-            <RadioButton fx:id="radioButtonTimerOn" disable="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" selected="true" text="Показать время симуляции" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="330.0">
-               <toggleGroup>
-                  <ToggleGroup fx:id="radioButtonTimerGroup" />
-               </toggleGroup></RadioButton>
-            <RadioButton fx:id="radioButtonTimerOff" layoutX="14.0" layoutY="375.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" toggleGroup="$radioButtonTimerGroup" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="370.0" />
-            <Label fx:id="labelVolume" alignment="CENTER" layoutX="102.0" layoutY="462.0" prefHeight="30.0" prefWidth="240.0" text="Громкость" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" />
-            <Slider fx:id="sliderVolume" layoutX="14.0" layoutY="515.0" prefHeight="30.0" prefWidth="240.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-            <Label fx:id="labelTime" alignment="CENTER" layoutX="316.0" layoutY="467.0" prefHeight="30.0" prefWidth="120.0" text="Время" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" />
-            <Label fx:id="labelTimer" alignment="CENTER" layoutX="126.0" layoutY="434.0" prefHeight="30.0" prefWidth="120.0" text="00:00.00" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <Label fx:id="labelVolume" alignment="CENTER" prefHeight="30.0" prefWidth="240.0" text="Громкость" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" />
+            <Slider fx:id="sliderVolume" prefHeight="30.0" prefWidth="240.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+            <Label fx:id="labelTime" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="Время" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0" />
+            <Label fx:id="labelTimer" alignment="CENTER" prefHeight="30.0" prefWidth="120.0" text="00:00.00" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
          </children></AnchorPane>
       <Line endX="200.0" endY="600.0" startX="200.0" stroke="#aeaeae" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="30.0" />
-      <Line endX="1000.0" layoutX="379.0" layoutY="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0" />
    </children>
 </AnchorPane>

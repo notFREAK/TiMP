@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -316,6 +317,8 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
     @Override
     public void init(Stage stage) throws IOException {
         stage.setTitle("TiMP");
+        stage.setMinWidth(1000+20); //РазмерОкна+Рамки
+        stage.setMinHeight(630+40); //РазмерОкна+ЗаголовочнаяЧасть
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
