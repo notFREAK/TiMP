@@ -3,6 +3,7 @@ package Objects.Bee;
 import Application.AppManager;
 import Application.Simulation.Simulation;
 import Objects.IBehaviour;
+import javafx.application.Platform;
 
 public abstract class BeeBaseAI extends Thread {
     public abstract void move(Bee bee);

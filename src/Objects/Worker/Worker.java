@@ -39,9 +39,8 @@ public class Worker extends Bee{
         };
         beeGraphic = new BeeGraphic(x, y, getClass().getResource("/resourses/Pic/sprite_Worker.png").toString());
         positionBirth = new Position(x, y);
-        positionHabitat = new Position(0, HabitatSize.getWidth(), 0, HabitatSize.getHeight());
+        positionHabitat = new Position(0, HabitatSize.getWidth() - BeeGraphic.getImageWidth(), 0, HabitatSize.getHeight() - BeeGraphic.getImageHeight());
         beeGraphic.setPosition(x,y);
-        System.out.print(identifier + " " + positionHabitat.getX() + " " +positionHabitat.getY() + '\n');
         countWorker++;
         typeBee = "bee_worker";
     }
@@ -50,15 +49,15 @@ public class Worker extends Bee{
     public void ChangeDirection() {
         if (isWorkerGoHabitat) {
             Polar toHab = beeGraphic.getCurrent().BeeGoTo(positionHabitat).changeTypeToPolar();
-            System.out.print(beeGraphic.getCurrent().getX() + " "+ beeGraphic.getCurrent().getY() + " " + life.getTimeLife() + "\n");
-            if (toHab.getFirstCoordinate() <= speed.getFirstCoordinate()) {
+            if (toHab.getFirstCoordinate() <= (int)Math.round(speed.getFirstCoordinate())) {
                 isWorkerGoHabitat = !isWorkerGoHabitat;
             }
             speed.setSecondCoordinate(toHab.getSecondCoordinate());
             }
         else {
             Vector toBir = beeGraphic.getCurrent().BeeGoTo(positionBirth).changeTypeToPolar();
-            if (toBir.getFirstCoordinate() <= speed.getFirstCoordinate()) {
+            if (toBir.getFirstCoordinate() <= (int)Math.round(speed.getFirstCoordinate())) {
+                positionHabitat = new Position(0, HabitatSize.getWidth() - BeeGraphic.getImageWidth(), 0, HabitatSize.getHeight() - BeeGraphic.getImageHeight());
                 isWorkerGoHabitat = !isWorkerGoHabitat;
             }
             speed.setSecondCoordinate(toBir.getSecondCoordinate());

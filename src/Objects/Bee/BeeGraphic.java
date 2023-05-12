@@ -4,6 +4,8 @@ import Application.Habitat.HabitatSize;
 import Objects.Coordinates.Position;
 import Objects.Coordinates.Vector.Cartesian;
 import Objects.Coordinates.Vector.Vector;
+import Objects.Bee.BeeGraphic;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -66,13 +68,25 @@ public class BeeGraphic extends Pane {
     }
 
     public void setPosition(int x, int y){
-        this.setX(x);
-        this.setY(y);
+        Platform.runLater(() -> {
+            this.setX(x);
+            this.setY(y);
+        });
         current.setX(x);
         current.setY(y);
     }
 
     public void go(Cartesian speed) {
-        setPosition((int) Math.round(current.getX()+ speed.getFirstCoordinate()),(int) Math.round(current.getY()+ speed.getSecondCoordinate()));
+        int newX = (int)Math.round(current.getX()+ speed.getFirstCoordinate());
+        int newY = (int)Math.round(current.getY()+ speed.getSecondCoordinate());
+        if (newX <= 0)
+            newX = 0;
+        else if (newX >= HabitatSize.getWidth() - BeeGraphic.getImageWidth())
+            newX = HabitatSize.getWidth() - BeeGraphic.getImageWidth();
+        if (newY <= 0)
+            newY = 0;
+        else if (newY >= HabitatSize.getHeight() - BeeGraphic.getImageHeight())
+            newY = HabitatSize.getHeight() - BeeGraphic.getImageHeight();
+        setPosition(newX, newY);
     }
 }

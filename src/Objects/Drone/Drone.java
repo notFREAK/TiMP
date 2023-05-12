@@ -38,7 +38,8 @@ public class Drone extends Bee {
     public void ChangeDirection() {
         if (DroneLastChangeDirectionTime != AppManager.getInstance().getTimer().getSeconds() && AppManager.getInstance().getTimer().getSeconds() % ValueDroneChangeDirection == 0) {
             DroneLastChangeDirectionTime = AppManager.getInstance().getTimer().getSeconds();
-
+            speed.setSecondCoordinate(Math.random() * Math.PI*2);
+            System.out.print(identifier + " " + speed.getFirstCoordinate() + " " + speed.getSecondCoordinate() + '\n');
         }
     }
 
