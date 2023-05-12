@@ -251,6 +251,9 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 e.printStackTrace();
             }
         }
+        if (key == KeyCode.BACK_QUOTE) {
+            ControllerManager.getInstance().ControllerCreate(ControllerType.CONSOLE);
+        }
         if (key == KeyCode.E){
             AppManager.getInstance().appState(StateSimulation.STOP);
         }

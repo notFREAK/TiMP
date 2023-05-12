@@ -3,6 +3,7 @@ package Application.Manager;
 import Application.AppManager;
 import Application.Controller.IController;
 import Application.Controller.Main.Controller;
+import Application.Controller.ModalWindows.Console.ControllerConsole;
 import Application.Controller.ModalWindows.DetailObjects.ControllerDetailObjects;
 import Application.Controller.ModalWindows.Information.ControllerInformation;
 import Application.TImer.Timer;
@@ -96,6 +97,12 @@ public class ControllerManager{
                 stage.initModality(Modality.WINDOW_MODAL);
                 stage.initOwner(AppManager.getInstance().getStage());
                 break;
+            case CONSOLE:
+                loader = new FXMLLoader(getClass().getResource("/resourses/FXML/Console.fxml"));
+                stage = new Stage();
+                stage.initModality(Modality.NONE);
+                stage.initOwner(AppManager.getInstance().getStage());
+                break;
             default:
                 loader = new FXMLLoader(getClass().getResource("/resourses/FXML/ApplicationNew.fxml"));
                 stage = AppManager.getInstance().getStage();
@@ -112,6 +119,10 @@ public class ControllerManager{
             case END_INFORMATION:
                 ControllerInformation controllerInformation = loader.getController();
                 iController = controllerInformation;
+                break;
+            case CONSOLE:
+                ControllerConsole controllerConsole = loader.getController();
+                iController = controllerConsole;
                 break;
             default:
                 Controller controller = loader.getController();

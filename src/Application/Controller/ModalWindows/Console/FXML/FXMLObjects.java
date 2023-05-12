@@ -1,10 +1,9 @@
 package Application.Controller.ModalWindows.Console.FXML;
 
 import javafx.fxml.FXML;
-
-import java.awt.*;
+import javafx.scene.control.TextArea;
 
 public class FXMLObjects {
     @FXML
-    TextArea console;
+    public TextArea textAreaConsole;
 }

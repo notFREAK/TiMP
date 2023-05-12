@@ -9,7 +9,8 @@ public interface IController {
     enum ControllerType {
         MAIN,
         END_INFORMATION,
-        DETAIL_OBJECTS;
+        DETAIL_OBJECTS,
+        CONSOLE;
     }
     public ControllerType getType();
     public void init(Stage stage) throws IOException;
