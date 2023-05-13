@@ -102,4 +102,22 @@ public class Collections {
         String.join("\n", s);*/
         return resultString;
     }
+
+
+    public  String getAliveBees(){
+        String resultString = "";
+        Iterator<Bee> iteratorDelete = arrayList.listIterator();
+        int count = 1;
+        while (iteratorDelete.hasNext()) {
+            Bee element = iteratorDelete.next();
+            if (!element.life.isDead())
+            {
+                if (resultString != "") {
+                    resultString += "#";
+                }
+                resultString += element.toString();
+            }
+        }
+        return resultString;
+    }
 }

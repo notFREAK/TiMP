@@ -11,8 +11,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
-              <MenuItem mnemonicParsing="false" text="Сохранить" />
-              <MenuItem mnemonicParsing="false" text="Загрузить" />
+              <MenuItem fx:id="menuItemSaveConfig" mnemonicParsing="false" text="Сохранить" />
+              <MenuItem fx:id="menuItemLoadConfig" mnemonicParsing="false" text="Загрузить" />
               <MenuItem mnemonicParsing="false" text="Закрыть" />
             </items>
           </Menu>

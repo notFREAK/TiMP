@@ -69,4 +69,5 @@ public class Time {
         this.timePause = time;
         setTimeNull();
     }
+
 }

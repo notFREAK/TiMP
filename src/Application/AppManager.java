@@ -112,7 +112,5 @@ public class AppManager extends Application {
                         ";"+ '\n' +"Время симмуляции: \nМин:" + this.timer.getMinutes() + " Сек:" +this.timer.getSeconds() + " Мс:" + timer.getMilliseconds()
         );
     }
-
-
 }
 

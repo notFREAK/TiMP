@@ -1,6 +1,10 @@
 package Application.Files;
 
 import Application.AppManager;
+import Application.Collections.Collections;
+import Application.Simulation.StateSimulation;
+import Application.Simulation.Value;
+import Application.Simulation.State;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -18,35 +22,67 @@ public class FileManager {
     }
     FileWriter fw;
     BufferedWriter bw;
-    void  saveConfig() throws IOException {
+    public void  saveConfig() throws IOException {
         Properties props = new Properties();
-        props.setProperty("duration", "60");
-        props.setProperty("step", "0.1");
-        props.setProperty("initial_population", "100");
-        props.setProperty("infectiousness", "0.8");
-        props.setProperty("mortality", "0.05");
-
+        String ObjProp = "NONE";
+        switch (AppManager.getInstance().getSimulation().getState().getStateSimulation()) {
+            case RUNNING:
+                ObjProp = AppManager.getInstance().getHabitat().getCollectionsBees().getAliveBees();
+                props.setProperty("APP_STATE", "RUNNING");
+                break;
+            case PAUSE:
+                ObjProp = AppManager.getInstance().getHabitat().getCollectionsBees().getAliveBees();
+                props.setProperty("APP_STATE", "PAUSE");
+                break;
+            default:
+                props.setProperty("APP_STATE", "STOP");
+                break;
+        }
+        props.setProperty("TIMER", AppManager.getInstance().getTimer().getTime().getTimeString());
+        props.setProperty("COEFFICIENT_DRONE", ((Integer)AppManager.getInstance().getSimulation().getSimulationValue().getValueCoefficientDrone()).toString());
+        props.setProperty("PROBABILITY_WORKER", ((Integer)AppManager.getInstance().getSimulation().getSimulationValue().getValueProbabilityWorker()).toString());
+        props.setProperty("SECONDS_DRONE", ((Integer)AppManager.getInstance().getSimulation().getSimulationValue().getValueSecondsDrone()).toString());
+        props.setProperty("SECONDS_WORKER", ((Integer)AppManager.getInstance().getSimulation().getSimulationValue().getValueSecondsWorker()).toString());
+        props.setProperty("LIFE_TIME_DRONE", ((Integer)AppManager.getInstance().getSimulation().getSimulationValue().getValueLifeTimeDrone()).toString());
+        props.setProperty("LIFE_TIME_WORKER", ((Integer)AppManager.getInstance().getSimulation().getSimulationValue().getValueLifeTimeWorker()).toString());
+        props.setProperty("CURRENT_OBJECTS", ObjProp);
         FileOutputStream out = new FileOutputStream("config.ini");
+        props.store(out, null);
         out.close();
     }
 
-    void loadConfig() throws IOException {
+    public void loadConfig() throws IOException {
         Properties props = new Properties();
-
         FileInputStream in = new FileInputStream("config.ini");
         props.load(in);
         in.close();
-
-        String duration = props.getProperty("duration");
-        String step = props.getProperty("step");
-        String initialPopulation = props.getProperty("initial_population");
-        String infectiousness = props.getProperty("infectiousness");
-        String mortality = props.getProperty("mortality");
+        String appState = props.getProperty("APP_STATE");
+        switch (appState) {
+            case "STOP":
+                AppManager.getInstance().appState(StateSimulation.STOP);
+                break;
+            default:
+                AppManager.getInstance().appState(StateSimulation.PAUSE);
+                break;
+        }
+        String timer = props.getProperty("TIMER");
+        AppManager.getInstance().getTimer().setTimer(timer);
+        Value stat = new Value();
+        stat.setValueCoefficientDrone(Integer.parseInt(props.getProperty("COEFFICIENT_DRONE")));
+        stat.setValueProbabilityWorker(Integer.parseInt(props.getProperty("PROBABILITY_WORKER")));
+        stat.setValueSecondsDrone(Integer.parseInt(props.getProperty("SECONDS_DRONE")));
+        stat.setValueSecondsWorker(Integer.parseInt(props.getProperty("SECONDS_WORKER")));
+        stat.setValueLifeTimeWorker(Integer.parseInt(props.getProperty("LIFE_TIME_DRONE")));
+        stat.setValueLifeTimeDrone(Integer.parseInt(props.getProperty("LIFE_TIME_WORKER")));
+        String[] currentObjects = props.getProperty("CURRENT_OBJECTS").toString().split("#");
     }
 
     public void createLogs() throws IOException {
         try {
-            fw = new FileWriter("logs-" + Calendar.getInstance().toString() + ".txt", true);
+            SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+            Date now = new Date();
+            String strDate = sdfDate.format(now);
+            fw = new FileWriter("logs-" + strDate + ".txt", true);
             bw = new BufferedWriter(fw);
         } catch (IOException e) {
             e.printStackTrace();

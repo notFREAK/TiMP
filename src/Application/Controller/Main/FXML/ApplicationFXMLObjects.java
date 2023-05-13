@@ -30,6 +30,12 @@ public class ApplicationFXMLObjects {
     protected MenuItem menuItemSimulationStop;
 
     @FXML
+    protected MenuItem menuItemSaveConfig;
+
+    @FXML
+    protected MenuItem menuItemLoadConfig;
+
+    @FXML
     protected Button buttonStart;
 
     @FXML
@@ -99,6 +105,8 @@ public class ApplicationFXMLObjects {
 
     @FXML
     protected RadioMenuItem radioMenuItemViewTimerOff;
+
+
 
     @FXML
     protected Label labelVolume;

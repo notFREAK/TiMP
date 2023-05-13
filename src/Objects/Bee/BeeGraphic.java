@@ -19,6 +19,7 @@ public class BeeGraphic extends Pane {
     public BeeGraphic(int x, int y, String path) {
         imageView = new ImageView(new Image(path));
         current = new Position(x, y);
+        setPosition(x, y);
         setImageViewSize();
     }
 

@@ -4,6 +4,7 @@ import Application.AppManager;
 import Application.Controller.IController;
 import Application.Controller.Main.FXML.ApplicationFXMLObjectsGets;
 import Application.Controller.Main.Music.Music;
+import Application.Files.FileManager;
 import Application.Habitat.HabitatSize;
 import Application.Manager.ControllerManager;
 import Application.Simulation.StateSimulation;
@@ -87,6 +88,24 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.PAUSE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        menuItemSaveConfig.setOnAction(event ->
+        {
+            try {
+                FileManager.getInstance().saveConfig();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        menuItemLoadConfig.setOnAction(event ->
+        {
+            try {
+                FileManager.getInstance().loadConfig();
             } catch (Exception e) {
                 e.printStackTrace();
             }
