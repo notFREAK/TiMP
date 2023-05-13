@@ -1,5 +1,7 @@
 package Application.TImer;
 
+import Application.AppManager;
+
 public class Time {
 
     final int millisecondHour = 3600000;
@@ -19,6 +21,9 @@ public class Time {
         setTimeNull();
         timePause = 0;
     }
+    public void setTime(long time) {
+        this.time = time;
+    }
     private long getTime() {
         return timePause + (System.currentTimeMillis() - time);
     }
@@ -29,6 +34,11 @@ public class Time {
         Integer milliseconds = getMillisecond();
         timeString = intToString(minutes) + ":".toString() + intToString(seconds) + ".".toString() + intToString(milliseconds);
         return timeString;
+    }
+
+    public void setTimeS(String time) {
+        timePause = 0;
+
     }
 
     private String intToString(Integer value) {

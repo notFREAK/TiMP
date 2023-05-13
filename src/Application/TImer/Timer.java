@@ -86,7 +86,7 @@ public class Timer {
         return time.getMillisecond();
     }
 
-    public void setTimer(String timer) {
-       time.getTimeString();
+    public void setTimeS(String time)  {
+       this.time.setTimeS(time);
     }
 }

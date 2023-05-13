@@ -1,6 +1,7 @@
 package Application;
 
 import Application.Controller.IController;
+import Application.Controller.ModalWindows.Console.ControllerConsole;
 import Application.Files.FileManager;
 import Application.Manager.ControllerManager;
 import Application.Habitat.Habitat;
@@ -63,7 +64,10 @@ public class AppManager extends Application {
     }
 
     public void logsPrint(String string) {
-
+        FileManager.getInstance().saveLogs(string + '\n');
+        if (ControllerManager.getInstance().checkIsType(IController.ControllerType.CONSOLE)) {
+            ControllerManager.getInstance().getController(IController.ControllerType.CONSOLE).appendText(string + '\n');
+        }
     }
 
 

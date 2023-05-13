@@ -5,6 +5,7 @@ import Application.Controller.IController;
 import Application.Controller.Main.Controller;
 import Application.Controller.ModalWindows.Console.FXML.FXMLObjects;
 import Application.Simulation.Simulation;
+import Application.Simulation.Value;
 import Application.TImer.PausableTask;
 import Application.TImer.Timer;
 import Objects.Bee.Bee;
@@ -20,10 +21,9 @@ public class ControllerConsole extends FXMLObjects implements IController {
 
     Stage stage;
     int textAreaLength = 0;
-    public void appendText(String string) {
-        textAreaConsole.appendText(string);
-        textAreaLength = textAreaConsole.getLength();
-    }
+    private String string;
+
+
     public void executeCommand(String command) {
         switch (command) {
             case "":
@@ -31,6 +31,12 @@ public class ControllerConsole extends FXMLObjects implements IController {
             default:
                 break;
         }
+        textAreaLength = textAreaConsole.getLength();
+    }
+
+    @Override
+    public void appendText(String string) {
+        textAreaConsole.appendText(string);
         textAreaLength = textAreaConsole.getLength();
     }
 
@@ -75,6 +81,11 @@ public class ControllerConsole extends FXMLObjects implements IController {
     public void swapState() {
         if (AppManager.getInstance().getSimulation().getState().isStop())
             textAreaConsole.setEditable(false);
+    }
+
+    @Override
+    public void setValue(Value v) {
+
     }
 }
 

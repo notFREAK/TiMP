@@ -5,6 +5,7 @@ import Application.Controller.IController;
 import Application.Controller.ModalWindows.DetailObjects.FXML.ObjectsFXMLObjects;
 import Application.Controller.ModalWindows.DetailObjects.FXML.ObjectsFXMLObjectsGets;
 import Application.Manager.ControllerManager;
+import Application.Simulation.Value;
 import Application.TImer.Timer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +44,10 @@ public class ControllerDetailObjects extends ObjectsFXMLObjectsGets implements I
         initButtons();
         initFont();
     }
-
+    @Override
+    public void appendText(String s) {
+        return;
+    }
     @Override
     public void hide() {
         stage.close();
@@ -59,6 +63,11 @@ public class ControllerDetailObjects extends ObjectsFXMLObjectsGets implements I
         if (AppManager.getInstance().getSimulation().getState().isStop()) {
             textAreaObject.setText("");
         }
+    }
+
+    @Override
+    public void setValue(Value v) {
+
     }
 
     private void initFont() {

@@ -8,6 +8,7 @@ import Application.Files.FileManager;
 import Application.Habitat.HabitatSize;
 import Application.Manager.ControllerManager;
 import Application.Simulation.StateSimulation;
+import Application.Simulation.Value;
 import Application.TImer.Timer;
 import Objects.Drone.Drone;
 import Objects.Worker.Worker;
@@ -409,6 +410,8 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 e.printStackTrace();
             }
         });
+
+
     }
 
     private void writeKeyCode(KeyCode key) throws Exception {
@@ -508,6 +511,13 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 System.exit(0);
             }
         });
+        stage.setOnCloseRequest(event -> {
+            try {
+                FileManager.getInstance().closeLogs();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
         initSpinners();
         initComboBox();
         initLabelsFont();
@@ -519,6 +529,15 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         this.stage = stage;
         HabitatSize.setHeight((int)paneStage.getHeight());
         HabitatSize.setWidth((int)paneStage.getWidth());
+    }
+
+    public void setValue(Value st) {
+        comboBoxCoefficientDrone.getSelectionModel().select(st.getValueCoefficientDrone()/10);
+        comboBoxProbabilityWorker.getSelectionModel().select(st.getValueProbabilityWorker()/10);
+        spinnerLifeTimeDrone.getValueFactory().setValue(st.getValueLifeTimeDrone());
+        spinnerSecondsDrone.getValueFactory().setValue(st.getValueSecondsDrone());
+        spinnerSecondsWorker.getValueFactory().setValue(st.getValueSecondsWorker());
+        spinnerLifeTimeWorker.getValueFactory().setValue(st.getValueLifeTimeWorker());
     }
 
     @Override
@@ -559,6 +578,11 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 MED.MusicStop();
                 break;
         }
+    }
+
+    @Override
+    public void appendText(String s) {
+        AppManager.getInstance().getHabitat().CreateObjects(s.split("#"), paneStage);
     }
 
 

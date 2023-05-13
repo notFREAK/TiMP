@@ -4,6 +4,7 @@ import Application.Controller.IController;
 import Application.Controller.ModalWindows.Information.FXML.InformationFXMLObjectsGets;
 import Application.AppManager;
 import Application.Simulation.StateSimulation;
+import Application.Simulation.Value;
 import Application.TImer.Timer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -78,7 +79,17 @@ public class ControllerInformation extends InformationFXMLObjectsGets implements
     }
 
     @Override
+    public void appendText(String s) {
+        return;
+    }
+
+    @Override
     public void swapState() {
+
+    }
+
+    @Override
+    public void setValue(Value v) {
 
     }
 }

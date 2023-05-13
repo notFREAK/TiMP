@@ -2,6 +2,8 @@ package Application.Files;
 
 import Application.AppManager;
 import Application.Collections.Collections;
+import Application.Controller.IController;
+import Application.Manager.ControllerManager;
 import Application.Simulation.StateSimulation;
 import Application.Simulation.Value;
 import Application.Simulation.State;
@@ -65,8 +67,7 @@ public class FileManager {
                 AppManager.getInstance().appState(StateSimulation.PAUSE);
                 break;
         }
-        String timer = props.getProperty("TIMER");
-        AppManager.getInstance().getTimer().setTimer(timer);
+        //AppManager.getInstance().getTimer().setTimeS(props.getProperty("TIMER"));
         Value stat = new Value();
         stat.setValueCoefficientDrone(Integer.parseInt(props.getProperty("COEFFICIENT_DRONE")));
         stat.setValueProbabilityWorker(Integer.parseInt(props.getProperty("PROBABILITY_WORKER")));
@@ -74,7 +75,12 @@ public class FileManager {
         stat.setValueSecondsWorker(Integer.parseInt(props.getProperty("SECONDS_WORKER")));
         stat.setValueLifeTimeWorker(Integer.parseInt(props.getProperty("LIFE_TIME_DRONE")));
         stat.setValueLifeTimeDrone(Integer.parseInt(props.getProperty("LIFE_TIME_WORKER")));
-        String[] currentObjects = props.getProperty("CURRENT_OBJECTS").toString().split("#");
+        AppManager.getInstance().getHabitat().setSimulationValue(stat);
+        if (ControllerManager.getInstance().checkIsType(IController.ControllerType.MAIN)) {
+            ControllerManager.getInstance().getController(IController.ControllerType.MAIN).setValue(stat);
+        }
+        String currentObjects = props.getProperty("CURRENT_OBJECTS").toString();
+
     }
 
     public void createLogs() throws IOException {

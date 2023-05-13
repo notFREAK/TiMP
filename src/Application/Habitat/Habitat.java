@@ -10,6 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import Objects.Bee.Bee;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 
 public class Habitat extends HabitatObjects{
 
@@ -22,6 +26,24 @@ public class Habitat extends HabitatObjects{
         collectionsBees = new Collections();
     }
 
+    public void CreateObjects(String[] s, Pane pane) {
+        List<String> myList = Arrays.asList(s);
+        Iterator<String> itr = myList.iterator();
+        while(itr.hasNext()) {
+            String val = itr.next();
+            String[] values = val.split(":");
+            if (values[0] == "bee_worker") {
+                Worker worker = new Worker(val);
+                this.collectionsBees.adds(worker);
+                pane.getChildren().addAll(new Node[]{worker.getGraphic().getImageView()});
+            }
+            else {
+                Drone drone = new Drone(val);
+                this.collectionsBees.adds(drone);
+                pane.getChildren().addAll(new Node[]{drone.getGraphic().getImageView()});
+            }
+        }
+    }
     public void StartAi() {
         if (!Drone.DroneBaseAI.isActive()) {
             Drone.DroneBaseAI.startAI();
