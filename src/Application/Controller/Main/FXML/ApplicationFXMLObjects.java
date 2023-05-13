@@ -36,6 +36,9 @@ public class ApplicationFXMLObjects {
     protected MenuItem menuItemLoadConfig;
 
     @FXML
+    protected MenuItem menuItemClose;
+
+    @FXML
     protected MenuItem menuItemConsole;
 
     @FXML

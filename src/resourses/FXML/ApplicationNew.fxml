@@ -13,7 +13,7 @@
             <items>
               <MenuItem fx:id="menuItemSaveConfig" mnemonicParsing="false" text="Сохранить" />
               <MenuItem fx:id="menuItemLoadConfig" mnemonicParsing="false" text="Загрузить" />
-              <MenuItem mnemonicParsing="false" text="Закрыть" />
+              <MenuItem fx:id="menuItemClose" mnemonicParsing="false" text="Закрыть" />
             </items>
           </Menu>
            <Menu mnemonicParsing="false" text="Симуляция">
