@@ -1,6 +1,7 @@
 package Application;
 
 import Application.Controller.IController;
+import Application.Files.FileManager;
 import Application.Manager.ControllerManager;
 import Application.Habitat.Habitat;
 import Application.Simulation.Simulation;
@@ -40,6 +41,7 @@ public class AppManager extends Application {
         simulation = new Simulation();
         habitat = new Habitat();
         ControllerManager.getInstance().ControllerCreate(IController.ControllerType.MAIN);
+        FileManager.getInstance().createLogs();
         Polar vector = new Cartesian(20, 0).changeTypeToPolar();
         Polar vector1 = new Cartesian(0, 20).changeTypeToPolar();
         Polar vector2 = new Cartesian(0, 0).changeTypeToPolar();
@@ -58,6 +60,10 @@ public class AppManager extends Application {
     }
     public Timer getTimer() {
         return timer;
+    }
+
+    public void logsPrint(String string) {
+
     }
 
 

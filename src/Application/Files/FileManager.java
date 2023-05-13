@@ -1,11 +1,21 @@
 package Application.Files;
 
+import Application.AppManager;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 public class FileManager {
+
+    private static class FileManagerHolder {
+        public static final FileManager HOLDER_INSTANCE = new FileManager();
+    }
+
+    public static FileManager getInstance() {
+        return FileManagerHolder.HOLDER_INSTANCE;
+    }
     FileWriter fw;
     BufferedWriter bw;
     void  saveConfig() throws IOException {
@@ -34,7 +44,7 @@ public class FileManager {
         String mortality = props.getProperty("mortality");
     }
 
-    void createLogs() throws IOException {
+    public void createLogs() throws IOException {
         try {
             fw = new FileWriter("logs-" + Calendar.getInstance().toString() + ".txt", true);
             bw = new BufferedWriter(fw);
@@ -43,7 +53,7 @@ public class FileManager {
         }
     }
 
-    void saveLogs(String line) {
+    public void saveLogs(String line) {
         try {
             SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm:ss");
             Date now = new Date();
@@ -55,7 +65,7 @@ public class FileManager {
         }
     }
 
-    void closeLogs() {
+    public void closeLogs() {
         try {
             bw.close();
             fw.close();
