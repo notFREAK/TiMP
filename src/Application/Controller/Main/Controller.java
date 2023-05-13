@@ -313,9 +313,11 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 if(Drone.DroneBaseAI.isActive()) {
                     Drone.DroneBaseAI.stopAI();
                     buttonAIDrone.setText("Включить трутней");
+                    menuItemAIDrone.setText("Включить трутней");
                 } else {
                     Drone.DroneBaseAI.startAI();
                     buttonAIDrone.setText("Отключить трутней");
+                    menuItemAIDrone.setText("Отключить трутней");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -328,9 +330,11 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 if(Worker.WorkerBaseAI.isActive()) {
                     Worker.WorkerBaseAI.stopAI();
                     buttonAIWorker.setText("Включить рабочих");
+                    menuItemAIWorker.setText("Включить рабочих");
                 } else {
                     Worker.WorkerBaseAI.startAI();
                     buttonAIWorker.setText("Отключить рабочих");
+                    menuItemAIWorker.setText("Отключить рабочих");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
