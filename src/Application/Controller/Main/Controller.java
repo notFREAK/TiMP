@@ -115,6 +115,15 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
+        menuItemConsole.setOnAction(event ->
+        {
+          try {
+              ControllerManager.getInstance().ControllerCreate(ControllerType.CONSOLE);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+        });
+
         buttonStop.setOnAction(event ->
         {
             try {
@@ -328,6 +337,39 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
+        menuItemAIDrone.setOnAction(event ->
+        {
+            try {
+                if(Drone.DroneBaseAI.isActive()) {
+                    Drone.DroneBaseAI.stopAI();
+                    buttonAIDrone.setText("Включить трутней");
+                    menuItemAIDrone.setText("Включить трутней");
+                } else {
+                    Drone.DroneBaseAI.startAI();
+                    buttonAIDrone.setText("Отключить трутней");
+                    menuItemAIDrone.setText("Отключить трутней");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        menuItemAIWorker.setOnAction(event ->
+        {
+            try {
+                if(Worker.WorkerBaseAI.isActive()) {
+                    Worker.WorkerBaseAI.stopAI();
+                    buttonAIWorker.setText("Включить рабочих");
+                    menuItemAIWorker.setText("Включить рабочих");
+                } else {
+                    Worker.WorkerBaseAI.startAI();
+                    buttonAIWorker.setText("Отключить рабочих");
+                    menuItemAIWorker.setText("Отключить рабочих");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         comboBoxWorkerPriority.setOnAction(event ->
         {

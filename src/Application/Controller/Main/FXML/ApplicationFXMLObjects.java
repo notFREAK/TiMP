@@ -36,6 +36,15 @@ public class ApplicationFXMLObjects {
     protected MenuItem menuItemLoadConfig;
 
     @FXML
+    protected MenuItem menuItemConsole;
+
+    @FXML
+    protected MenuItem menuItemAIWorker;
+
+    @FXML
+    protected MenuItem menuItemAIDrone;
+
+    @FXML
     protected Button buttonStart;
 
     @FXML
@@ -105,8 +114,6 @@ public class ApplicationFXMLObjects {
 
     @FXML
     protected RadioMenuItem radioMenuItemViewTimerOff;
-
-
 
     @FXML
     protected Label labelVolume;
