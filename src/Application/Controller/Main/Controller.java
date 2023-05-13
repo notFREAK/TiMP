@@ -61,6 +61,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.RUNNING);
+                AppManager.getInstance().logsPrint("Simulation is running");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -70,6 +71,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.RUNNING);
+                AppManager.getInstance().logsPrint("Simulation is running");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -79,6 +81,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.PAUSE);
+                AppManager.getInstance().logsPrint("Simulation was paused");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -88,6 +91,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 AppManager.getInstance().appState(StateSimulation.PAUSE);
+                AppManager.getInstance().logsPrint("Simulation was paused");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -117,6 +121,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 if (showLog) {
                     AppManager.getInstance().appState(StateSimulation.PAUSE);
                     ControllerManager.getInstance().ControllerCreate(ControllerType.END_INFORMATION);
+                    AppManager.getInstance().logsPrint("Simulation was stopped. All bees removed");
                 }
                 else
                     AppManager.getInstance().appState(StateSimulation.STOP);
@@ -131,6 +136,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 if (showLog) {
                     AppManager.getInstance().appState(StateSimulation.PAUSE);
                     ControllerManager.getInstance().ControllerCreate(ControllerType.END_INFORMATION);
+                    AppManager.getInstance().logsPrint("Simulation was stopped. All bees removed");
                 }
                 else
                     AppManager.getInstance().appState(StateSimulation.STOP);
@@ -139,7 +145,8 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             }
         });
 
-        paneMain.setOnKeyPressed(event -> {
+        paneMain.setOnKeyPressed(event ->
+        {
             try {
                 writeKeyCode(event.getCode());
             } catch (Exception e) {
@@ -156,6 +163,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 radioMenuItemViewTimerOn.setDisable(true);
                 radioMenuItemViewTimerOff.setDisable(false);
                 swapTimerShowState();
+                AppManager.getInstance().logsPrint("Timer is now displayed");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -170,6 +178,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 radioMenuItemViewTimerOn.setDisable(false);
                 radioMenuItemViewTimerOff.setDisable(true);
                 swapTimerShowState();
+                AppManager.getInstance().logsPrint("Timer no longer displayed");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -184,6 +193,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 radioMenuItemViewTimerOn.setDisable(true);
                 radioMenuItemViewTimerOff.setDisable(false);
                 swapTimerShowState();
+                AppManager.getInstance().logsPrint("Timer is now displayed");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -198,6 +208,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 radioMenuItemViewTimerOn.setDisable(false);
                 radioMenuItemViewTimerOff.setDisable(true);
                 swapTimerShowState();
+                AppManager.getInstance().logsPrint("Timer no longer displayed");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -208,6 +219,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 if (checkboxDetailObjects.isSelected()) {
                     checkMenuItemViewDetailObjects.setSelected(true);
                     ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
+                    AppManager.getInstance().logsPrint("The \"current objects\" window is now open");
                 }
                 else {
                     checkMenuItemViewDetailObjects.setSelected(false);
@@ -215,7 +227,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                         ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
                         ControllerManager.getInstance().ControllerDelete(ControllerType.DETAIL_OBJECTS);
                     }
-
+                    AppManager.getInstance().logsPrint("The \"current objects\" window was closed");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -227,12 +239,14 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 if (!checkboxDetailObjects.isSelected()) {
                     checkboxDetailObjects.setSelected(true);
                     ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
+                    AppManager.getInstance().logsPrint("The \"current objects\" window is now open");
                 }
                 else {
                     if (ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS) != null) {
                         ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
                         ControllerManager.getInstance().ControllerDelete(ControllerType.DETAIL_OBJECTS);
                     }
+                    AppManager.getInstance().logsPrint("The \"current objects\" window was closed");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -246,13 +260,22 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                     Number oldValue,
                     Number newValue) {
                 MED.setMusicVolume((double)newValue);
+                AppManager.getInstance().logsPrint("Volume has been changed from " + oldValue + "% to " + newValue + "%");
             }
         });
 
         checkboxInformation.setOnAction(event -> {
             try {
-                checkMenuItemViewInformation.setSelected(!checkMenuItemViewInformation.isSelected());
-                showLog  = !showLog;
+                if (!checkboxInformation.isSelected()) {
+                    checkMenuItemViewInformation.setSelected(true);
+                    showLog = true;
+                    AppManager.getInstance().logsPrint("Now when simulation is paused, the information window will be shown");
+                }
+                else {
+                    checkMenuItemViewInformation.setSelected(false);
+                    showLog = false;
+                    AppManager.getInstance().logsPrint("Now when simulation is paused, the information window will no longer be shown");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -260,8 +283,16 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
 
         checkMenuItemViewInformation.setOnAction(event -> {
             try {
-                checkboxInformation.setSelected(!checkboxInformation.isSelected());
-                showLog  = !showLog;
+                if (!checkMenuItemViewInformation.isSelected()) {
+                    checkboxInformation.setSelected(true);
+                    showLog = true;
+                    AppManager.getInstance().logsPrint("Now when simulation is paused, the information window will be shown");
+                }
+                else {
+                    checkboxInformation.setSelected(false);
+                    showLog = false;
+                    AppManager.getInstance().logsPrint("Now when simulation is paused, the information window will no longer be shown");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -303,6 +334,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             try {
                 if(Worker.WorkerBaseAI.isActive()) {
                     Worker.WorkerBaseAI.setAIPriority(getValueComboBoxWorkerPriority());
+                    AppManager.getInstance().logsPrint("Worker priority changed to " + getValueComboBoxWorkerPriority());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -313,8 +345,9 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         {
             try {
                 if(Drone.DroneBaseAI.isActive()) {
-                    Drone.DroneBaseAI.setAIPriority(getValueComboBoxWorkerPriority());
+                    Drone.DroneBaseAI.setAIPriority(getValueComboBoxDronePriority());
                     System.out.println(Drone.DroneBaseAI.getAIPriority());
+                    AppManager.getInstance().logsPrint("Drone priority changed to " + getValueComboBoxDronePriority());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -326,10 +359,12 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
 
         if(key == KeyCode.T) {
             swapTimerShowState();
+            AppManager.getInstance().logsPrint("Timer state switched from keyboard");
         }
         if (key == KeyCode.B){
             try {
                 AppManager.getInstance().appState(StateSimulation.RUNNING);
+                AppManager.getInstance().logsPrint("Simulation is running");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -339,6 +374,7 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         }
         if (key == KeyCode.E){
             AppManager.getInstance().appState(StateSimulation.STOP);
+            AppManager.getInstance().logsPrint("Simulation was stopped. All bees removed");
         }
     }
     private void initComboBox() {

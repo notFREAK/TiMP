@@ -63,11 +63,13 @@ public class ControllerInformation extends InformationFXMLObjectsGets implements
         this.stage = stage;
         initButtons();
         initFont();
+        AppManager.getInstance().logsPrint("The information window is now open");
     }
 
     @Override
     public void hide() {
         stage.close();
+        AppManager.getInstance().logsPrint("The information window has been closed");
     }
 
     @Override

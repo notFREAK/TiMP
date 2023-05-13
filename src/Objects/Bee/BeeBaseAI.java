@@ -3,6 +3,7 @@ package Objects.Bee;
 import Application.AppManager;
 import Application.Simulation.Simulation;
 import Objects.IBehaviour;
+import javafx.application.Application;
 import javafx.application.Platform;
 
 public abstract class BeeBaseAI extends Thread {
@@ -19,10 +20,12 @@ public abstract class BeeBaseAI extends Thread {
         isActive = true;
         setAIPriority(priority);
         notify();
+        AppManager.getInstance().logsPrint("Bees AI has been turned on. Current priority - " + priority);
     }
 
     public synchronized void stopAI() {
         isActive = false;
+        AppManager.getInstance().logsPrint("Bees AI has been turned off");
     }
 
     @Override
