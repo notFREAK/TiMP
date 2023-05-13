@@ -191,6 +191,14 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         return comboBoxProbabilityWorker.getSelectionModel().getSelectedItem();
     }
 
+    protected Integer getValueComboBoxWorkerPriority() {
+        return comboBoxWorkerPriority.getSelectionModel().getSelectedItem();
+    }
+
+    protected Integer getValueComboBoxDronePriority() {
+        return comboBoxDronePriority.getSelectionModel().getSelectedItem();
+    }
+
     protected Integer getValueComboBoxCoefficientDrone() {
         return comboBoxCoefficientDrone.getSelectionModel().getSelectedItem();
     }

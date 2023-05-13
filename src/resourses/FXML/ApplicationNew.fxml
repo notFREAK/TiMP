@@ -87,11 +87,11 @@
                   </RadioButton>
                   <RadioButton fx:id="radioButtonTimerOff" mnemonicParsing="false" prefHeight="30.0" prefWidth="380.0" text="Скрыть время симуляции" toggleGroup="$radioButtonTimerGroup" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="370.0" />
                   <Label alignment="CENTER" layoutX="21.0" layoutY="400.0" prefHeight="30.0" prefWidth="365.0" text="Искусcтвенный интеллект" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="410.0" />
-                  <Button disable="true" layoutX="10.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Включить" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="450.0" />
-                  <Button layoutX="215.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Отключить" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="450.0" />
+                  <Button fx:id="buttonAIWorker" layoutX="10.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Отключить рабочих" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="450.0" />
+                  <Button fx:id="buttonAIDrone"  layoutX="215.0" layoutY="455.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" text="Отключить трутней" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="450.0" />
                   <Label alignment="CENTER" prefHeight="30.0" prefWidth="365.0" text="Приоритет" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="490.0" />
-                  <ComboBox layoutX="10.0" layoutY="546.0" prefHeight="30.0" prefWidth="160.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="530.0" />
-                  <ComboBox layoutX="215.0" layoutY="546.0" prefHeight="30.0" prefWidth="160.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="530.0" />
+                  <ComboBox fx:id="comboBoxWorkerPriority" layoutX="10.0" layoutY="546.0" prefHeight="30.0" prefWidth="160.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="530.0" />
+                  <ComboBox fx:id="comboBoxDronePriority" layoutX="215.0" layoutY="546.0" prefHeight="30.0" prefWidth="160.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="530.0" />
                </children></AnchorPane>
         </content>
       </ScrollPane>

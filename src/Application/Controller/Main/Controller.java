@@ -8,6 +8,8 @@ import Application.Habitat.HabitatSize;
 import Application.Manager.ControllerManager;
 import Application.Simulation.StateSimulation;
 import Application.TImer.Timer;
+import Objects.Drone.Drone;
+import Objects.Worker.Worker;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +24,7 @@ import javafx.stage.WindowEvent;
 import java.awt.Toolkit;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 import java.io.IOException;
 
 import static Application.Habitat.HabitatSize.getImageViewBackground;
@@ -189,7 +192,11 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                 }
                 else {
                     checkMenuItemViewDetailObjects.setSelected(false);
-                    ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
+                    if (ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS) != null) {
+                        ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
+                        ControllerManager.getInstance().ControllerDelete(ControllerType.DETAIL_OBJECTS);
+                    }
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -203,8 +210,10 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
                     ControllerManager.getInstance().ControllerCreate(ControllerType.DETAIL_OBJECTS);
                 }
                 else {
-                    checkboxDetailObjects.setSelected(false);
-                    ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
+                    if (ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS) != null) {
+                        ControllerManager.getInstance().getController(ControllerType.DETAIL_OBJECTS).hide();
+                        ControllerManager.getInstance().ControllerDelete(ControllerType.DETAIL_OBJECTS);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -234,6 +243,60 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
             try {
                 checkboxInformation.setSelected(!checkboxInformation.isSelected());
                 showLog  = !showLog;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        buttonAIDrone.setOnAction(event ->
+        {
+            try {
+                if(Drone.DroneBaseAI.isActive()) {
+                    Drone.DroneBaseAI.stopAI();
+                    buttonAIDrone.setText("Включить трутней");
+                } else {
+                    Drone.DroneBaseAI.startAI();
+                    buttonAIDrone.setText("Отключить трутней");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        buttonAIWorker.setOnAction(event ->
+        {
+            try {
+                if(Worker.WorkerBaseAI.isActive()) {
+                    Worker.WorkerBaseAI.stopAI();
+                    buttonAIWorker.setText("Включить рабочих");
+                } else {
+                    Worker.WorkerBaseAI.startAI();
+                    buttonAIWorker.setText("Отключить рабочих");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        comboBoxWorkerPriority.setOnAction(event ->
+        {
+            try {
+                if(Worker.WorkerBaseAI.isActive()) {
+                    Worker.WorkerBaseAI.setAIPriority(getValueComboBoxWorkerPriority());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        comboBoxDronePriority.setOnAction(event ->
+        {
+            try {
+                if(Drone.DroneBaseAI.isActive()) {
+                    Drone.DroneBaseAI.setAIPriority(getValueComboBoxWorkerPriority());
+                    System.out.println(Drone.DroneBaseAI.getAIPriority());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -268,6 +331,14 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
         comboBoxProbabilityWorker.setItems(ProbabilityWorker);
         comboBoxCoefficientDrone.getSelectionModel().select(0);
         comboBoxProbabilityWorker.getSelectionModel().select(0);
+        ObservableList<Integer> WorkerPriority =
+                FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        ObservableList<Integer> DronePriority =
+                FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        comboBoxWorkerPriority.setItems(WorkerPriority);
+        comboBoxDronePriority.setItems(DronePriority);
+        comboBoxWorkerPriority.getSelectionModel().select(4);
+        comboBoxDronePriority.getSelectionModel().select(4);
     }
 
     private void initSlider() {
@@ -347,12 +418,12 @@ public class Controller extends ApplicationFXMLObjectsGets implements IControlle
     @Override
     public void update(Timer timer) {
         if(ControllerManager.getInstance().checkIsType(ControllerType.DETAIL_OBJECTS)) {
-            checkboxDetailObjects.setSelected(false);
-            checkMenuItemViewDetailObjects.setSelected(false);
-        }
-        else {
             checkboxDetailObjects.setSelected(true);
             checkMenuItemViewDetailObjects.setSelected(true);
+        }
+        else {
+            checkboxDetailObjects.setSelected(false);
+            checkMenuItemViewDetailObjects.setSelected(false);
         }
         labelTimer.setText(timer.getTime().getTimeString());
         AppManager.getInstance().getHabitat().Update(timer.getSeconds(), paneStage);

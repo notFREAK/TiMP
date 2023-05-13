@@ -9,8 +9,15 @@ public abstract class BeeBaseAI extends Thread {
     public abstract void move(Bee bee);
     private volatile boolean isActive = false;
 
+    int priority = 5;
+    String typeBees;
+
+    public void setTypeBees(String string) {
+        typeBees = string;
+    }
     public synchronized void startAI() {
         isActive = true;
+        setAIPriority(priority);
         notify();
     }
 
@@ -28,9 +35,11 @@ public abstract class BeeBaseAI extends Thread {
                     }
                 }
                 for (Bee bee : AppManager.getInstance().getHabitat().getCollectionsBees().getArrayList()) {
-                    move(bee);
-                    IBehaviour behaviour = bee;
-                    behaviour.move();
+                    if (bee.getTypeBees() == typeBees) {
+                        move(bee);
+                        IBehaviour behaviour = bee;
+                        behaviour.move();
+                    }
                 }
                 Thread.sleep((int)Math.round(Simulation.getSimulationSpeed()));
             } catch (InterruptedException e) {
@@ -44,10 +53,16 @@ public abstract class BeeBaseAI extends Thread {
     }
 
     public void setAIPriority(int priority) {
-        setPriority(priority);
+        if (isActive())
+            setPriority(priority);
+        else
+            this.priority = priority;
     }
 
     public int getAIPriority() {
-        return getPriority();
+        if (isActive())
+            return getPriority();
+        else
+            return this.priority;
     }
 }

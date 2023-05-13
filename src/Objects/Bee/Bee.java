@@ -25,7 +25,7 @@ public abstract class Bee implements IBehaviour{
     public Bee(){
         generateIdentifier();
         countsAllBees++;
-        speed = new Polar(0.1 * Simulation.getSimulationSpeed(), (int)(Math.random() * 2*Math.PI));
+        speed = new Polar(Simulation.getSimulationSpeed()/10, (int)(Math.random() * 2*Math.PI));
     }
 
     private void generateIdentifier(){

@@ -15,26 +15,42 @@ public class Habitat extends HabitatObjects{
 
 
     public Habitat(){
+        Drone.DroneBaseAI.setTypeBees("bee_drone");
         Drone.DroneBaseAI.start();
+        Worker.WorkerBaseAI.setTypeBees("bee_worker");
         Worker.WorkerBaseAI.start();
         collectionsBees = new Collections();
     }
 
     public void StartAi() {
-        Drone.DroneBaseAI.startAI();
-        Worker.WorkerBaseAI.startAI();
+        if (!Drone.DroneBaseAI.isActive()) {
+            Drone.DroneBaseAI.startAI();
+        }
+        if (!Worker.WorkerBaseAI.isActive()) {
+            Worker.WorkerBaseAI.startAI();
+        }
         AI = true;
     }
 
     public boolean AI = false;
     public void StopAi() {
-        Drone.DroneBaseAI.stopAI();
-        Worker.WorkerBaseAI.stopAI();
+        if (Drone.DroneBaseAI.isActive()) {
+            Drone.DroneBaseAI.stopAI();
+        }
+        if (Worker.WorkerBaseAI.isActive()) {
+            Worker.WorkerBaseAI.stopAI();
+        }
         AI = false;
     }
 
     public void Update(int time, Pane pane) {
         try {
+            if (!Drone.DroneBaseAI.isActive() && !Worker.WorkerBaseAI.isActive()) {
+                AI = false;
+            }
+            else {
+                AI = true;
+            }
             if (time != lastSecondsUpdate) {
                 lastSecondsUpdate = time;
                 if (this.canBornWorker(value.getValueSecondsWorker(), value.getValueProbabilityWorker(), time)) {

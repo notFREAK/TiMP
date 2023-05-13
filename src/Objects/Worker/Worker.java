@@ -40,7 +40,6 @@ public class Worker extends Bee{
         beeGraphic = new BeeGraphic(x, y, getClass().getResource("/resourses/Pic/sprite_Worker.png").toString());
         positionBirth = new Position(x, y);
         positionHabitat = new Position(0, HabitatSize.getWidth() - BeeGraphic.getImageWidth(), 0, HabitatSize.getHeight() - BeeGraphic.getImageHeight());
-        beeGraphic.setPosition(x,y);
         countWorker++;
         typeBee = "bee_worker";
     }

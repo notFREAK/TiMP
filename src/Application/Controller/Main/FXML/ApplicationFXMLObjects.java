@@ -109,5 +109,15 @@ public class ApplicationFXMLObjects {
     @FXML
     protected Slider sliderVolume;
 
+    @FXML
+    protected Button buttonAIWorker;
 
+    @FXML
+    protected Button buttonAIDrone;
+
+    @FXML
+    protected ComboBox<Integer> comboBoxWorkerPriority;
+
+    @FXML
+    protected ComboBox<Integer> comboBoxDronePriority;
 }

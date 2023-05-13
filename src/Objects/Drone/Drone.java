@@ -14,7 +14,6 @@ public class Drone extends Bee {
         public void move(Bee bee) {
             if (bee.getTypeBees() == "bee_drone") {
                 bee.ChangeDirection();
-
             }
         }
     };
@@ -30,6 +29,7 @@ public class Drone extends Bee {
             }
         };
         beeGraphic = new BeeGraphic(x, y, getClass().getResource("/resourses/Pic/sprite_Drone.png").toString());
+        beeGraphic.setPosition(x,y);
         countDrone++;
         typeBee = "bee_drone";
     }
@@ -39,7 +39,6 @@ public class Drone extends Bee {
         if (DroneLastChangeDirectionTime != AppManager.getInstance().getTimer().getSeconds() && AppManager.getInstance().getTimer().getSeconds() % ValueDroneChangeDirection == 0) {
             DroneLastChangeDirectionTime = AppManager.getInstance().getTimer().getSeconds();
             speed.setSecondCoordinate(Math.random() * Math.PI*2);
-            System.out.print(identifier + " " + speed.getFirstCoordinate() + " " + speed.getSecondCoordinate() + '\n');
         }
     }
 

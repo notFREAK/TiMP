@@ -27,7 +27,6 @@ public class ControllerConsole extends FXMLObjects implements IController {
     public void executeCommand(String command) {
         switch (command) {
             case "":
-
                 break;
             default:
                 break;
@@ -43,6 +42,7 @@ public class ControllerConsole extends FXMLObjects implements IController {
     @Override
     public void init(Stage stage) throws IOException {
         this.stage = stage;
+        textAreaLength = 0;
         textAreaConsole.setOnKeyPressed(event -> {
             if (textAreaConsole.getCaretPosition() >= textAreaLength) {
                 textAreaConsole.setEditable(true);
