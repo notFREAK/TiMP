@@ -18,7 +18,6 @@ public interface IController {
     public void hide();
     public void update(Timer timer);
     public void swapState();
-
     public void setValue(Value v);
     public void appendText(String s);
 }

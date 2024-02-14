@@ -25,10 +25,36 @@ public class ControllerConsole extends FXMLObjects implements IController {
 
 
     public void executeCommand(String command) {
-        switch (command) {
-            case "":
+        String[] words = command.split(" ");
+        switch (words[0]) {
+            case "alive":
+                String answer;
+                if (words.length != 2) {
+                    answer = "Unknown arg. Use \"bee\",\"worker\" or \"drone\"\n";
+                    break;
+                }
+                switch (words[1]) {
+                    case "drone":
+                        answer = AppManager.getInstance().getHabitat().getCollectionsBees().getAliveDrone();
+                        break;
+                    case "worker":
+                        answer = AppManager.getInstance().getHabitat().getCollectionsBees().getAliveWorker();
+                        break;
+                    case "bee":
+                        answer = AppManager.getInstance().getHabitat().getCollectionsBees().getAliveAnimals();
+                        break;
+                    default:
+                        answer = "Unknown arg. Use \"bee\",\"worker\" or \"drone\"\n";
+                        break;
+                    }
+                if (answer.equals("".toString()))
+                {
+                    answer = "No alive bees\n";
+                }
+                appendText(answer);
                 break;
             default:
+                appendText("Unknown command\n");
                 break;
         }
         textAreaLength = textAreaConsole.getLength();

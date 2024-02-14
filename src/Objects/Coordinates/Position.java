@@ -3,9 +3,11 @@ package Objects.Coordinates;
 import Objects.Coordinates.Vector.Cartesian;
 import Objects.Coordinates.Vector.Vector;
 
+import java.io.Serializable;
+
 import static java.lang.Math.*;
 
-public class Position  {
+public class Position implements Serializable {
 
     private int[] position = {0, 0};
 

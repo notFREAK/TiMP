@@ -2,7 +2,9 @@ package Objects.Bee;
 
 import Objects.ILife;
 
-public abstract class BeeLife implements ILife {
+import java.io.Serializable;
+
+public abstract class BeeLife implements ILife, Serializable {
 
     protected int timeBorn = 0;
     protected int timeLife = 0;

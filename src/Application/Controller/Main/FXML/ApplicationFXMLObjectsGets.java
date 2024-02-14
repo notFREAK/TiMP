@@ -1,6 +1,7 @@
 package Application.Controller.Main.FXML;
 
 import Application.TImer.Time;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -38,6 +39,11 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
         return buttonStart;
     }
 
+    public Button getButtonConnection() {
+        return buttonConnection;
+    }
+
+
     public Button getButtonStop() {
         return buttonStop;
     }
@@ -59,6 +65,10 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
 
     public int getValueSpinnerSecondsWorker() {
         return spinnerSecondsWorker.getValue();
+    }
+
+    public int getValueSpinnerPackageCount() {
+        return spinnerPackageCount.getValue();
     }
 
 
@@ -201,5 +211,20 @@ public class ApplicationFXMLObjectsGets extends ApplicationFXMLObjects {
 
     protected Integer getValueComboBoxCoefficientDrone() {
         return comboBoxCoefficientDrone.getSelectionModel().getSelectedItem();
+    }
+
+    protected TextArea getValueTextAreaConnection() {
+        return textAreaConnection;
+    }
+    protected MultipleSelectionModel<String> getValueListViewConnections() {
+        return listViewConnections.getSelectionModel();
+    }
+
+    protected String getSelectedValueListViewConnections() {
+        return listViewConnections.getSelectionModel().getSelectedItem();
+    }
+
+    protected void setValueListViewConnections(ObservableList<String> value) {
+        listViewConnections.setItems(value);
     }
 }

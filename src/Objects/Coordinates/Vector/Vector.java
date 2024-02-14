@@ -1,6 +1,8 @@
 package Objects.Coordinates.Vector;
 
-public class Vector implements Cloneable {
+import java.io.Serializable;
+
+public class Vector implements Cloneable, Serializable {
     protected double[] vector = {0, 0};
 
     public enum CoordinatesType {

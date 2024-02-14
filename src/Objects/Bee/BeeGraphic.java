@@ -10,16 +10,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class BeeGraphic extends Pane {
+import java.io.Serializable;
+
+public class BeeGraphic extends Pane implements Serializable {
 
     private ImageView imageView;
     private static int ImageWidth = HabitatSize.getWidth()/12;
     private static int ImageHeight = HabitatSize.getHeight()/12;
-    Position current;
+
     public BeeGraphic(int x, int y, String path) {
         imageView = new ImageView(new Image(path));
-        current = new Position(x, y);
-        setPosition(x, y);
+        Platform.runLater(() -> {
+            this.setX(x);
+            this.setY(y);
+        });
         setImageViewSize();
     }
 
@@ -48,10 +52,6 @@ public class BeeGraphic extends Pane {
         ImageHeight = imageHeight;
     }
 
-    public Position getCurrent() {
-        return current;
-    }
-
     public void setX(double x) {
         imageView.setTranslateX(x);
     }
@@ -68,7 +68,7 @@ public class BeeGraphic extends Pane {
         return imageView.getY();
     }
 
-    public void setPosition(int x, int y){
+    public void setPosition(int x, int y, Position current){
         Platform.runLater(() -> {
             this.setX(x);
             this.setY(y);
@@ -77,7 +77,7 @@ public class BeeGraphic extends Pane {
         current.setY(y);
     }
 
-    public void go(Cartesian speed) {
+    public void go(Cartesian speed, Position current) {
         int newX = (int)Math.round(current.getX()+ speed.getFirstCoordinate());
         int newY = (int)Math.round(current.getY()+ speed.getSecondCoordinate());
         if (newX <= 0)
@@ -88,6 +88,6 @@ public class BeeGraphic extends Pane {
             newY = 0;
         else if (newY >= HabitatSize.getHeight() - BeeGraphic.getImageHeight())
             newY = HabitatSize.getHeight() - BeeGraphic.getImageHeight();
-        setPosition(newX, newY);
+        setPosition(newX, newY, current);
     }
 }

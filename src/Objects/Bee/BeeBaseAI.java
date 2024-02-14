@@ -37,11 +37,13 @@ public abstract class BeeBaseAI extends Thread {
                         wait();
                     }
                 }
-                for (Bee bee : AppManager.getInstance().getHabitat().getCollectionsBees().getArrayList()) {
-                    if (bee.getTypeBees() == typeBees) {
-                        move(bee);
-                        IBehaviour behaviour = bee;
-                        behaviour.move();
+                synchronized (AppManager.getInstance().getHabitat().getCollectionsBees().getArrayList()) {
+                    for (Bee bee : AppManager.getInstance().getHabitat().getCollectionsBees().getArrayList()) { //synchronized
+                        if (bee.getTypeBees().intern() == typeBees) {
+                            move(bee);
+                            IBehaviour behaviour = bee;
+                            behaviour.move();
+                        }
                     }
                 }
                 Thread.sleep((int)Math.round(Simulation.getSimulationSpeed()));

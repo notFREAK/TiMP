@@ -25,6 +25,7 @@ public class Drone extends Bee {
     }
 
     public Drone(int x, int y, int timeBorn, int timeLife) {
+        current = new Position(x, y);
         life = new BeeLife(timeBorn, timeLife) {
             @Override
             public void updateCountOfDeadBees() {
@@ -32,7 +33,7 @@ public class Drone extends Bee {
             }
         };
         beeGraphic = new BeeGraphic(x, y, getClass().getResource("/resourses/Pic/sprite_Drone.png").toString());
-        beeGraphic.setPosition(x,y);
+        beeGraphic.setPosition(x,y, current);
         countDrone++;
         typeBee = "bee_drone";
     }
@@ -48,7 +49,7 @@ public class Drone extends Bee {
     @Override
     public String toString() {
         return new String(typeBee + ":" + identifier.toString() + ":" +
-                beeGraphic.getCurrent().getX() + ":" + beeGraphic.getCurrent().getY() + ":" +
+                getCurrent().getX() + ":" + getCurrent().getY() + ":" +
                 life.getTimeBorn() + ":" + life.getTimeLife());
     }
 

@@ -32,7 +32,7 @@ public class Habitat extends HabitatObjects{
         while(itr.hasNext()) {
             String val = itr.next();
             String[] values = val.split(":");
-            if (values[0] == "bee_worker") {
+            if (values[0].equals("bee_worker".toString())) {
                 Worker worker = new Worker(val);
                 this.collectionsBees.adds(worker);
                 pane.getChildren().addAll(new Node[]{worker.getGraphic().getImageView()});

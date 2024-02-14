@@ -7,7 +7,7 @@ public class Time {
     final int millisecondHour = 3600000;
     final int millisecondMinute = 60000;
     final int millisecondSecond = 1000;
-    long time;
+    long time = 0;
 
     long timePause = 0;
     public Time() {
@@ -32,13 +32,13 @@ public class Time {
         Integer minutes = getMinutes();
         Integer seconds = getSeconds();
         Integer milliseconds = getMillisecond();
-        timeString = intToString(minutes) + ":".toString() + intToString(seconds) + ".".toString() + intToString(milliseconds);
+        timeString = intToString(minutes) + ":" + intToString(seconds) + "." + intToString(milliseconds);
         return timeString;
     }
 
-    public void setTimeS(String time) {
+    public void setTimeLong(long time) {
         timePause = 0;
-
+        this.time = System.currentTimeMillis() - time;
     }
 
     private String intToString(Integer value) {

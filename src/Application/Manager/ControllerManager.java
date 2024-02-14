@@ -7,9 +7,11 @@ import Application.Controller.ModalWindows.Console.ControllerConsole;
 import Application.Controller.ModalWindows.DetailObjects.ControllerDetailObjects;
 import Application.Controller.ModalWindows.Information.ControllerInformation;
 import Application.TImer.Timer;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -18,6 +20,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ControllerManager{
+
+    private Stage mainStage;
+
+
+
     private static class ControllerManagerHolder {
         public static final ControllerManager HOLDER_INSTANCE = new ControllerManager();
     }
@@ -133,7 +140,7 @@ public class ControllerManager{
         iController.init(stage);
     }
 
-    public void ControllerDelete(IController.ControllerType controllerType) {
+     public void ControllerDelete(IController.ControllerType controllerType) {
         controllers.remove(getController(controllerType));
     }
 }

@@ -22,6 +22,7 @@ public abstract class PausableTask implements  Runnable{
     }
 
     public void pause() {
+        if (publisher != null)
         publisher.cancel(true);
     }
 

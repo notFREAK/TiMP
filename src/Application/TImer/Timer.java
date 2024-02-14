@@ -4,10 +4,13 @@ import Application.AppManager;
 import Application.Simulation.Simulation;
 import javafx.application.Platform;
 import javafx.scene.SubScene;
+import javafx.scene.control.Label;
+
 
 public class Timer {
     private Thread thread;
 
+    private Label labelTimer;
     private AppManager manager;
     Time time;
     long timePause = 0;
@@ -86,7 +89,14 @@ public class Timer {
         return time.getMillisecond();
     }
 
-    public void setTimeS(String time)  {
-       this.time.setTimeS(time);
+    public void setTimeLong(long time) {
+        System.out.print(time + " ");
+        this.time.setTimeLong(time);
+        System.out.println(this.time.getTimeLong());
+        labelTimer.setText(getTime().getTimeString());
+    }
+
+    public void setLabelTimer(Label labelTimer) {
+        this.labelTimer = labelTimer;
     }
 }

@@ -138,4 +138,19 @@ public class ApplicationFXMLObjects {
 
     @FXML
     protected ComboBox<Integer> comboBoxDronePriority;
+
+    @FXML
+    protected TextArea textAreaConnection;
+
+    @FXML
+    protected ListView<String> listViewConnections;
+
+    @FXML
+    protected Button buttonConnection;
+
+    @FXML
+    protected Spinner<Integer>  spinnerPackageCount;
+
+    @FXML
+    protected Pane paneBackStage;
 }

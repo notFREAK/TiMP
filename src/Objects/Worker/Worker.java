@@ -24,7 +24,7 @@ public class Worker extends Bee{
     public static BeeBaseAI WorkerBaseAI = new BeeBaseAI() {
         @Override
         public void move(Bee bee) {
-            if (bee.getTypeBees() == "bee_worker") {
+            if (bee.getTypeBees().equals("bee_worker".toString())) {
                 bee.ChangeDirection();
             }
         }
@@ -32,6 +32,7 @@ public class Worker extends Bee{
     public Worker(){
     }
     public Worker(int x, int y, int timeBorn, int timeLife){
+        current = new Position(x, y);
         life = new BeeLife(timeBorn,timeLife) {
                 @Override
                 public void updateCountOfDeadBees() {
@@ -49,14 +50,14 @@ public class Worker extends Bee{
     @Override
     public void ChangeDirection() {
         if (isWorkerGoHabitat) {
-            Polar toHab = beeGraphic.getCurrent().BeeGoTo(positionHabitat).changeTypeToPolar();
+            Polar toHab = getCurrent().BeeGoTo(positionHabitat).changeTypeToPolar();
             if (toHab.getFirstCoordinate() <= (int)Math.round(speed.getFirstCoordinate())) {
                 isWorkerGoHabitat = !isWorkerGoHabitat;
             }
             speed.setSecondCoordinate(toHab.getSecondCoordinate());
             }
         else {
-            Vector toBir = beeGraphic.getCurrent().BeeGoTo(positionBirth).changeTypeToPolar();
+            Vector toBir = getCurrent().BeeGoTo(positionBirth).changeTypeToPolar();
             if (toBir.getFirstCoordinate() <= (int)Math.round(speed.getFirstCoordinate())) {
                 positionHabitat = new Position(0, HabitatSize.getWidth() - BeeGraphic.getImageWidth(), 0, HabitatSize.getHeight() - BeeGraphic.getImageHeight());
                 isWorkerGoHabitat = !isWorkerGoHabitat;
@@ -70,7 +71,7 @@ public class Worker extends Bee{
         return new String(typeBee + ":" + identifier.toString() + ":" +
                 positionBirth.getX() + ":" + positionBirth.getY() + ":" +
                 positionHabitat.getX() + ":" + positionHabitat.getY() + ":" +
-                beeGraphic.getCurrent().getX() + ":" + beeGraphic.getCurrent().getY() + ":" +
+                getCurrent().getX() + ":" + getCurrent().getY() + ":" +
                 life.getTimeBorn() + ":" + life.getTimeLife());
     }
 
